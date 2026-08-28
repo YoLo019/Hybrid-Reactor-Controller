@@ -1,0 +1,5 @@
+usage: watch_e2_forcing_boundary_refinement.py [-h] --config CONFIG
+                                               --output-dir OUTPUT_DIR
+                                               [--poll-seconds POLL_SECONDS]
+                                               [--timeout-hours TIMEOUT_HOURS]
+watch_e2_forcing_boundary_refinement.py: error: unrecognized arguments: --workers 1

@@ -1,0 +1,195 @@
+{
+  "study_id": "w3_v1_typical_validation",
+  "stage": "W3-R0",
+  "pass": true,
+  "checks": {
+    "complete_unique_controller_set": true,
+    "common_configured_study": true,
+    "common_stage_and_expected_control_steps": true,
+    "common_scenario": true,
+    "validation_split_only": true,
+    "common_forecast_type": true,
+    "common_issue_time_information": true,
+    "all_required_metrics_finite": true,
+    "equal_mpc_decision_and_span_budget": true,
+    "mpc_uses_frozen_solver_without_fallback": true
+  },
+  "controllers": {
+    "pid_forecast_ff": {
+      "study_id": "w3_v1_typical_validation",
+      "stage": "W3-R0",
+      "controller": "pid_forecast_ff",
+      "scenario_id": "w1_typical_6h",
+      "split": "validation",
+      "forecast_type": "persistence",
+      "control_steps": 4,
+      "forecast_issue_times": [
+        "2016-07-20T00:10:00"
+      ],
+      "decision_nodes": null,
+      "prediction_span_seconds": null,
+      "solver": null,
+      "solver_status_counts": {},
+      "solver_fallback_count": 0,
+      "metrics": {
+        "tracking_rmse_pu": 6.100206522930538e-09,
+        "tracking_mae_pu": 4.981251011670906e-09,
+        "tracking_max_abs_error_pu": 9.966432124031144e-09,
+        "frequency_max_abs_hz": 2.4846791290400836e-12,
+        "coolant_average_max_abs_deviation_c": 2.2845085823064437e-08,
+        "rod_peak_abs_spm": 4.906048339166426e-06,
+        "valve_command_max_rate_pu_s": 1.5802625874528076e-10,
+        "valve_command_total_variation_pu": 2.3215973588008865e-10,
+        "bess_peak_abs_mw": 8.981931967111895e-11,
+        "bess_throughput_mwh": 2.760956396687593e-14,
+        "soc_min": 0.4999999999999959,
+        "soc_max": 0.5,
+        "solve_mean_seconds": 0.00015280000000017502,
+        "solve_p95_seconds": 0.00015926000000030527,
+        "solve_max_seconds": 0.00016070000000034668,
+        "deadline_miss_fraction": 0.0
+      },
+      "locked_splits_accessed": [],
+      "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w3_v1_integration_smoke_v2\\cases\\pid_forecast_ff.npz"
+    },
+    "mpc_uniform_tail": {
+      "study_id": "w3_v1_typical_validation",
+      "stage": "W3-R0",
+      "controller": "mpc_uniform_tail",
+      "scenario_id": "w1_typical_6h",
+      "split": "validation",
+      "forecast_type": "persistence",
+      "control_steps": 4,
+      "forecast_issue_times": [
+        "2016-07-20T00:10:00"
+      ],
+      "decision_nodes": 30,
+      "prediction_span_seconds": 21600.0,
+      "solver": "OSQP",
+      "solver_status_counts": {
+        "optimal": 4
+      },
+      "solver_fallback_count": 0,
+      "metrics": {
+        "tracking_rmse_pu": 6.112857924493731e-09,
+        "tracking_mae_pu": 4.99206116444384e-09,
+        "tracking_max_abs_error_pu": 9.986037441400697e-09,
+        "frequency_max_abs_hz": 1.3722356583974723e-12,
+        "coolant_average_max_abs_deviation_c": 2.6736699965113075e-08,
+        "rod_peak_abs_spm": 4.905626629518414e-06,
+        "valve_command_max_rate_pu_s": 1.7025114651403328e-10,
+        "valve_command_total_variation_pu": 2.4513902019407396e-10,
+        "bess_peak_abs_mw": 4.507734911542451e-11,
+        "bess_throughput_mwh": 1.0331364945665342e-14,
+        "soc_min": 0.49999999999999944,
+        "soc_max": 0.5000000000000001,
+        "solve_mean_seconds": 0.010072275000000186,
+        "solve_p95_seconds": 0.025471685000000112,
+        "solve_max_seconds": 0.029054900000000217,
+        "deadline_miss_fraction": 0.0
+      },
+      "locked_splits_accessed": [],
+      "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w3_v1_integration_smoke_v2\\cases\\mpc_uniform_tail.npz"
+    },
+    "mpc_nonuniform": {
+      "study_id": "w3_v1_typical_validation",
+      "stage": "W3-R0",
+      "controller": "mpc_nonuniform",
+      "scenario_id": "w1_typical_6h",
+      "split": "validation",
+      "forecast_type": "persistence",
+      "control_steps": 4,
+      "forecast_issue_times": [
+        "2016-07-20T00:10:00"
+      ],
+      "decision_nodes": 30,
+      "prediction_span_seconds": 21600.0,
+      "solver": "OSQP",
+      "solver_status_counts": {
+        "optimal": 4
+      },
+      "solver_fallback_count": 0,
+      "metrics": {
+        "tracking_rmse_pu": 5.946424299212926e-09,
+        "tracking_mae_pu": 4.869796232931378e-09,
+        "tracking_max_abs_error_pu": 9.677760592907703e-09,
+        "frequency_max_abs_hz": 1.671329741222941e-11,
+        "coolant_average_max_abs_deviation_c": 2.681576916074846e-08,
+        "rod_peak_abs_spm": 4.905625485640052e-06,
+        "valve_command_max_rate_pu_s": 5.983424866684572e-10,
+        "valve_command_total_variation_pu": 5.089345611608564e-10,
+        "bess_peak_abs_mw": 8.048542859978213e-10,
+        "bess_throughput_mwh": 1.8984579452807024e-13,
+        "soc_min": 0.4999999999999531,
+        "soc_max": 0.5,
+        "solve_mean_seconds": 0.009497225000000054,
+        "solve_p95_seconds": 0.02394294500000046,
+        "solve_max_seconds": 0.027505700000000743,
+        "deadline_miss_fraction": 0.0
+      },
+      "locked_splits_accessed": [],
+      "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w3_v1_integration_smoke_v2\\cases\\mpc_nonuniform.npz"
+    }
+  },
+  "comparisons": {
+    "tracking_rmse_pu": {
+      "nonuniform_vs_uniform_relative": -0.02722681065658661,
+      "nonuniform_vs_pid_relative": -0.02520934711628997
+    },
+    "tracking_mae_pu": {
+      "nonuniform_vs_uniform_relative": -0.02449187369403616,
+      "nonuniform_vs_pid_relative": -0.022374856934210485
+    },
+    "tracking_max_abs_error_pu": {
+      "nonuniform_vs_uniform_relative": -0.03087078836845958,
+      "nonuniform_vs_pid_relative": -0.028964380385172572
+    },
+    "frequency_max_abs_hz": {
+      "nonuniform_vs_uniform_relative": 11.17961165048544,
+      "nonuniform_vs_pid_relative": 5.726541554959786
+    },
+    "coolant_average_max_abs_deviation_c": {
+      "nonuniform_vs_uniform_relative": 0.002957328157123129,
+      "nonuniform_vs_pid_relative": 0.1738090794859355
+    },
+    "rod_peak_abs_spm": {
+      "nonuniform_vs_uniform_relative": -2.331768086394348e-07,
+      "nonuniform_vs_pid_relative": -8.61902486769539e-05
+    },
+    "valve_command_max_rate_pu_s": {
+      "nonuniform_vs_uniform_relative": 2.514469646283044,
+      "nonuniform_vs_pid_relative": 2.786348493087551
+    },
+    "valve_command_total_variation_pu": {
+      "nonuniform_vs_uniform_relative": 1.0761058796675385,
+      "nonuniform_vs_pid_relative": 1.1921741047453769
+    },
+    "bess_peak_abs_mw": {
+      "nonuniform_vs_uniform_relative": 16.854960457788263,
+      "nonuniform_vs_pid_relative": 7.960814766186868
+    },
+    "bess_throughput_mwh": {
+      "nonuniform_vs_uniform_relative": 17.375674030150535,
+      "nonuniform_vs_pid_relative": 5.876088110476292
+    },
+    "solve_mean_seconds": {
+      "nonuniform_vs_uniform_relative": -0.057092364932462836,
+      "nonuniform_vs_pid_relative": 61.15461387427471
+    },
+    "solve_p95_seconds": {
+      "nonuniform_vs_uniform_relative": -0.06001723089774558,
+      "nonuniform_vs_pid_relative": 149.33872284286429
+    },
+    "solve_max_seconds": {
+      "nonuniform_vs_uniform_relative": -0.053319749852846265,
+      "nonuniform_vs_pid_relative": 170.16179215893843
+    },
+    "deadline_miss_fraction": {
+      "nonuniform_vs_uniform_relative": null,
+      "nonuniform_vs_pid_relative": null
+    }
+  },
+  "claim_supported": "not_evaluated_by_aggregator",
+  "claim_rule": "nonuniform must not be declared beneficial unless it repeatably improves over uniform-tail under the same full forecast curve and 30-decision/6 h budget; PID is a common-provider/common-issuance 15 s architecture baseline",
+  "scope": "2 s integration smoke; no performance claim"
+}

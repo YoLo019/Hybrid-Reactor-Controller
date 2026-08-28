@@ -1,0 +1,110 @@
+{
+  "study_id": "E2-FAST-CROSS-OPERATING-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_fast_cross_operating_v1.json",
+  "config_sha256": "4B408AF8910BD20AE4E8DE62683E9CB804DAA235636F8564E4D47C532BEE2B72",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "9387493BD3DC548A2EC339B33C74CA97065834276FB5948385C2982B357E2269",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "21740F2EDFD740217BE5FC42E84A9A5D247B4E0C45FB641F56175C9FB5C03242",
+  "ray_count_total": 108,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 4,
+      "ray": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "frequency": {
+          "frequency_hz": 0.02,
+          "cycles": 1,
+          "evidence_class": "MORE-EU direct active power; dominant-energy interior representative"
+        },
+        "phase_rad": 0.0,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.7999999999913899,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.2168,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.22199999999999998,
+      "first_failure_amplitude_pu": 0.22719999999999999,
+      "boundary_width_pu": 0.00520000000000001,
+      "active_constraint": "coolant_average_abs_deviation_c",
+      "first_violation_time_s": 64.0,
+      "coarse_case_hashes": [
+        "E48FC1AD16675A59411D16C00545AB7E356321F70E7670A01F8D1BBAAB33927E",
+        "909886B46EB4D597B7BC1F06C71994CA1C15EAEC98E3CE865C0F67841394A053",
+        "A5C09602D614C4D2E44E3D73F34CD932B27A519BEC1D4D56A774F5A5C4DDB956",
+        "C317D29F4948FFBDCF4D3DD4DA0772E316928D4AB76B69F71579E60766DC13AF",
+        "BDEF809C8054632AA44C87FE31E412EC9C621B941008828A39BF2A821D5692D1",
+        "A5C60C24B5BE8379E2252FC60F00DC861ADE6FD064E8391D4669AD308E77433B",
+        "151274672237AA8220FDDEF9E6A1C6DE3BBB1A163D99C347DE509B7559D1EEEF"
+      ],
+      "bisection_case_hashes": [
+        "F78003B12F93034FD4E5D69CC172AF1794CC939599592A30E2D3B56F5870E32F",
+        "A76DC694B77E47470C273C558096E21A343B962AC91B3C33F0D041ADF3B47F34",
+        "1A99BAE2B9D3538F5B90C2581405BD1F3AA7CC02862BD7FCA59C1A8F2756F4AC",
+        "074BE7D39F61640C851977A86768934D1FCF0EE88E6969404EAC59617C25C107"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "F11B4632DB79DCBA821D36E57B343DD7808862996A4C4CA781804AB54CC12F3C"
+}

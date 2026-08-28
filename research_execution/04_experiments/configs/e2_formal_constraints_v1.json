@@ -1,0 +1,56 @@
+{
+  "registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "input_domain": {
+    "equivalent_net_load_amplitude_pu": {
+      "coarse_grid": [0.0, 0.024548310554290048, 0.0544, 0.0982, 0.1322, 0.2168, 0.3],
+      "search_upper": 0.3,
+      "class": "scenario-coordinate range",
+      "failure_semantics": "not a plant violation"
+    }
+  },
+  "plant_constraints": {
+    "frequency_abs_hz": {
+      "upper": 0.5,
+      "class": "provisional academic screening threshold",
+      "claim_limit": "not a nuclear-grid code or safety limit"
+    },
+    "coolant_average_abs_deviation_c": {
+      "upper": 5.0,
+      "class": "provisional academic screening threshold",
+      "claim_limit": "not an operating technical specification"
+    },
+    "neutron_power_pu": {
+      "lower": 0.5,
+      "upper": 1.1,
+      "class": "declared study operating range",
+      "claim_limit": "not a licensed overpower trip setpoint"
+    },
+    "rod_speed_abs_spm": {
+      "upper": 72.0,
+      "class": "implemented actuator limit",
+      "code_source": "4_4/parameters.py and model_wind.py"
+    },
+    "valve_command_pu": {
+      "lower": 0.0,
+      "upper": 1.2,
+      "class": "implemented actuator command range",
+      "code_source": "4_4/parameters.py, model_wind.py and mpc_utils_out.py"
+    },
+    "valve_command_rate_abs_pu_s": {
+      "upper": 0.05,
+      "class": "implemented actuator rate limit",
+      "code_source": "4_4/parameters.py, metrics_source.py and mpc_utils_out.py"
+    },
+    "bess_power_abs_mw": {
+      "upper": 5.0,
+      "class": "implemented converter power limit",
+      "code_source": "4_4/parameters.py and model_wind.py"
+    },
+    "soc": {
+      "lower": 0.1,
+      "upper": 0.9,
+      "class": "implemented study energy-management range",
+      "code_source": "4_4/parameters.py and model_wind.py"
+    }
+  }
+}

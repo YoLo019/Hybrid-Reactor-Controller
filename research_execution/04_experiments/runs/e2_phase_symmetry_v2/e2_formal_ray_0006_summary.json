@@ -1,0 +1,93 @@
+{
+  "study_id": "E2-PHASE-SYMMETRY-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_phase_symmetry_v1.json",
+  "config_sha256": "27D1BD1F25DC03A26825ADD9E8FFD705F82BA7A9889D0B7EE222F3D3A2A42428",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "9387493BD3DC548A2EC339B33C74CA97065834276FB5948385C2982B357E2269",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "21740F2EDFD740217BE5FC42E84A9A5D247B4E0C45FB641F56175C9FB5C03242",
+  "ray_count_total": 8,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 6,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.02,
+          "cycles": 1,
+          "evidence_class": "W1-B direct active-power observable band; phase-reduction diagnostic"
+        },
+        "phase_rad": 4.71238898038469,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.3,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "coarse_case_hashes": [
+        "F7E5246679A055E40BE165297B8A04597C98525D7C4A181391A06FEB16BE42A6",
+        "913EFBCBE1806FB62DABC5AC0F12F5A921B5F7F502B5BDD752D76B404027D340",
+        "AFBFA9F2334C850CF648EBA7A90F0119B72FDB743044A1B37E545B97729E712B",
+        "BB8BC91F726217F66E264BE7500570C2DB3C0C20CF04382BE039E49AB121559E",
+        "EFBE04178804B52395EB0E58B9598C710AC0EB0ADDA5B18BC1CEFAFC50C130A7",
+        "685E86A0E423BC7E88F9E31B17702262BFCEB28C9601B9FC3AC9922F0BA3275E",
+        "2DD3FB2B05F157E590AA0D8FDA771A03F44D5EB6A4F518E0B2C46075970DA697"
+      ],
+      "bisection_case_hashes": []
+    }
+  ],
+  "deterministic_summary_sha256": "E1CDB41476CDA0EEB47472BF3648AED690D36FF63ACEFD52BC02EF9DD1B657AB"
+}

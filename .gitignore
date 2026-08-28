@@ -1,0 +1,15 @@
+# Python 缓存和测试缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 活动运行锁不得提交；实验日志、结果和数据是迁移包的一部分
+*.lock
+
+# 旧版独立示例结果不属于当前研究执行证据
+4_4/npz_results/
+
+# 该来源文件明确标注作者保留版权，只保留机器可读来源记录，不公开再分发论文副本
+research_execution/02_data/w1b_fast_band/provenance/chalmers_islanded_operation_thesis_2024.pdf

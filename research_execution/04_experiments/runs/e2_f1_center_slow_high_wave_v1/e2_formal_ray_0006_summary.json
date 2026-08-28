@@ -1,0 +1,147 @@
+{
+  "study_id": "E2-F1-CENTER-SLOW-HIGH-WAVE-V1",
+  "scope": "formal E2 reference-feasibility radial search",
+  "input_definition": {
+    "domain_id": "D_ref",
+    "kind": "net_load_reference",
+    "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+    "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+  },
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e2_slow_grid_v2",
+    "mapping_file": "research_execution/02_data/w1a_slow_band/e2_slow_grid_v2.json",
+    "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_f1_center_slow_high_wave_v1.json",
+  "config_sha256": "6D3EE11FA4D0772B4BCABA9A8D53E24EDBB828494DAC84B2D176F200F0E7DC16",
+  "code_provenance": {
+    "formal_runner": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "frequency_runner": "68335009B76CFE494317665741EE969CF11ED042EE9A024DBDB5E2868759E300",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "CABD8EAEDAE6DA7FB7E7933532F0219AF3305568F0F73FBE8B83DD673A879D8C",
+    "mpc_utils": "BC3213149754866F823D2EFD6226276F7F08EEB375BA7E31606FD31AB274E330",
+    "model": "079A0171C2FFD30375DC5D8EA1DFD3616889E23B343FB16BCD429BCEEE53662A",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "B531661742F2B53E27BF3871FE6AEA751F74E4F50CC81EB3B6427C8E54434535",
+  "ray_count_total": 8,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 6,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.0003076171875,
+          "cycles": 1,
+          "evidence_class": "Sotavento W1-A 99% cumulative spectral-energy frequency"
+        },
+        "phase_rad": 4.71238898038469,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.038061564333333284,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": false
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.1322,
+          "upper_amplitude_pu": 0.2168,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.14806249999999999,
+      "first_failure_amplitude_pu": 0.15335,
+      "boundary_width_pu": 0.0052875000000000005,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 44.997309268535,
+      "first_violation_phase": "forcing",
+      "failure_recovery": {
+        "complete": true,
+        "window_start_s": 3440.7936507936506,
+        "window_end_s": 3450.7936507936506,
+        "observed": {
+          "power_abs_error_pu": 0.0001011966972237488,
+          "frequency_abs_hz": 8.55031778688162e-08,
+          "coolant_average_abs_deviation_c": 0.19409973473045739,
+          "bess_power_abs_mw": 0.010259563487865693
+        },
+        "limits": {
+          "power_abs_error_pu": 0.005,
+          "frequency_abs_hz": 0.02,
+          "coolant_average_abs_deviation_c": 0.5,
+          "bess_power_abs_mw": 0.25
+        }
+      },
+      "coarse_case_hashes": [
+        "3493F64689743D36B2A1DE3392E79B56260F093F5225872F020547EFBF7B1D0A",
+        "60C7862D7BCD880D8756FDAE90122F4BCF1B97B597072BA511E7BCC88ED111C8",
+        "ADF007B516FF07D66B127C4820D0950EEE1FF1C47226216588A5397752566781",
+        "FC215BDB5E7512602F716AB532AA0B6139A6CE3B985A6AD5E00F9E401062D50E",
+        "BD845C4837B294F4D95840C89AE2095282599B79E5E129396EB21D5242970C66",
+        "D61FB1F082C2F6641C451CB19C84B79EE604F3A515B1F2DFED0185E4E501F30A",
+        "09436A8880719EB36B9282204AED66924D304B0D3211B4EF93A1A72D8E57DCAA",
+        "618BBB9B14310631D94906E7CFB1B05EEE2A33D77335B04A859231CD8526B8D1"
+      ],
+      "bisection_case_hashes": [
+        "5F80029174987D0C91766BEE15E3A24E785DFBA0A72E612921807ABC7A17A3B5",
+        "A046C47060B5DA050203AB7B86C087FEFF688C7007BD63EBCDFD0AD04DE7D8AE",
+        "EE3F83A95ECF8EA19D2CE0C3FBB4A21E128CC47C4B4927B8417D0A3DB5032CD4",
+        "F3089AA5286E34C8EB926F2E2454FDB813F26A39AD649DDAFC7B9990B59BAC66"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "9D25E8EDE92E4FA8E986F41D4F712BC0773604C5387E925944EF0FCFC0170728"
+}

@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "source_id": "mendeley:vtsgxnwswn:1",
+  "source_report": "4_4/data/wind/manifests/w1_feature_report.json",
+  "source_report_sha256": "24796888FEC3D0D9E75113B79CC30022C783BAF29A46FFBF03931545D8B97BCC",
+  "source_relative_amplitudes": {
+    "p50": 0.024548310554290048,
+    "p75": 0.05443697798025818,
+    "p90": 0.09822720197418376,
+    "p95": 0.13221554669703864,
+    "p99": 0.21675150531510984
+  },
+  "system_mapping": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "formula": "source relative p.u. * 17.56 MW / 100 MW",
+    "claim_limit": "Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "system_amplitudes_pu": {
+    "p50": 0.004310683333333332,
+    "p75": 0.009559133333333334,
+    "p90": 0.017248696666666667,
+    "p95": 0.023217049999999982,
+    "p99": 0.038061564333333284
+  },
+  "formal_center_frequencies_hz": [
+    3.4993489583333335e-05,
+    8.015950520833334e-05,
+    0.0003076171875
+  ],
+  "boundary_search_amplitudes_pu": [
+    0.0,
+    0.024548310554290048,
+    0.038061564333333284,
+    0.0544,
+    0.0982,
+    0.1322,
+    0.2168,
+    0.3
+  ],
+  "separation_rule": "system_amplitudes_pu are data exposure levels; boundary_search_amplitudes_pu are system-domain search probes"
+}

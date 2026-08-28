@@ -1,0 +1,178 @@
+{
+  "study_id": "E2-FORMAL-RUNNER-SMOKE-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_formal_runner_smoke_v1.json",
+  "config_sha256": "88E0657865234DFDF98ED82722052E017DBE6F23B024C21C53B340915FAC9215",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "CD961B31422588EB08334B49D0F3A4483DBA42430AF46E76CF3944F8EAB2A413",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "1A8F7FD6ABB30977E05DE76981038DEADB82D7B8A0E9611378295E9ADE52F1CE",
+  "ray_count_total": 2,
+  "ray_count_in_report": 2,
+  "ray_results": [
+    {
+      "ray_index": 0,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.02,
+          "cycles": 2,
+          "evidence_class": "runner smoke only"
+        },
+        "phase_rad": 0.0,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2,
+            "safe": false
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.1,
+            "upper_amplitude_pu": 0.2,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.1,
+          "upper_amplitude_pu": 0.2,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.1875,
+      "first_failure_amplitude_pu": 0.19375,
+      "boundary_width_pu": 0.0062500000000000056,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 66.5,
+      "coarse_case_hashes": [
+        "C7696FD18F2779FD86FE5766D7C253E2BDDE8EE018688B00B55BF1862F2471BB",
+        "26AC475E1A7B698E3BF6CF4CB760023FE853CA3E628CE66D13D2166113AEFF64",
+        "3619072D77007EC0F868379D43112C90B40E77CB21EC4EDFBE4ECA219921981D",
+        "5FF72265924AB57F20EB975D57258D37CD7C18D29981410A7DE2BE1EC8E3F5FD",
+        "0C10CC4297F4D7BDCB7EA4429EF50634FF80FD0A88AF8885D1C837F0E57D6AC5"
+      ],
+      "bisection_case_hashes": [
+        "AA91AB3E5846461C9843B4A9D569E89CF828C6F804AC595A8AD337E9D303C890",
+        "7336F910EAD90609E669791D35D179AEF95EB751EC2BD5D3537FDE4EE7D90B52",
+        "CBCAEAC42DB588ACF8011529BC6FBA85CAD0761D6C883C463826C645673035AE",
+        "9B8133EDDFFCE4A75FC616590A5B3C246763C510E55949745DE5866CA0E52140"
+      ]
+    },
+    {
+      "ray_index": 1,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.02,
+          "cycles": 2,
+          "evidence_class": "runner smoke only"
+        },
+        "phase_rad": 0.0,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.2,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.2,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.21875,
+      "first_failure_amplitude_pu": 0.225,
+      "boundary_width_pu": 0.0062500000000000056,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 64.0,
+      "coarse_case_hashes": [
+        "C02FF68C45FAFFCABDAAB9C9996FBD78DC5A90931178D6F7019C01F56438C9A3",
+        "7EB18925B81C32F17FC2D00855F4245585649BB0321288F74BD39FECDC759F43",
+        "CAD85F494DBEA232C8DCD64A4A07764B38D7207B6C355EF4DE7E22FDE0C67CBD",
+        "736CB01850DC187826571AC1150767205100DD4003BE8A4C7883084B84253D36",
+        "1E4D91A7F017465B8C86A030F663233C738BFCC75B706FFC17FA0075ADB25FB4"
+      ],
+      "bisection_case_hashes": [
+        "4C5D4B02A5FA127FFB0122DEFF6F8F5047C2E815A4D880F85BB79C4F971E4C91",
+        "31A3FD7C220285A0DB2111BFD4E83B262D1C5DF42DDA94757F317B9976F1C865",
+        "4A4A3F7B7BD254A56A07480A713D9CEED38E1EFCF6FCD66BB86A1A7F9C058E16",
+        "F34779BD12BAA570BC5F78F9116A96BD77CBBFEDCFFAAC8A58ACAD9F58C8BB88"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "6C1440E11246E8A0C01D53FDBBEF04DD4E5038019915A7139653508EE1C74AE3"
+}

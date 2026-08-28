@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "source_id": "mendeley:vtsgxnwswn:1",
+  "source_report": "4_4/data/wind/manifests/w1_feature_report.json",
+  "calibration_pool": "train+validation through 2016-08-31; boundary and final untouched",
+  "system_mapping": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "formula": "source p.u. * 17.56 MW / 100 MW",
+    "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "source_ramp_rates_pu_per_10min": {
+    "p50": 0.012290432801822336,
+    "p90": 0.05702118451025055,
+    "p95": 0.07945438496583132,
+    "p99": 0.14288046697038734
+  },
+  "system_ramp_rates_pu_per_10min": {
+    "p50": 0.002158200000000002,
+    "p90": 0.010012919999999996,
+    "p95": 0.013952189999999979,
+    "p99": 0.025089810000000014
+  },
+  "system_ramp_rates_pu_per_s": {
+    "p50": 3.5970000000000034e-06,
+    "p90": 1.6688199999999994e-05,
+    "p95": 2.3253649999999963e-05,
+    "p99": 4.1816350000000025e-05
+  },
+  "source_relative_amplitudes": {
+    "p50": 0.024548310554290048,
+    "p90": 0.09822720197418376,
+    "p95": 0.13221554669703864,
+    "p99": 0.21675150531510984
+  },
+  "system_amplitudes_pu": {
+    "p50": 0.004310683333333332,
+    "p90": 0.017248696666666667,
+    "p95": 0.023217049999999982,
+    "p99": 0.038061564333333284
+  },
+  "hold_durations_s": {
+    "triangle": 0.0,
+    "native_interval": 600.0,
+    "one_hour_optional": 3600.0
+  },
+  "formal_rate_order": ["p99", "p95", "p90", "p50"],
+  "core_hold_order": ["triangle", "native_interval"],
+  "optional_hold_order": ["one_hour_optional"],
+  "separation_rule": "system amplitudes and rates are data-exposure levels; larger amplitude probes are engineering boundary-search coordinates and must be labeled separately",
+  "resolution_rule": "10-minute observations support slow ramp calibration only; no interpolation may be described as observed second-scale ramp data"
+}

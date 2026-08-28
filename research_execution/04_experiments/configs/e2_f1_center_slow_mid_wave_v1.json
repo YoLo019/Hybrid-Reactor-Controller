@@ -1,0 +1,73 @@
+{
+  "study_id": "E2-F1-CENTER-SLOW-MID-WAVE-V1",
+  "wave_scope": "W1-A q0.95 slow frequency; center operating point; four phases retained after D0 asymmetry finding",
+  "input_definition": {
+    "domain_id": "D_ref",
+    "kind": "net_load_reference",
+    "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+    "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+  },
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e2_slow_grid_v2",
+    "mapping_file": "research_execution/02_data/w1a_slow_band/e2_slow_grid_v2.json",
+    "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "data_relevance_amplitudes_system_pu": {
+    "p50": 0.004310683333333332,
+    "p75": 0.009559133333333334,
+    "p90": 0.017248696666666667,
+    "p95": 0.023217049999999982,
+    "p99": 0.038061564333333284
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "operating_points": [
+    {"power_pu": 0.9, "soc": 0.5}
+  ],
+  "controllers": ["PID", "MPC"],
+  "phases_rad": [0.0, 1.5707963267948966, 3.141592653589793, 4.71238898038469],
+  "frequencies": [
+    {
+      "frequency_hz": 8.015950520833334e-05,
+      "cycles": 1,
+      "evidence_class": "Sotavento W1-A 95% cumulative spectral-energy frequency"
+    }
+  ],
+  "amplitude_grid_pu": [0.0, 0.024548310554290048, 0.038061564333333284, 0.0544, 0.0982, 0.1322, 0.2168, 0.3],
+  "bisection_tolerance_pu": 0.01,
+  "max_bisection_iterations": 10,
+  "simulation": {
+    "dt_s": 0.5,
+    "warmup_s": 20.0,
+    "recovery": {
+      "duration_s": 180.0,
+      "sustain_s": 10.0,
+      "completion_limits": {
+        "power_abs_error_pu": 0.005,
+        "frequency_abs_hz": 0.02,
+        "coolant_average_abs_deviation_c": 0.5,
+        "bess_power_abs_mw": 0.25
+      }
+    }
+  },
+  "mpc": {
+    "horizon_steps": 30,
+    "q_power": 1000.0,
+    "q_temperature": 0.5,
+    "move_weight": 2.0,
+    "magnitude_weight": 0.05,
+    "use_reference_preview": false,
+    "integral_weight": 0.0
+  },
+  "constraints": {
+    "frequency_abs_hz": {"upper": 0.5},
+    "coolant_average_abs_deviation_c": {"upper": 5.0},
+    "neutron_power_pu": {"lower": 0.5, "upper": 1.1},
+    "rod_speed_abs_spm": {"upper": 72.0},
+    "valve_command_pu": {"lower": 0.0, "upper": 1.2},
+    "valve_command_rate_abs_pu_s": {"upper": 0.05},
+    "bess_power_abs_mw": {"upper": 5.0},
+    "soc": {"lower": 0.1, "upper": 0.9}
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "study_id": "w3_v1_typical_validation",
+  "status": "r0_pass_formal_resource_blocked",
+  "evidence_class": "validation-only controller and horizon selection; not final extrapolation",
+  "dataset": {
+    "path": "4_4/data/wind/processed/sotavento_2016_clean.csv",
+    "timestamp_column": "timestamp",
+    "wind_output_column": "output_pu",
+    "split_column": "split",
+    "allowed_split": "validation",
+    "sample_seconds": 600,
+    "control_reconstruction": "piecewise linear interpolation between observed 10 min records; this is a slow control-input reconstruction, not high-frequency measurement evidence"
+  },
+  "scenario": {
+    "label": "w1_typical_6h",
+    "start": "2016-07-20T00:10:00",
+    "end": "2016-07-20T06:00:00",
+    "selection_source": "W1 pre-registered typical_6h event window",
+    "operating_power_pu": 0.9,
+    "bess_soc": 0.5,
+    "system_base_mw": 100.0,
+    "wind_capacity_mw": 17.56,
+    "reference_mapping": "P_ref(t)=P_base-(17.56/100)*(P_wind(t)-P_wind(start))"
+  },
+  "forecast": {
+    "type": "persistence",
+    "w2_forecast_table": "research_execution/04_experiments/runs/w2_validation_v1/forecasts.csv",
+    "w2_interface": "research_execution/04_experiments/configs/w2_f1_forecast_interface_v1.json",
+    "issue_interval_seconds": 600,
+    "between_issue_rule": "hold the latest issue-time forecast curve",
+    "node_interpolation": "linear in absolute target time from issue value through the six W2 horizons",
+    "beyond_last_horizon_rule": "hold the 360 min forecast for the less-than-10 min issuance offset only"
+  },
+  "simulation": {
+    "dt_seconds": 0.5,
+    "forecast_horizon_config": "research_execution/04_experiments/configs/w3_nonuniform_horizon_v1.json",
+    "formal_launch_requires_e2_process_count": 0,
+    "formal_controllers": [
+      "pid_forecast_ff",
+      "mpc_uniform_tail",
+      "mpc_nonuniform"
+    ],
+    "smoke_duration_seconds": 2.0,
+    "formal_duration_seconds": 21000.0
+  },
+  "pid_forecast_ff": {
+    "preview_lead_seconds": 15.0,
+    "valve_rate_limit_pu_s": 0.05
+  },
+  "mpc": {
+    "decision_nodes": 30,
+    "prediction_span_seconds": 21600.0,
+    "q_power": 1000.0,
+    "q_temperature": 0.5,
+    "move_weight": 2.0,
+    "magnitude_weight": 0.05,
+    "integral_weight": 0.0,
+    "integral_error_limit": null,
+    "solver": "OSQP",
+    "solver_fallback_allowed": false
+  },
+  "metrics": {
+    "tracking": ["rmse_pu", "mae_pu", "max_abs_error_pu"],
+    "plant": [
+      "frequency_max_abs_hz",
+      "coolant_average_max_abs_deviation_c",
+      "rod_peak_abs_spm"
+    ],
+    "actuation": [
+      "valve_command_max_rate_pu_s",
+      "valve_command_total_variation_pu",
+      "bess_peak_abs_mw",
+      "bess_throughput_mwh",
+      "soc_min",
+      "soc_max"
+    ],
+    "online_compute": [
+      "solve_mean_seconds",
+      "solve_p95_seconds",
+      "solve_max_seconds",
+      "deadline_miss_fraction"
+    ],
+    "solve_deadline_seconds": 0.5
+  },
+  "success_gate": {
+    "structural": "all three controllers complete the same scenario and forecast issuance set with finite metrics; both MPC variants use OSQP with zero fallback",
+    "nonuniform_performance": "nonuniform must not be declared beneficial unless it repeatably improves over uniform-tail under the same full forecast curve and 30-decision/6 h budget; PID is a common-provider/common-issuance 15 s architecture baseline",
+    "negative_result": "if nonuniform has no stable advantage, retain the uniform-tail result and report W3 as a negative ablation"
+  },
+  "outputs": {
+    "smoke_directory": "research_execution/04_experiments/runs/w3_v1_integration_smoke_v2",
+    "formal_directory": "research_execution/04_experiments/runs/w3_v1_typical_validation"
+  }
+}

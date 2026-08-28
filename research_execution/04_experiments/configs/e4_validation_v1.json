@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "study_id": "E4-VALIDATION-V1",
+  "status": "preparation_frozen_formal_blocked",
+  "scope": "independent dangerous-miss and boundary-error validation for frozen E2/E3 empirical inner boundaries",
+  "claim_limit": "empirical finite-horizon validation only; not a formal safety guarantee or plant certification",
+  "dependencies": {
+    "required_completed_studies": ["E2", "E3"],
+    "evidence_paths": [],
+    "ready": false
+  },
+  "source_contracts": {
+    "split_contract": "research_execution/04_experiments/configs/w2_prediction_v1.json",
+    "constraint_registry": "research_execution/04_experiments/configs/e2_formal_constraints_v1.json"
+  },
+  "data_isolation": {
+    "preparation_allowed_splits": ["train", "validation"],
+    "locked_splits": ["boundary_construction", "final_extrapolation"],
+    "locked_splits_accessed": [],
+    "formal_role_to_time_window_assignment": null,
+    "required_roles": [
+      "boundary_construction",
+      "independent_validation",
+      "adversarial_stress"
+    ],
+    "role_rules": {
+      "boundary_construction": "may construct and freeze E2/E3 boundaries but may not estimate dangerous-miss probability",
+      "independent_validation": "estimates dangerous-miss probability and boundary error only; may not tune boundaries, thresholds, or controllers",
+      "adversarial_stress": "reports worst violations only and never contributes trials to the binomial estimate"
+    },
+    "non_overlap_rule": "registered time windows and trajectory intervals for the three roles must be pairwise disjoint and disjoint from prediction training windows where required",
+    "formal_assignment_required_before_entry": true
+  },
+  "trajectory_manifests": {
+    "independent_validation": [],
+    "adversarial_stress": [],
+    "required_fields": [
+      "trajectory_id",
+      "data_role",
+      "source_id",
+      "path",
+      "start_time",
+      "end_time",
+      "sample_seconds",
+      "continuity_audit_pass",
+      "overlaps_prediction_training",
+      "overlaps_boundary_construction",
+      "domain_mapping_id"
+    ],
+    "status": "required_before_formal_entry"
+  },
+  "dangerous_miss": {
+    "event_definition": "frozen inner-boundary classifier predicts in-domain safe while the same frozen closed-loop simulation violates any registered constraint during forcing or recovery",
+    "trial_unit": "preregistered independently audited trajectory",
+    "confidence_level": 0.95,
+    "interval": "one-sided exact Clopper-Pearson binomial upper confidence bound",
+    "reported_counts": ["independent_trials_n", "dangerous_misses_k"],
+    "upper_bound_acceptance_threshold": null,
+    "acceptance_threshold_status": "required_before_formal_entry"
+  },
+  "boundary_error": {
+    "matched_ray_requirement": true,
+    "signed_error_formula": "rho_inner - rho_ff_validation",
+    "absolute_error_formula": "abs(rho_inner - rho_ff_validation)",
+    "relative_error_formula": "(rho_inner - rho_ff_validation) / rho_ff_validation",
+    "positive_signed_error_semantics": "unsafe outward overestimate on the matched validation ray",
+    "acceptance_thresholds": null,
+    "near_zero_denominator_rule": null,
+    "threshold_status": "required_before_formal_entry"
+  },
+  "required_trajectory_outputs": [
+    "inside_outside_prediction",
+    "observed_safe",
+    "dangerous_miss",
+    "first_violated_constraint",
+    "first_violation_phase",
+    "minimum_constraint_margin",
+    "recovery_complete",
+    "boundary_utilization"
+  ],
+  "temporary_constraint_sensitivity": {
+    "constraints": [
+      "frequency_abs_hz",
+      "coolant_average_abs_deviation_c",
+      "neutron_power_pu"
+    ],
+    "perturbation_levels": null,
+    "status": "required_before_formal_entry"
+  },
+  "formal_execution_gate": {
+    "upstream_evidence_frozen": false,
+    "role_assignment_preregistered": false,
+    "independent_manifest_nonempty": false,
+    "adversarial_manifest_nonempty": false,
+    "trajectory_independence_audited": false,
+    "statistical_threshold_preregistered": false,
+    "boundary_error_thresholds_preregistered": false,
+    "constraint_sensitivity_levels_preregistered": false
+  },
+  "execution_policy": {
+    "preparation_may_open_locked_splits": false,
+    "preparation_may_run_model": false,
+    "formal_execution_allowed": false
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "dataset_id": "mendeley:vtsgxnwswn:1",
+  "input": {
+    "path": "4_4/data/wind/raw/sotavento_mendeley_v1/wind farm historical data.csv",
+    "sha256": "2AB798258A566F2F2C6A4BCAB0023E6485E34C08C432A49D2C0F2D4DE4E09E6F",
+    "records": 52704,
+    "sample_seconds": 600,
+    "timezone": "not documented; timestamps retained as timezone-naive"
+  },
+  "cleaning_contract": {
+    "negative_speed_direction_energy": "set to missing",
+    "direction_range_deg": [
+      0,
+      360
+    ],
+    "short_gap_interpolation_limit_records": 1,
+    "short_gap_interpolation_limit_minutes": 10,
+    "long_gaps": "preserved as missing; never bridged for ramp, ACF, or PSD",
+    "energy_unit": "not explicit in source files",
+    "output_pu_interpretation": "Energy treated as kWh per 10-minute record and divided by 17.56 MW x 1/6 h; this remains a stated working interpretation"
+  },
+  "quality": {
+    "original_missing_energy_records": 577,
+    "interpolated_energy_records": 1,
+    "remaining_missing_energy_records": 576,
+    "invalid_speed_records": 0,
+    "invalid_direction_records": 0,
+    "invalid_energy_records": 0,
+    "energy_missing_runs_records": [
+      485,
+      7,
+      1,
+      40,
+      23,
+      21
+    ]
+  },
+  "time_splits": {
+    "train": {
+      "start": "2016-01-01T00:10:00",
+      "end": "2016-06-30T23:50:00",
+      "records": 26207,
+      "observed_or_interpolated_energy_records": 25715,
+      "missing_energy_records": 492
+    },
+    "validation": {
+      "start": "2016-07-01T00:00:00",
+      "end": "2016-08-31T23:50:00",
+      "records": 8928,
+      "observed_or_interpolated_energy_records": 8928,
+      "missing_energy_records": 0
+    },
+    "boundary_construction": {
+      "start": "2016-09-01T00:00:00",
+      "end": "2016-10-31T23:50:00",
+      "records": 8784,
+      "observed_or_interpolated_energy_records": 8700,
+      "missing_energy_records": 84
+    },
+    "final_extrapolation": {
+      "start": "2016-11-01T00:00:00",
+      "end": "2017-01-01T00:00:00",
+      "records": 8785,
+      "observed_or_interpolated_energy_records": 8785,
+      "missing_energy_records": 0
+    }
+  },
+  "descriptive_statistics_calibration_pool_only": {
+    "output_pu": {
+      "p1": 0.0,
+      "p5": 0.0,
+      "p10": 0.0,
+      "p25": 0.0052141230068337135,
+      "p50": 0.09011958997722096,
+      "p75": 0.26879214123006834,
+      "p90": 0.519173576309795,
+      "p95": 0.6971350797266516,
+      "p99": 0.8447775854214135
+    },
+    "absolute_10min_ramp_pu": {
+      "p50": 0.012290432801822336,
+      "p75": 0.03028445330296125,
+      "p90": 0.05702118451025055,
+      "p95": 0.07945438496583132,
+      "p99": 0.14288046697038734,
+      "p99.9": 0.2729068462414672
+    },
+    "signed_10min_ramp_pu": {
+      "p0.1": -0.2159143667425968,
+      "p1": -0.11296988610478356,
+      "p5": -0.056556321184510275,
+      "p50": 0.0,
+      "p95": 0.05745905466970371,
+      "p99": 0.11609272209567206,
+      "p99.9": 0.24132171867883578
+    },
+    "absolute_1h_ramp_pu": {
+      "p50": 0.03217312072892938,
+      "p75": 0.07419703872437358,
+      "p90": 0.1375066059225513,
+      "p95": 0.18827904328018225,
+      "p99": 0.31181630979499037
+    },
+    "absolute_6h_ramp_pu": {
+      "p50": 0.06223804100227791,
+      "p75": 0.1395956719817768,
+      "p90": 0.2562710706150342,
+      "p95": 0.33834191343963527,
+      "p99": 0.5282896127562638
+    },
+    "absolute_24h_ramp_pu": {
+      "p50": 0.10059225512528473,
+      "p75": 0.24002733485193622,
+      "p90": 0.39724373576309807,
+      "p95": 0.5017055808656037,
+      "p99": 0.7028402050113899
+    }
+  },
+  "acf_psd": {
+    "analysis_segment_start": "2016-03-04T16:20:00",
+    "analysis_segment_end": "2016-08-31T23:50:00",
+    "analysis_segment_records": 25966,
+    "analysis_segment_days": 180.31944444444446,
+    "welch_nperseg": 4096,
+    "frequency_resolution_hz": 4.069010416666667e-07,
+    "nyquist_hz": 0.0008333333333333334,
+    "spectral_energy_quantile_frequencies_hz": {
+      "q0.05_hz": 4.069010416666667e-07,
+      "q0.25_hz": 1.220703125e-06,
+      "q0.5_hz": 2.44140625e-06,
+      "q0.75_hz": 8.138020833333333e-06,
+      "q0.9_hz": 3.4993489583333335e-05,
+      "q0.95_hz": 8.015950520833334e-05,
+      "q0.99_hz": 0.0003076171875
+    },
+    "autocorrelation": {
+      "first_lag_at_or_below_0_5_records": 79,
+      "first_lag_at_or_below_1_over_e_records": 136,
+      "first_nonpositive_lag_records": 636,
+      "first_lag_at_or_below_0_5_hours": 13.166666666666666,
+      "first_lag_at_or_below_1_over_e_hours": 22.666666666666668,
+      "first_nonpositive_lag_hours": 106.0
+    }
+  },
+  "scenario_calibration": {
+    "calibration_pool": "train+validation (2016-01-01 through 2016-08-31); later splits untouched",
+    "sine_amplitude_candidates_abs_fluctuation_pu": {
+      "p50": 0.024548310554290048,
+      "p75": 0.05443697798025818,
+      "p90": 0.09822720197418376,
+      "p95": 0.13221554669703864,
+      "p99": 0.21675150531510984
+    },
+    "sine_frequency_candidates_hz": [
+      4.069010416666667e-07,
+      1.220703125e-06,
+      2.44140625e-06,
+      8.138020833333333e-06,
+      3.4993489583333335e-05,
+      8.015950520833334e-05,
+      0.0003076171875
+    ],
+    "ramp_rate_candidates_abs_pu_per_10min": {
+      "p50": 0.012290432801822336,
+      "p75": 0.03028445330296125,
+      "p90": 0.05702118451025055,
+      "p95": 0.07945438496583132,
+      "p99": 0.14288046697038734
+    },
+    "event_windows": [
+      {
+        "label": "typical_6h",
+        "start": "2016-07-20T00:10:00",
+        "end": "2016-07-20T06:00:00",
+        "duration_records": 36,
+        "selection_pool": "train+validation only",
+        "mean_pu": 0.0848571564160972,
+        "std_pu": 0.05009935481069417,
+        "max_abs_10min_ramp_pu": 0.06546697038724372,
+        "signed_extreme_10min_ramp_pu": -0.06546697038724372
+      },
+      {
+        "label": "strongest_absolute_ramp_6h",
+        "start": "2016-04-13T12:10:00",
+        "end": "2016-04-13T18:00:00",
+        "duration_records": 36,
+        "selection_pool": "train+validation only",
+        "mean_pu": 0.4833395975702354,
+        "std_pu": 0.17755653888736847,
+        "max_abs_10min_ramp_pu": 0.40699202733485196,
+        "signed_extreme_10min_ramp_pu": 0.40699202733485196
+      },
+      {
+        "label": "strongest_positive_ramp_6h",
+        "start": "2016-04-13T12:10:00",
+        "end": "2016-04-13T18:00:00",
+        "duration_records": 36,
+        "selection_pool": "train+validation only",
+        "mean_pu": 0.4833395975702354,
+        "std_pu": 0.17755653888736847,
+        "max_abs_10min_ramp_pu": 0.40699202733485196,
+        "signed_extreme_10min_ramp_pu": 0.40699202733485196
+      },
+      {
+        "label": "strongest_negative_ramp_6h",
+        "start": "2016-06-15T12:10:00",
+        "end": "2016-06-15T18:00:00",
+        "duration_records": 36,
+        "selection_pool": "train+validation only",
+        "mean_pu": 0.23749212224753224,
+        "std_pu": 0.10885948685822633,
+        "max_abs_10min_ramp_pu": 0.35877676537585423,
+        "signed_extreme_10min_ramp_pu": -0.35877676537585423
+      }
+    ]
+  },
+  "resolution_gate": {
+    "existing_e2_fast_grid_hz": [
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "all_existing_fast_grid_above_nyquist": true,
+    "direct_0_5_second_input_supported": false,
+    "decision": "Use this dataset only for slow-scale amplitude, ramp, correlation, and spectral calibration. Do not interpolate it to claim 0.005-1 Hz evidence. A licensed high-frequency source or an explicitly synthetic high-frequency model is required for the fast E2 band."
+  },
+  "processed": {
+    "path": "4_4/data/wind/processed/sotavento_2016_clean.csv",
+    "sha256": "961B9C984C1A5A25B46FC79802AEED1EC0A020C6CB4127B08002DCDC05874BD0"
+  }
+}

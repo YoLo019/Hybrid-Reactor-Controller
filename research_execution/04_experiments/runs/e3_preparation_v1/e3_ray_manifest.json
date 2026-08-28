@@ -1,0 +1,406 @@
+{
+  "study_id": "E3-F1-CENTER-P99-WAVE-V1",
+  "formal_claim": true,
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e3_f1_center_p99_wave_v1.json",
+  "config_sha256": "20D2699633274CBBC0CEF6833554AFC9E76D2026F31C469746C4988959E16BD4",
+  "mapping_path": "D:\\mpc_gpt\\research_execution\\02_data\\w1a_slow_band\\e3_ramp_grid_v1.json",
+  "mapping_sha256": "C2FBE883F0561B7DC331C896AF10DC079E70696DFF8C1ACCDC07BDA389733F1E",
+  "data_access": "frozen W1 mapping only; no raw trajectory opened",
+  "locked_splits_accessed": [],
+  "preparation_gate": {
+    "pass": true,
+    "ray_count": 16,
+    "maximum_case_duration_s": 7122.885665535128
+  },
+  "coverage": {
+    "domains": [
+      "D_dist",
+      "D_ref"
+    ],
+    "controllers": [
+      "MPC",
+      "PID"
+    ],
+    "directions": [
+      -1,
+      1
+    ],
+    "rate_labels": [
+      "p99"
+    ],
+    "hold_labels": [
+      "native_interval",
+      "triangle"
+    ]
+  },
+  "rays": [
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": -1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": -1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": 1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": 1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": -1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": -1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": 1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_ref",
+        "kind": "net_load_reference",
+        "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+        "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": 1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": -1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": -1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": 1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "triangle",
+        "duration_s": 0.0,
+        "evidence_class": "no-plateau shape control"
+      },
+      "direction": 1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": -1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": -1,
+      "controller": "MPC"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": 1,
+      "controller": "PID"
+    },
+    {
+      "power_pu": 0.9,
+      "soc": 0.5,
+      "input_definition": {
+        "domain_id": "D_dist",
+        "kind": "grid_power_disturbance",
+        "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+        "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+      },
+      "rate_level": {
+        "label": "p99",
+        "source_rate_pu_per_10min": 0.14288046697038734,
+        "rate_pu_per_s": 4.1816350000000025e-05,
+        "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+      },
+      "hold_level": {
+        "label": "native_interval",
+        "duration_s": 600.0,
+        "evidence_class": "one native 10-minute observation interval"
+      },
+      "direction": 1,
+      "controller": "MPC"
+    }
+  ]
+}

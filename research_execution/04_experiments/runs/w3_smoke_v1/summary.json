@@ -1,0 +1,101 @@
+{
+  "study_id": "w3_nonuniform_horizon_v1",
+  "stage": "W3-S0",
+  "scope": "structural QP smoke on the real 44-state linearization; not closed-loop performance evidence",
+  "pass": true,
+  "checks": {
+    "preparation_gate_passed": true,
+    "both_controllers_built_with_equal_budget": true,
+    "all_commands_finite": true,
+    "all_solves_accepted": true,
+    "all_solves_used_frozen_osqp": true,
+    "no_solver_fallback": true,
+    "build_time_within_smoke_budget": true,
+    "mean_solve_time_within_smoke_budget": true
+  },
+  "cases": [
+    {
+      "label": "nonuniform",
+      "decision_nodes": 30,
+      "prediction_span_seconds": 21600.0,
+      "build_seconds": 0.017897899999999467,
+      "solve_seconds": [
+        0.039334500000000716,
+        0.003233700000000006,
+        0.0031175000000001063
+      ],
+      "mean_solve_seconds": 0.015228566666666943,
+      "commands_pu": [
+        0.8666174845594695,
+        0.866695748581059,
+        0.8666979231769795
+      ],
+      "solver_status": [
+        "optimal",
+        "optimal",
+        "optimal"
+      ],
+      "solver": [
+        "OSQP",
+        "OSQP",
+        "OSQP"
+      ],
+      "solver_fallback_used": [
+        false,
+        false,
+        false
+      ],
+      "primary_solver_exceptions": [
+        null,
+        null,
+        null
+      ],
+      "all_commands_finite": true,
+      "all_solves_accepted": true,
+      "all_solves_used_frozen_osqp": true,
+      "no_solver_fallback": true
+    },
+    {
+      "label": "uniform_tail",
+      "decision_nodes": 30,
+      "prediction_span_seconds": 21600.0,
+      "build_seconds": 0.0177562,
+      "solve_seconds": [
+        0.029758000000000173,
+        0.004296200000000638,
+        0.003182999999999936
+      ],
+      "mean_solve_seconds": 0.012412400000000249,
+      "commands_pu": [
+        0.8672137022947313,
+        0.8673104481099735,
+        0.8673132575738385
+      ],
+      "solver_status": [
+        "optimal",
+        "optimal",
+        "optimal"
+      ],
+      "solver": [
+        "OSQP",
+        "OSQP",
+        "OSQP"
+      ],
+      "solver_fallback_used": [
+        false,
+        false,
+        false
+      ],
+      "primary_solver_exceptions": [
+        null,
+        null,
+        null
+      ],
+      "all_commands_finite": true,
+      "all_solves_accepted": true,
+      "all_solves_used_frozen_osqp": true,
+      "no_solver_fallback": true
+    }
+  ],
+  "locked_splits_accessed": []
+}

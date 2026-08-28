@@ -1,0 +1,38 @@
+{
+  "study_id": "w3_v1_typical_validation",
+  "stage": "W3-R0",
+  "controller": "mpc_uniform_tail",
+  "scenario_id": "w1_typical_6h",
+  "split": "validation",
+  "forecast_type": "persistence",
+  "forecast_issue_times": [
+    "2016-07-20T00:10:00"
+  ],
+  "decision_nodes": 30,
+  "prediction_span_seconds": 21600.0,
+  "solver": "OSQP",
+  "solver_status_counts": {
+    "optimal": 4
+  },
+  "solver_fallback_count": 0,
+  "metrics": {
+    "tracking_rmse_pu": 6.112857924493731e-09,
+    "tracking_mae_pu": 4.99206116444384e-09,
+    "tracking_max_abs_error_pu": 9.986037441400697e-09,
+    "frequency_max_abs_hz": 1.3722356583974723e-12,
+    "coolant_average_max_abs_deviation_c": 2.6736699965113075e-08,
+    "rod_peak_abs_spm": 4.905626629518414e-06,
+    "valve_command_max_rate_pu_s": 1.7025114651403328e-10,
+    "valve_command_total_variation_pu": 2.4513902019407396e-10,
+    "bess_peak_abs_mw": 4.507734911542451e-11,
+    "bess_throughput_mwh": 1.0331364945665342e-14,
+    "soc_min": 0.49999999999999944,
+    "soc_max": 0.5000000000000001,
+    "solve_mean_seconds": 0.009354774999999815,
+    "solve_p95_seconds": 0.02424998000000035,
+    "solve_max_seconds": 0.027905000000000513,
+    "deadline_miss_fraction": 0.0
+  },
+  "locked_splits_accessed": [],
+  "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w3_v1_integration_smoke\\cases\\mpc_uniform_tail.npz"
+}

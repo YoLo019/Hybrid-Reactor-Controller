@@ -1,0 +1,263 @@
+{
+  "report_version": 2,
+  "audited_on": "2026-08-23",
+  "software": {
+    "python": "3.12.3",
+    "numpy": "2.0.1",
+    "pandas": "2.2.2",
+    "pyarrow": "21.0.0",
+    "matplotlib": "3.9.1.post1"
+  },
+  "target_band_hz": [
+    0.005,
+    1.0
+  ],
+  "gate_decision": "PASS",
+  "gate_checks": {
+    "more_direct_active_power_covers_0p005_to_0p25_hz": true,
+    "bjorko_official_mapping_sources_present": true,
+    "bjorko_has_at_least_five_independent_120s_runs": true,
+    "bjorko_high_band_cross_channel_correlation_ge_0p8": true,
+    "bjorko_interpolation_gap_le_0p2s": true,
+    "claim_scope_excludes_direct_grid_power": true
+  },
+  "decision_reason": "MORE-EU provides direct active power from 0.005 to 0.25 Hz. Bjorko provides 100 Hz measured generator-side electrical power from DCC*DCV for 0.25 to 1 Hz, with an official converter/measurement description, an independent Chalmers electrical-power definition, and five independent operating segments. The high-band claim remains generator-side and is not relabeled as point-of-interconnection power.",
+  "sources": {
+    "more_eu": {
+      "source_id": "more_eu_engie_2s",
+      "file": "raw\\more_eu_engie\\wind.parquet",
+      "sha256": "C3B62569C673D2D8BED6F327FA13326AEAE94FFB3F360E8A1FE96A32B383DEC7",
+      "rows": 432000,
+      "columns": [
+        "datetime",
+        "wind speed",
+        "pitch angle",
+        "rotor speed",
+        "active power",
+        "cos_nacelle_dir",
+        "sin_nacelle_dir",
+        "cos_wind_dir",
+        "sin_wind_dir",
+        "cor. nacelle direction",
+        "cor. wind direction"
+      ],
+      "start": "2019-04-14T00:00:00",
+      "end": "2019-04-23T23:59:58",
+      "duration_s": 863998.0,
+      "missing_values": {
+        "datetime": 0,
+        "wind speed": 0,
+        "pitch angle": 0,
+        "rotor speed": 0,
+        "active power": 0,
+        "cos_nacelle_dir": 0,
+        "sin_nacelle_dir": 0,
+        "cos_wind_dir": 0,
+        "sin_wind_dir": 0,
+        "cor. nacelle direction": 0,
+        "cor. wind direction": 0
+      },
+      "intervals": {
+        "rows": 432000,
+        "duplicate_intervals": 0,
+        "negative_intervals": 0,
+        "nominal_intervals": 431999,
+        "non_nominal_intervals": 0,
+        "minimum_interval_s": 2.0,
+        "median_interval_s": 2.0,
+        "maximum_interval_s": 2.0
+      },
+      "sampling_rate_hz": 0.5,
+      "nyquist_hz": 0.25,
+      "direct_active_power": true,
+      "active_power_unit": "kW",
+      "active_power_range_kw": [
+        -68.1105728149414,
+        2030.6707763671875
+      ],
+      "psd": {
+        "method": "linear-detrended Hann Welch, 50% overlap",
+        "nperseg": 32768,
+        "windows": 25,
+        "frequency_resolution_hz": 1.52587890625e-05,
+        "energy_0p005_to_0p05_fraction": 0.9549515862971002,
+        "energy_0p05_to_0p25_fraction": 0.045033996760389834
+      },
+      "supported_band_hz": [
+        0.005,
+        0.25
+      ],
+      "target_band_coverage": "partial"
+    },
+    "bjorko": {
+      "source_id": "bjorko_zenodo_v3_100hz",
+      "file": "raw\\bjorko_zenodo_v3\\B1_CL4_100.csv",
+      "sha256": "CDD93047CB8686691724B08FB9B4187872957826BA7262FC8C2FF65348F6954A",
+      "repository_md5_verified": "E0BEC0B446DB8E9F0C62513FF2C06BD2",
+      "rows": 330700,
+      "selected_columns": [
+        "Time",
+        "SysMode",
+        "DCC",
+        "DCV",
+        "XTurbSpeed1",
+        "RST2",
+        "WS30",
+        "WSN",
+        "MaxPwrEst",
+        "Pwaste"
+      ],
+      "start": "2022-07-05T11:45:46.599999905+00:00",
+      "end": "2023-06-09T09:11:34.250000+00:00",
+      "intervals": {
+        "rows": 330700,
+        "duplicate_intervals": 130,
+        "negative_intervals": 0,
+        "nominal_intervals": 329266,
+        "non_nominal_intervals": 1433,
+        "minimum_interval_s": 0.0,
+        "median_interval_s": 0.010000228881835938,
+        "maximum_interval_s": 21161332.349999905
+      },
+      "sampling_rate_hz": 100.0,
+      "nyquist_hz": 50.0,
+      "direct_grid_active_power": false,
+      "measured_electrical_power": "DCC[A] * DCV[V], generator-rectifier/DC-link electrical power in W",
+      "mapping_evidence": {
+        "dataset_metadata": "DCC and DCV are generator-rectifier DC current and voltage",
+        "official_turbine_description": "direct-driven generator with frequency converter; DC-link voltage/current and grid voltage/current are measured; controller sampling period is 10 ms",
+        "institutional_thesis": "Chalmers 2024 thesis Appendix A defines Pel=(DCV2*DCC2)/1000 as electrical power",
+        "mechanical_cross_check": "RST2[Nm] * XTurbSpeed1[rpm] * 2*pi/60",
+        "claim_scope": "measured generator-side electrical-power fluctuations; not direct point-of-interconnection active power"
+      },
+      "independent_running_segments": {
+        "selection": "SysMode=12, DCC*DCV>100 W, gap<=1 s, duration>=120 s; 120 s supplies at least 30 cycles at 0.25 Hz",
+        "count": 5,
+        "total_duration_s": 1588.6499991416931,
+        "minimum_time_domain_pearson": 0.8120149752706469,
+        "median_time_domain_pearson": 0.9633519069106015,
+        "minimum_high_band_pearson_0p25_to_1_hz": 0.8571578336712864,
+        "median_high_band_pearson_0p25_to_1_hz": 0.9226081109210984,
+        "segments": [
+          {
+            "segment_id": 1,
+            "start": "2022-10-05T08:03:08.050000191+00:00",
+            "end": "2022-10-05T08:05:08.969999790+00:00",
+            "raw_rows": 12073,
+            "duration_s": 120.91999959945679,
+            "regular_rows": 12093,
+            "missing_ticks_interpolated": 26,
+            "duplicate_rows_averaged": 6,
+            "missing_fraction": 0.002150004134623336,
+            "maximum_interpolated_gap_s": 0.02,
+            "dc_power_range_w": [
+              100.6380072,
+              26055.46437
+            ],
+            "time_domain_pearson": 0.8450935069724593,
+            "high_band_pearson_0p25_to_1_hz": 0.9592166165914106,
+            "welch_windows": 1,
+            "energy_0p25_to_1_fraction_of_0p005_to_1": 0.01877464301297652
+          },
+          {
+            "segment_id": 2,
+            "start": "2022-10-05T08:06:46.650000095+00:00",
+            "end": "2022-10-05T08:09:41.840000153+00:00",
+            "raw_rows": 17481,
+            "duration_s": 175.19000005722046,
+            "regular_rows": 17520,
+            "missing_ticks_interpolated": 49,
+            "duplicate_rows_averaged": 10,
+            "missing_fraction": 0.0027968036529680365,
+            "maximum_interpolated_gap_s": 0.02,
+            "dc_power_range_w": [
+              117.93555400000001,
+              25903.419299999998
+            ],
+            "time_domain_pearson": 0.9698982233776767,
+            "high_band_pearson_0p25_to_1_hz": 0.8892953948741086,
+            "welch_windows": 3,
+            "energy_0p25_to_1_fraction_of_0p005_to_1": 0.022197541777045627
+          },
+          {
+            "segment_id": 3,
+            "start": "2023-06-09T06:24:01.010000229+00:00",
+            "end": "2023-06-09T06:38:44.929999828+00:00",
+            "raw_rows": 87616,
+            "duration_s": 883.9199995994568,
+            "regular_rows": 88393,
+            "missing_ticks_interpolated": 793,
+            "duplicate_rows_averaged": 16,
+            "missing_fraction": 0.008971298632244634,
+            "maximum_interpolated_gap_s": 0.19,
+            "dc_power_range_w": [
+              104.89227349999999,
+              29578.5633
+            ],
+            "time_domain_pearson": 0.9868669756775242,
+            "high_band_pearson_0p25_to_1_hz": 0.9226081109210984,
+            "welch_windows": 20,
+            "energy_0p25_to_1_fraction_of_0p005_to_1": 0.02639635078722747
+          },
+          {
+            "segment_id": 4,
+            "start": "2023-06-09T08:35:20.119999886+00:00",
+            "end": "2023-06-09T08:39:36.119999886+00:00",
+            "raw_rows": 25213,
+            "duration_s": 256.0,
+            "regular_rows": 25601,
+            "missing_ticks_interpolated": 397,
+            "duplicate_rows_averaged": 9,
+            "missing_fraction": 0.015507206749736338,
+            "maximum_interpolated_gap_s": 0.15,
+            "dc_power_range_w": [
+              102.7865154,
+              29159.13166
+            ],
+            "time_domain_pearson": 0.9633519069106015,
+            "high_band_pearson_0p25_to_1_hz": 0.9719505319857255,
+            "welch_windows": 5,
+            "energy_0p25_to_1_fraction_of_0p005_to_1": 0.06432559594504023
+          },
+          {
+            "segment_id": 5,
+            "start": "2023-06-09T09:08:17.349999905+00:00",
+            "end": "2023-06-09T09:10:49.969999790+00:00",
+            "raw_rows": 15212,
+            "duration_s": 152.61999988555908,
+            "regular_rows": 15263,
+            "missing_ticks_interpolated": 53,
+            "duplicate_rows_averaged": 2,
+            "missing_fraction": 0.003472449714997052,
+            "maximum_interpolated_gap_s": 0.02,
+            "dc_power_range_w": [
+              102.36947679999999,
+              10119.92254
+            ],
+            "time_domain_pearson": 0.8120149752706469,
+            "high_band_pearson_0p25_to_1_hz": 0.8571578336712864,
+            "welch_windows": 2,
+            "energy_0p25_to_1_fraction_of_0p005_to_1": 0.01736872491118788
+          }
+        ]
+      },
+      "psd": {
+        "method": "linear-detrended Hann Welch, 50% overlap",
+        "aggregation": "five independent running segments weighted by Welch window count",
+        "nperseg": 8192,
+        "windows": 31,
+        "frequency_resolution_hz": 0.01220703125,
+        "audited_band_hz": [
+          0.25,
+          1.0
+        ],
+        "energy_0p25_to_1_w2": 298230.24715229386
+      },
+      "supported_band_hz": [
+        0.25,
+        1.0
+      ],
+      "target_band_role": "measured_generator_side_electrical_power"
+    }
+  }
+}

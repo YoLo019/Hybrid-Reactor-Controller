@@ -1,0 +1,110 @@
+{
+  "study_id": "E2-PHASE-SYMMETRY-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_phase_symmetry_v1.json",
+  "config_sha256": "27D1BD1F25DC03A26825ADD9E8FFD705F82BA7A9889D0B7EE222F3D3A2A42428",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "9387493BD3DC548A2EC339B33C74CA97065834276FB5948385C2982B357E2269",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "21740F2EDFD740217BE5FC42E84A9A5D247B4E0C45FB641F56175C9FB5C03242",
+  "ray_count_total": 8,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 0,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.02,
+          "cycles": 1,
+          "evidence_class": "W1-B direct active-power observable band; phase-reduction diagnostic"
+        },
+        "phase_rad": 0.0,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": false
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.1322,
+          "upper_amplitude_pu": 0.2168,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.1903625,
+      "first_failure_amplitude_pu": 0.19565,
+      "boundary_width_pu": 0.0052875000000000005,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 66.5,
+      "coarse_case_hashes": [
+        "858EBB47EBA0DF1E2C6B64F52C3757421DDA62EBAF42238652D8AE4942D14707",
+        "414A185F76B83DEFDEE21E5DEF3FC5ECE7E70FAD2BFF9A017AF54E6DA98771B4",
+        "3250B00C39EEBD4DC7806312198BEE9D98827F284F4AA3C4AD3DD9F8B778A98A",
+        "EECC2E3B17758EBE261B8473650F11351AE15AD072FDFFA11BB32CFC820CE30C",
+        "2F7A348B70DB6977ECADFD6876A9ADF8789A7958A955A2FE66F9439120ED0EB1",
+        "BFF6655351884441A0C2FFD6E9EA241832D798E6BB4AF33494D99B9FC6A28F00",
+        "D8C4267FD9564B83CA76F276CB2F81230B3831B9986A221FDC112842E5A09971"
+      ],
+      "bisection_case_hashes": [
+        "C05995E94992311ACCDADAE3E1D93EBAEB811DBEE0D1C150EE94E8E31CF50B82",
+        "4EE62EEF19B7AE445ECD2F8BCCB7B74556EAE1881D749924AD57A684BDE7A851",
+        "7CD24350CE6C7FFADFDFD464FED4C445C84C11393C620BCA2D05CBC875794AE7",
+        "1565670D7EC7C3CA68325EB9ED019EB31EC72BFFC358B6EE308ED11CDE9586C2"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "51E8DEC365107753018C2C81AAB03398A108A1B5A46783A7A68BDFFD3A5C41D5"
+}

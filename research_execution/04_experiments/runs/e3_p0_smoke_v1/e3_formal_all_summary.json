@@ -1,0 +1,569 @@
+{
+  "study_id": "E3-P0-SMOKE-V1",
+  "formal_claim": false,
+  "scope": "short synthetic interface smoke for E3 ramp-hold-return-recovery execution",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e3_p0_smoke_v1.json",
+  "config_sha256": "EA4D2D37F0BBD2BE4A873A2440C1AEA0A364B00706212F2132C50DF7838EFF6A",
+  "mapping_path": "D:\\mpc_gpt\\research_execution\\02_data\\w1a_slow_band\\e3_ramp_grid_v1.json",
+  "mapping_sha256": "C2FBE883F0561B7DC331C896AF10DC079E70696DFF8C1ACCDC07BDA389733F1E",
+  "code_provenance": {
+    "e3_runner": "9B583EA45DA1A925D899C09C0BA2305A7EDFE3AEDDE771ABB87A2217C86E5681",
+    "e2_boundary_helper": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "shared_scenario_helper": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "CABD8EAEDAE6DA7FB7E7933532F0219AF3305568F0F73FBE8B83DD673A879D8C",
+    "mpc_utils": "BC3213149754866F823D2EFD6226276F7F08EEB375BA7E31606FD31AB274E330",
+    "model": "E9B3BDAF2D0EDA000B72947373EAF76CBAC74D4D06ADC2F0DE3A7736CC0E8690",
+    "parameters": "C09BC1DB5C2AAC3D5E0B897B6CFD7C5068EAD12D527F60BEEC6BA5DE4E0D719A",
+    "schema": "ACC64A367AC70DE470B9FB69F9ECF9D2242BA5780F966862E415B95056E353F3"
+  },
+  "code_bundle_sha256": "B5F38526A3C385B76B3974DCBE166BC41C8FF4DB3C5700F4B9AE7F11CAD982E8",
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "preparation_gate": {
+    "pass": true,
+    "ray_count": 8,
+    "maximum_case_duration_s": 67.0
+  },
+  "ray_count_total": 8,
+  "ray_count_in_report": 8,
+  "coverage": {
+    "domains": [
+      "D_dist",
+      "D_ref"
+    ],
+    "controllers": [
+      "MPC",
+      "PID"
+    ],
+    "directions": [
+      -1,
+      1
+    ],
+    "rate_labels": [
+      "synthetic_smoke"
+    ],
+    "hold_labels": [
+      "triangle"
+    ]
+  },
+  "ray_results": [
+    {
+      "ray_index": 0,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_ref",
+          "kind": "net_load_reference",
+          "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+          "claim_limit": "reference-feasibility interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": -1,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "FA87DAC5247EA0E76E4C56EDACAB149B4C8FDA7AD3403AC7D8E987734B375033",
+        "5AE68FA5FD198BEC25780109AB40373A9ECB9A1CBBE802D63A889D332A77D688"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 1,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_ref",
+          "kind": "net_load_reference",
+          "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+          "claim_limit": "reference-feasibility interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": -1,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "BEA94117BA79C8AF28E174FECC4A6B8F494735745651461223B37970D989B5E4",
+        "5A04040F29965F7E71B285CA7E93BE999E71F41EAF84F623DCF046944428981E"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 2,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_ref",
+          "kind": "net_load_reference",
+          "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+          "claim_limit": "reference-feasibility interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": 1,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "ABFBD48CF7F715FCBABE5209E28355B33C383C93ADC343163C2CE1D9082ED353",
+        "2CE6677CF18A23BE5FDDD2FCD33DE2AAB4C03D1BE5E4A593492DD32CE71666BA"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 3,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_ref",
+          "kind": "net_load_reference",
+          "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+          "claim_limit": "reference-feasibility interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": 1,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "90C02766729875F6400D47C73C58C4C69E51A607E6E33F20087C0D608EC7CD31",
+        "4F175A1974D60B457C26C0057C89EA353A54E211C25A43808DF8D818AA3264B5"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 4,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_dist",
+          "kind": "grid_power_disturbance",
+          "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+          "claim_limit": "physical-disturbance interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": -1,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "4F90B19DCF1FF6D98E71B2D6BF8235C98BFA9D7B59F66591F2A516CE3616C8F5",
+        "3DF8E5FF3FB7CCA3D8482C5D0B6FF9B777D17D142F4C73A0C2C39107DF5977DE"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 5,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_dist",
+          "kind": "grid_power_disturbance",
+          "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+          "claim_limit": "physical-disturbance interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": -1,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "E397233BA7FBB0123915FDAE5C5032F245F634EC5A685A193D5EFA16E610D238",
+        "CB6A0F72D981B164C489BFEDB6C52E92511F8854B86C6DE0AC01B569A67B15BF"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 6,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_dist",
+          "kind": "grid_power_disturbance",
+          "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+          "claim_limit": "physical-disturbance interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": 1,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "0E3590165756CDDAA89BAEE435D0A94794CAAECE4E338308B16DC918C02E3D40",
+        "1C9C5BC53ADD933C5D970E3C18B1AD2A1B26041C9D811ABF4B397C446FB26C47"
+      ],
+      "bisection_case_hashes": []
+    },
+    {
+      "ray_index": 7,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "input_definition": {
+          "domain_id": "D_dist",
+          "kind": "grid_power_disturbance",
+          "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+          "claim_limit": "physical-disturbance interface smoke"
+        },
+        "rate_level": {
+          "label": "synthetic_smoke",
+          "rate_pu_per_s": 0.001,
+          "evidence_class": "pipeline smoke only"
+        },
+        "hold_level": {
+          "label": "triangle",
+          "duration_s": 0.0,
+          "evidence_class": "pipeline smoke only"
+        },
+        "direction": 1,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.001,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.001,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "nonzero_cases_safe": true,
+      "nonzero_cases_recovered": true,
+      "solver_failures": 0,
+      "waveform_returned_to_zero": true,
+      "coarse_case_hashes": [
+        "D425910BCE4DCD2365AEA47CCB0D278C6326C6067AB7147BF714C28D52753C35",
+        "9BD8AF73FDF431FF3CFB7F600B192E8BDFFF76ADBBE50CA543B8448D9EF9E0C5"
+      ],
+      "bisection_case_hashes": []
+    }
+  ],
+  "smoke_gate": {
+    "pass": true,
+    "checks": {
+      "all_rays_executed": true,
+      "both_domains_covered": true,
+      "both_controllers_covered": true,
+      "both_directions_covered": true,
+      "all_centers_safe": true,
+      "all_nonzero_cases_safe": true,
+      "all_nonzero_cases_recovered": true,
+      "no_solver_failures": true,
+      "all_waveforms_return_to_zero": true
+    }
+  },
+  "deterministic_summary_sha256": "DE7844F84751C09E23A0751659C817A63349CA8DBB08225A3FD86F289809BB42"
+}

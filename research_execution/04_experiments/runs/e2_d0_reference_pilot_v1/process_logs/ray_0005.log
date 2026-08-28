@@ -1,0 +1,28 @@
+D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py:158: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  warnings.warn("Objective contains too many subexpressions. "
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 211, in run_case
+    result = run_mpc_scenario(
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 312, in run_mpc_scenario
+    valve_command = controller.solve(
+  File "D:\mpc_gpt\4_4\mpc_utils_out.py", line 230, in solve
+    self.problem.solve(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 503, in solve
+    return solve_func(self, *args, **kwargs)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 1090, in _solve
+    self.unpack_results(solution, solving_chain, inverse_data)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 1405, in unpack_results
+    solution = chain.invert(solution, inverse_data)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\reductions\chain.py", line 84, in invert
+    solution = r.invert(solution, inv)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\reductions\solvers\qp_solvers\osqp_qpif.py", line 38, in invert
+    status = self.STATUS_MAP.get(solution.info.status_val, s.SOLVER_ERROR)
+KeyboardInterrupt

@@ -1,0 +1,30 @@
+{
+  "dataset_id": "mendeley:vtsgxnwswn:1",
+  "doi": "10.17632/vtsgxnwswn.1",
+  "landing_url": "https://data.mendeley.com/datasets/vtsgxnwswn/1",
+  "download_url": "https://data.mendeley.com/public-api/zip/vtsgxnwswn/download/1",
+  "retrieved_utc": "2026-08-15T12:36:38.4834002Z",
+  "license": "CC BY 4.0 (as stated on the Mendeley Data landing page)",
+  "files": [
+    {
+      "name": "download.zip",
+      "bytes": 778017,
+      "sha256": "2F51105D9566BCC728A3A981FB89D3EB15F73A631FF454EE3C40AC6AD2F8D4DA"
+    },
+    {
+      "name": "NWP.csv",
+      "bytes": 949364,
+      "sha256": "19C11D2A64924D2B48639780F5BCBE435FBAF9A7D4F886ACD9AA280C6707C722"
+    },
+    {
+      "name": "Raw_Data.rar",
+      "bytes": 777766,
+      "sha256": "B7DAC380F01FE2E4D55CEB4365130FCF4E7D7EAED2F9BD2F3A3DBBD0E7C0953B"
+    },
+    {
+      "name": "wind farm historical data.csv",
+      "bytes": 1865553,
+      "sha256": "2AB798258A566F2F2C6A4BCAB0023E6485E34C08C432A49D2C0F2D4DE4E09E6F"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "study_id": "E5-CAPACITY-ELASTICITY-V1",
+  "status": "preparation_frozen_formal_blocked",
+  "scope": "dimensionless central finite-difference boundary sensitivity and active-set responsibility migration",
+  "claim_limit": "local empirical boundary sensitivity only; not a realtime allocation ratio or global differentiability claim",
+  "dependencies": {
+    "required_completed_studies": ["E2", "E3", "E4"],
+    "evidence_paths": [],
+    "ready": false
+  },
+  "domains": ["D_ref", "D_dist"],
+  "capacity_dimensions": [
+    {
+      "id": "bess_power",
+      "nominal_value_source": "research_execution/04_experiments/configs/e2_formal_constraints_v1.json#constraints.bess_power_abs_mw",
+      "nominal_value_frozen": false
+    },
+    {
+      "id": "bess_energy",
+      "nominal_value_source": null,
+      "nominal_value_frozen": false
+    },
+    {
+      "id": "valve_rate",
+      "nominal_value_source": "research_execution/04_experiments/configs/e2_formal_constraints_v1.json#constraints.valve_command_rate_abs_pu_s",
+      "nominal_value_frozen": false
+    },
+    {
+      "id": "rod_rate",
+      "nominal_value_source": "research_execution/04_experiments/configs/e2_formal_constraints_v1.json#constraints.rod_speed_abs_spm",
+      "nominal_value_frozen": false
+    }
+  ],
+  "finite_difference": {
+    "method": "normalized central finite difference",
+    "derivative_formula": "(rho(c_i + h) - rho(c_i - h)) / (2 * h)",
+    "dimensionless_elasticity_formula": "(c_i / rho(c)) * (rho(c_i + h) - rho(c_i - h)) / (2 * h)",
+    "paired_case_rule": "minus, base, and plus cases must differ only in the target capacity and must rebuild the boundary",
+    "validity_rules": [
+      "c_i - h must be physically feasible and positive",
+      "rho(c) must be positive and not right-censored",
+      "all paired cases must use identical domain, controller, operating point, disturbance coordinate, constraints, and search settings"
+    ]
+  },
+  "relative_step_levels": [
+    {"label": "small", "fraction": null},
+    {"label": "nominal", "fraction": null},
+    {"label": "large", "fraction": null}
+  ],
+  "step_values_status": "required_before_formal_entry",
+  "stability_gates": {
+    "step_convergence_rule": null,
+    "sign_stability_rule": null,
+    "responsibility_rank_stability_rule": null,
+    "status": "required_before_formal_entry"
+  },
+  "active_set_and_nondifferentiability": {
+    "required_active_sets": ["minus", "base", "plus"],
+    "active_set_switch_rule": "true when decisive or tied active-constraint labels differ among minus, base, and plus boundary points",
+    "one_sided_slopes_required_on_switch": true,
+    "one_sided_slope_disagreement_tolerance": null,
+    "tolerance_status": "required_before_formal_entry",
+    "report_rule": "on a switch or one-sided disagreement, report intervals and candidate nondifferentiability instead of a single smooth derivative claim"
+  },
+  "required_outputs": [
+    "rho_minus",
+    "rho_base",
+    "rho_plus",
+    "derivative_per_step",
+    "dimensionless_elasticity_per_step",
+    "elasticity_interval",
+    "minus_active_constraints",
+    "base_active_constraints",
+    "plus_active_constraints",
+    "active_set_switch",
+    "left_slope",
+    "right_slope",
+    "candidate_nondifferentiable",
+    "right_censored"
+  ],
+  "report_axes": [
+    "domain",
+    "controller",
+    "power",
+    "soc",
+    "disturbance_timescale",
+    "direction",
+    "capacity"
+  ],
+  "formal_execution_gate": {
+    "upstream_evidence_frozen": false,
+    "all_nominal_capacity_values_frozen": false,
+    "three_numeric_step_levels_preregistered": false,
+    "stability_rules_preregistered": false,
+    "nondifferentiability_tolerance_preregistered": false,
+    "paired_case_identity_contract_ready": true
+  },
+  "execution_policy": {
+    "preparation_may_open_locked_splits": false,
+    "preparation_may_read_boundary_results": false,
+    "preparation_may_run_model": false,
+    "formal_execution_allowed": false
+  }
+}

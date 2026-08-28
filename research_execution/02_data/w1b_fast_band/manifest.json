@@ -1,0 +1,119 @@
+{
+  "manifest_version": 2,
+  "retrieved_on": "2026-08-23",
+  "target_band_hz": [
+    0.005,
+    1.0
+  ],
+  "sources": [
+    {
+      "id": "more_eu_engie_2s",
+      "provider": "MORE Horizon 2020 / ENGIE Laborelec",
+      "official_page": "https://www.more2020.eu/open_resources.html",
+      "repository": "https://github.com/MORE-EU/OpenData",
+      "repository_commit": "e0811c29c524a11b4d0421a0b59c826f23a20a36",
+      "source_snapshot": "provenance/more_eu_readme_e0811c29.md",
+      "doi": null,
+      "license": "No standard license file found for the wind dataset; official page calls it an open dataset",
+      "access": "public direct download",
+      "role": "direct measured active power, 2 s"
+    },
+    {
+      "id": "bjorko_zenodo_v3_100hz",
+      "provider": "Chalmers University of Technology et al.",
+      "official_page": "https://zenodo.org/records/8230330",
+      "doi": "10.5281/zenodo.8230330",
+      "concept_doi": "10.5281/zenodo.8229045",
+      "source_snapshot": "provenance/bjorko_zenodo_8230330.json",
+      "license": "CC BY 4.0",
+      "access": "public direct download",
+      "role": "100 Hz measured generator-side electrical power from DCC*DCV plus mechanical cross-check"
+    },
+    {
+      "id": "chalmers_bjorko_measurement_description",
+      "provider": "Chalmers University of Technology",
+      "official_page": "https://zenodo.org/records/8230330",
+      "doi": "10.5281/zenodo.8230330",
+      "source_snapshots": [
+        "raw/bjorko_zenodo_v3/Chalmers_wind_turbine_description_short.pdf",
+        "raw/bjorko_zenodo_v3/Chalmers_wind_turbine.pdf"
+      ],
+      "license": "CC BY 4.0 as part of the Zenodo dataset",
+      "access": "public direct download",
+      "role": "official turbine topology, measurement channels, and 10 ms controller sampling"
+    },
+    {
+      "id": "chalmers_islanded_operation_thesis_2024",
+      "provider": "Chalmers University of Technology",
+      "official_page": "https://odr.chalmers.se/items/13f11803-85e1-46d3-9e45-626083dc1923",
+      "doi": null,
+      "source_snapshot": "provenance/chalmers_islanded_operation_thesis_2024.pdf",
+      "license": "copyright retained by authors; local copy used for source verification",
+      "access": "public institutional repository",
+      "role": "independent institutional definition of DCC*DCV as electrical power"
+    }
+  ],
+  "audited_files": [
+    {
+      "path": "raw/bjorko_zenodo_v3/B1_CL4_100.csv",
+      "bytes": 174401801,
+      "sha256": "CDD93047CB8686691724B08FB9B4187872957826BA7262FC8C2FF65348F6954A"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Bjorko_digital_io_states_mappings.csv",
+      "bytes": 1190,
+      "sha256": "50386ABACB696B10197555637EAAD33279C0DECB14606B5EF66863E4E633DC1F"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Bjorko_modes_mapping.csv",
+      "bytes": 667,
+      "sha256": "838751EC4AB1514606A472A4E04D2F04E7A7DBFDE6A287E4D65FDC24EA77D4D5"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Bjorko_modes_mapping.json",
+      "bytes": 551,
+      "sha256": "396FD98C466868ECA9006EB2BBB7917C11FFC84388048D0E5A125E4C7A21EB50"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Bjorko_Sensors_Specs_Metadata.csv",
+      "bytes": 6736,
+      "sha256": "6A447290A8036B994160A7872F4FFF878B9369C4D5879E011B8AF36B5F07E9E0"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Chalmers_wind_turbine.pdf",
+      "bytes": 2677575,
+      "sha256": "523F47F0981E4D299ECF4B77D4FDC5FAE407A972878AEDF4E3DA7715EB7202ED"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/Chalmers_wind_turbine_description_short.pdf",
+      "bytes": 564136,
+      "sha256": "D70FDA7C5518E44AFDCD147BB5F5C1B41E1B161EC813FED7F9EC0B31FFF25063"
+    },
+    {
+      "path": "raw/bjorko_zenodo_v3/README.md",
+      "bytes": 1606,
+      "sha256": "A9065FA4B28937E0AAE9927A63F17481E1EC891E8A51963E9933E8BD7302BD89"
+    },
+    {
+      "path": "raw/more_eu_engie/wind.parquet",
+      "bytes": 16687494,
+      "sha256": "C3B62569C673D2D8BED6F327FA13326AEAE94FFB3F360E8A1FE96A32B383DEC7"
+    },
+    {
+      "path": "provenance/bjorko_zenodo_8230330.json",
+      "bytes": 10423,
+      "sha256": "399372BCE51890856BB48FC506CEB14AB90F70C64F585A9EDB812E706061BD6C"
+    },
+    {
+      "path": "provenance/chalmers_islanded_operation_thesis_2024.pdf",
+      "bytes": 3840935,
+      "sha256": "99494896003371CB636FC3191DB27697E1D2DCE73446A7DFA05A135580A61D59"
+    },
+    {
+      "path": "provenance/more_eu_readme_e0811c29.md",
+      "bytes": 2222,
+      "sha256": "1D8060F17075AF88E2321A3AA68587E19F6D3419E211ABF11ED5E2EE22F4A819"
+    }
+  ],
+  "gate_decision": "PASS"
+}

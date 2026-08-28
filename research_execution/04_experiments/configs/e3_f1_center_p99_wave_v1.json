@@ -1,0 +1,85 @@
+{
+  "study_id": "E3-F1-CENTER-P99-WAVE-V1",
+  "formal_claim": true,
+  "scope": "first formal E3 center wave using the fastest W1-A data-calibrated ramp rate",
+  "input_definitions": [
+    {
+      "domain_id": "D_ref",
+      "kind": "net_load_reference",
+      "sign_convention": "positive signal denotes wind surplus and reduces nuclear power reference",
+      "claim_limit": "reference-feasibility domain, not physical disturbance rejection"
+    },
+    {
+      "domain_id": "D_dist",
+      "kind": "grid_power_disturbance",
+      "sign_convention": "positive signal denotes extra electrical demand in the swing equation",
+      "claim_limit": "physical-disturbance rejection domain, not reference tracking"
+    }
+  ],
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e3_ramp_grid_v1",
+    "mapping_file": "research_execution/02_data/w1a_slow_band/e3_ramp_grid_v1.json",
+    "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "data_relevance_amplitudes_system_pu": {
+    "p50": 0.004310683333333332,
+    "p90": 0.017248696666666667,
+    "p95": 0.023217049999999982,
+    "p99": 0.038061564333333284
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "operating_points": [{"power_pu": 0.9, "soc": 0.5}],
+  "controllers": ["PID", "MPC"],
+  "directions": [-1, 1],
+  "ramp_rate_levels": [
+    {
+      "label": "p99",
+      "source_rate_pu_per_10min": 0.14288046697038734,
+      "rate_pu_per_s": 4.1816350000000025e-05,
+      "evidence_class": "Sotavento W1-A absolute 10-minute ramp P99 mapped from 17.56 MW to 100 MW system base"
+    }
+  ],
+  "hold_levels": [
+    {"label": "triangle", "duration_s": 0.0, "evidence_class": "no-plateau shape control"},
+    {"label": "native_interval", "duration_s": 600.0, "evidence_class": "one native 10-minute observation interval"}
+  ],
+  "amplitude_grid_pu": [0.0, 0.004310683333333332, 0.017248696666666667, 0.023217049999999982, 0.038061564333333284, 0.0544, 0.0982, 0.1322],
+  "bisection_tolerance_pu": 0.01,
+  "max_bisection_iterations": 10,
+  "max_case_duration_s": 7200.0,
+  "simulation": {
+    "dt_s": 0.5,
+    "warmup_s": 20.0,
+    "recovery": {
+      "duration_s": 180.0,
+      "sustain_s": 10.0,
+      "completion_limits": {
+        "power_abs_error_pu": 0.005,
+        "frequency_abs_hz": 0.02,
+        "coolant_average_abs_deviation_c": 0.5,
+        "bess_power_abs_mw": 0.25
+      }
+    }
+  },
+  "mpc": {
+    "horizon_steps": 30,
+    "q_power": 1000.0,
+    "q_temperature": 0.5,
+    "move_weight": 2.0,
+    "magnitude_weight": 0.05,
+    "use_reference_preview": false,
+    "integral_weight": 0.0
+  },
+  "constraints": {
+    "frequency_abs_hz": {"upper": 0.5},
+    "coolant_average_abs_deviation_c": {"upper": 5.0},
+    "neutron_power_pu": {"lower": 0.5, "upper": 1.1},
+    "rod_speed_abs_spm": {"upper": 72.0},
+    "valve_command_pu": {"lower": 0.0, "upper": 1.2},
+    "valve_command_rate_abs_pu_s": {"upper": 0.05},
+    "bess_power_abs_mw": {"upper": 5.0},
+    "soc": {"lower": 0.1, "upper": 0.9}
+  }
+}

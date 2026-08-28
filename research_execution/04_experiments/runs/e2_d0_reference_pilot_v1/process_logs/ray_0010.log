@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 246, in run_case
+    "analysis_metrics": frequency_metrics(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 95, in frequency_metrics
+    "gain": float(output_amplitude / denominator_amplitude),
+ZeroDivisionError: float division by zero

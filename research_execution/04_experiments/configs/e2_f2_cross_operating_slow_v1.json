@@ -1,0 +1,123 @@
+{
+  "study_id": "E2-F2-CROSS-OPERATING-SLOW-V1",
+  "scope": "cross-operating-point layered D_ref boundary search with per-ray brackets",
+  "refinement_target": "forcing_stage_physical_boundary_and_joint_recovery_complete_boundary",
+  "input_definition": {
+    "domain_id": "D_ref",
+    "kind": "net_load_reference",
+    "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+    "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+  },
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e2_slow_grid_v2",
+    "mapping_file": "research_execution/02_data/w1a_slow_band/e2_slow_grid_v2.json",
+    "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "operating_points": [
+    {"power_pu": 0.8, "soc": 0.2},
+    {"power_pu": 0.8, "soc": 0.5},
+    {"power_pu": 0.8, "soc": 0.8},
+    {"power_pu": 0.9, "soc": 0.2},
+    {"power_pu": 0.9, "soc": 0.5},
+    {"power_pu": 0.9, "soc": 0.8},
+    {"power_pu": 1.0, "soc": 0.2},
+    {"power_pu": 1.0, "soc": 0.5},
+    {"power_pu": 1.0, "soc": 0.8}
+  ],
+  "controllers": ["PID", "MPC"],
+  "phases_rad": [
+    0.0,
+    1.5707963267948966,
+    3.141592653589793,
+    4.71238898038469
+  ],
+  "frequencies": [
+    {
+      "label": "q0.99",
+      "frequency_hz": 0.0003076171875,
+      "cycles": 1,
+      "evidence_class": "Sotavento W1-A 99% cumulative spectral-energy frequency"
+    },
+    {
+      "label": "q0.95",
+      "frequency_hz": 0.00008015950520833334,
+      "cycles": 1,
+      "evidence_class": "Sotavento W1-A 95% cumulative spectral-energy frequency"
+    },
+    {
+      "label": "q0.90",
+      "frequency_hz": 0.000034993489583333335,
+      "cycles": 1,
+      "evidence_class": "Sotavento W1-A 90% cumulative spectral-energy frequency"
+    }
+  ],
+  "amplitude_grid_pu": [
+    0.0,
+    0.024548310554290048,
+    0.0544,
+    0.0982,
+    0.1322,
+    0.2168,
+    0.3
+  ],
+  "bisection_tolerance_pu": 0.01,
+  "max_bisection_iterations": 10,
+  "simulation": {
+    "dt_s": 0.5,
+    "warmup_s": 20.0,
+    "recovery": {
+      "duration_s": 180.0,
+      "sustain_s": 10.0,
+      "completion_limits": {
+        "power_abs_error_pu": 0.005,
+        "frequency_abs_hz": 0.02,
+        "coolant_average_abs_deviation_c": 0.5,
+        "bess_power_abs_mw": 0.25
+      }
+    }
+  },
+  "mpc": {
+    "horizon_steps": 30,
+    "q_power": 1000.0,
+    "q_temperature": 0.5,
+    "move_weight": 2.0,
+    "magnitude_weight": 0.05,
+    "use_reference_preview": false,
+    "integral_weight": 0.0
+  },
+  "constraints": {
+    "frequency_abs_hz": {"upper": 0.5},
+    "coolant_average_abs_deviation_c": {"upper": 5.0},
+    "neutron_power_pu": {"lower": 0.5, "upper": 1.1},
+    "rod_speed_abs_spm": {"upper": 72.0},
+    "valve_command_pu": {"lower": 0.0, "upper": 1.2},
+    "valve_command_rate_abs_pu_s": {"upper": 0.05},
+    "bess_power_abs_mw": {"upper": 5.0},
+    "soc": {"lower": 0.1, "upper": 0.9}
+  },
+  "identity_policy": {
+    "expected_core_code_bundle_sha256": "C931CE2936BF1A3C2A3EF3060AC34CF48CEBF133953EB8A2B5CE438F65DAA3B1",
+    "reuse_f1_center_cases": false,
+    "f1_cases_are_reference_only": true,
+    "claim_limit": "F2 cases use one new configuration identity; F1 cases are not merged into F2 aggregate"
+  },
+  "runner_policy": {
+    "precheck_mode": "coarse_per_ray_bracket_only",
+    "refinement_mode": "separate_forcing_and_joint_bisection",
+    "forcing_label": "forcing_stage_safe",
+    "joint_label": "joint_valid_for_boundary",
+    "preserve_non_star_shaped_labels": true,
+    "do_not_edit_f1_frozen_runner": true
+  },
+  "acceptance": {
+    "expected_total_ray_count": 216,
+    "expected_wave_ray_count": 72,
+    "require_center_safe": true,
+    "require_no_solver_failures": true,
+    "require_forcing_bracket_for_refinement": true,
+    "require_joint_bracket_for_refinement": false
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "complete",
+  "expected_ray_count": 6,
+  "pending_at_start": [],
+  "failed_ray_indices": [],
+  "observed_summary_count": 6
+}

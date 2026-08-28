@@ -1,0 +1,73 @@
+{
+  "version": 2,
+  "source_id": "more_eu_engie_2s",
+  "source_active_power_sha256": "C3B62569C673D2D8BED6F327FA13326AEAE94FFB3F360E8A1FE96A32B383DEC7",
+  "source_psd_sha256": "28AD8480AB7ED6DF6B3DC40D5013ED205A21D47662548FD056EBF7EA677C8C00",
+  "normalization": {
+    "type": "empirical_observed_max_not_nameplate",
+    "scale_kw": 2030.6707763671875,
+    "warning": "This normalization is a reproducible data scale, not a verified turbine nameplate rating."
+  },
+  "mapping": "sqrt(2 * integral(PSD df)) gives the peak amplitude of a sinusoid with equal band variance",
+  "system_mapping": {
+    "model_system_base_mw": 100.0,
+    "portfolio_capacity_mw": 17.56,
+    "portfolio_source": "Sotavento 2016 wind-farm rated capacity",
+    "direct_turbine_mapping": "measured peak kW / 1000 / model system base MW",
+    "portfolio_scaled_mapping": "MORE-EU relative band amplitude * 17.56 MW / 100 MW",
+    "claim_limit": "portfolio scaling is an explicit cross-source scenario assumption, not a direct measurement of a 17.56 MW wind farm at 2 s resolution"
+  },
+  "bands": [
+    {
+      "band_hz": [
+        0.005,
+        0.0125
+      ],
+      "representative_frequency_hz": 0.005,
+      "equivalent_sinusoid_peak_kw": 41.32611609347713,
+      "equivalent_sinusoid_peak_source_relative": 0.02035096805175302,
+      "direct_turbine_peak_system_pu": 0.0004132611609347713,
+      "portfolio_scaled_peak_system_pu": 0.0035736299898878297
+    },
+    {
+      "band_hz": [
+        0.0125,
+        0.035
+      ],
+      "representative_frequency_hz": 0.02,
+      "equivalent_sinusoid_peak_kw": 26.466629994200577,
+      "equivalent_sinusoid_peak_source_relative": 0.013033442103081145,
+      "direct_turbine_peak_system_pu": 0.0002646662999420058,
+      "portfolio_scaled_peak_system_pu": 0.002288672433301049
+    },
+    {
+      "band_hz": [
+        0.035,
+        0.1
+      ],
+      "representative_frequency_hz": 0.05,
+      "equivalent_sinusoid_peak_kw": 14.622664433137563,
+      "equivalent_sinusoid_peak_source_relative": 0.007200903565124967,
+      "direct_turbine_peak_system_pu": 0.00014622664433137564,
+      "portfolio_scaled_peak_system_pu": 0.0012644786660359441
+    },
+    {
+      "band_hz": [
+        0.1,
+        0.25
+      ],
+      "representative_frequency_hz": 0.15,
+      "equivalent_sinusoid_peak_kw": 6.350379643568187,
+      "equivalent_sinusoid_peak_source_relative": 0.0031272324974946637,
+      "direct_turbine_peak_system_pu": 6.350379643568187e-05,
+      "portfolio_scaled_peak_system_pu": 0.0005491420265600629
+    }
+  ],
+  "formal_cross_operating_frequencies_hz": [
+    0.005,
+    0.02,
+    0.15
+  ],
+  "omitted_representative_frequency_hz": 0.05,
+  "omission_reason": "0.005-0.05 Hz contains 95.50% of the audited direct-power fast-band energy; 0.02 represents the interior band and 0.15 retains a low-energy high-frequency contrast while limiting the first formal matrix."
+}

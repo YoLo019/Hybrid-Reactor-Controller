@@ -1,0 +1,110 @@
+{
+  "study_id": "E2-FAST-CROSS-OPERATING-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_fast_cross_operating_v1.json",
+  "config_sha256": "4B408AF8910BD20AE4E8DE62683E9CB804DAA235636F8564E4D47C532BEE2B72",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "9387493BD3DC548A2EC339B33C74CA97065834276FB5948385C2982B357E2269",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "21740F2EDFD740217BE5FC42E84A9A5D247B4E0C45FB641F56175C9FB5C03242",
+  "ray_count_total": 108,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 0,
+      "ray": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "frequency": {
+          "frequency_hz": 0.005,
+          "cycles": 1,
+          "evidence_class": "MORE-EU direct active power; lower fast-band representative"
+        },
+        "phase_rad": 0.0,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.7999999999913899,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.2168,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.2688,
+      "first_failure_amplitude_pu": 0.274,
+      "boundary_width_pu": 0.005200000000000038,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 165.5,
+      "coarse_case_hashes": [
+        "1456C0382BB4651F572EE1946F6F6CC8B3C415DB390F4DFAFAC9CEA5427F2228",
+        "200980705334DB481267E5CC9BE2DEA2ABEBA3358101FD7F4BB8080B43A8E859",
+        "67F96D19716B6C399F9035A94BCEA5BE1F538F618E80152244587B05FC623064",
+        "76651D1BA9C18B239EBE06683761EDE2ADFF47D45022708695E322D23328DF88",
+        "3A3A823666D30E1E2D6A400CDAE2BE7EE1236D84B903727E66CF45C7F84D4823",
+        "D0143353DB67CD7E9D8CF405579DC0EA904332ADAD244F85F4D0000AEB81F2DE",
+        "3FAA08AED895ED63A58EC5661118FB930264C1A47985B137988C36E897395B58"
+      ],
+      "bisection_case_hashes": [
+        "463D192BF2FC6CDBF7E35F7EF2C847569454335E33B194B747712B59424A66E7",
+        "B54FE835601E347A603C608E29D5020BAB4F1176E352D5787E9743AE4D3D4BED",
+        "C8F9E4C257CEE000E5CD85FC645EAF27456086A950321793EAA4A4272240AAA7",
+        "8905F639F150E2FEBE21AE5F60F9ED6F1E4F71871BD5C7A03978A42B4D65C912"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "98DE8E86E03C8451667C496B0220462277F174131CD4FBA8CE7954BF89CA56E1"
+}

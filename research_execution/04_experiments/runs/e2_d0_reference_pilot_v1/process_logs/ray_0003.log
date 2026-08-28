@@ -1,0 +1,32 @@
+D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py:158: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  warnings.warn("Objective contains too many subexpressions. "
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 211, in run_case
+    result = run_mpc_scenario(
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 327, in run_mpc_scenario
+    solution = solve_ivp(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\ivp.py", line 591, in solve_ivp
+    message = solver.step()
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 181, in step
+    success, message = self._step_impl()
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 451, in _step_impl
+    converged, n_iter, Z, rate = solve_collocation_system(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 103, in solve_collocation_system
+    F[i] = fun(t + ch[i], y + Z[i])
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 138, in fun
+    return self.fun_single(t, y)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 20, in fun_wrapped
+    return np.asarray(fun(t, y), dtype=dtype)
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 328, in <lambda>
+    lambda current_t, current_y: model_wind.pwf_model(
+  File "D:\mpc_gpt\4_4\model_wind.py", line 131, in pwf_model
+    validate_state_vector(y)
+KeyboardInterrupt

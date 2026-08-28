@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 227, in run_case
+    result = run_pid_scenario(**common)
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 417, in run_pid_scenario
+    solution = solve_ivp(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\ivp.py", line 557, in solve_ivp
+    solver = method(fun, t0, y0, tf, vectorized=vectorized, **options)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 310, in __init__
+    self.jac, self.J = self._validate_jac(jac, jac_sparsity)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 356, in _validate_jac
+    J = jac_wrapped(t0, y0, self.f)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 352, in jac_wrapped
+    J, self.jac_factor = num_jac(self.fun_vectorized, t, y, f,
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\common.py", line 318, in num_jac
+    return _dense_num_jac(fun, t, y, f, h, factor, y_scale)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\common.py", line 328, in _dense_num_jac
+    f_new = fun(t, y[:, None] + h_vecs)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 133, in fun_vectorized
+    f[:, i] = self._fun(t, yi)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 20, in fun_wrapped
+    return np.asarray(fun(t, y), dtype=dtype)
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 426, in <lambda>
+    p_grid_disturbance_pu=float(get_grid_disturbance(current_t)),
+KeyboardInterrupt

@@ -1,0 +1,33 @@
+{
+  "study_id": "E2-INTEGRAL-ONLY-SMOKE-V1",
+  "operating_point": {"nuclear_power_pu": 0.9, "bess_soc": 0.5},
+  "amplitude_pu": 0.024548310554290048,
+  "phase_rad": 0.0,
+  "simulation": {"dt_s": 0.5, "warmup_s": 20.0},
+  "mpc": {
+    "horizon_steps": 30,
+    "q_power": 1000.0,
+    "q_temperature": 0.5,
+    "move_weight": 2.0,
+    "magnitude_weight": 0.05,
+    "use_reference_preview": false,
+    "integral_weight": 1.0,
+    "integral_error_limit": 0.5
+  },
+  "frequencies": [{
+    "frequency_hz": 0.008,
+    "cycles": 4,
+    "evidence_class": "integral-only mechanism ablation; not controller superiority evidence"
+  }],
+  "constraints": {
+    "net_load_target_pu": {"lower": 0.5, "upper": 1.0},
+    "frequency_abs_hz": {"upper": 0.5},
+    "coolant_average_abs_deviation_c": {"upper": 5.0},
+    "neutron_power_pu": {"lower": 0.5, "upper": 1.1},
+    "rod_speed_abs_spm": {"upper": 72.0},
+    "valve_command_pu": {"lower": 0.0, "upper": 1.2},
+    "valve_command_rate_abs_pu_s": {"upper": 0.05},
+    "bess_power_abs_mw": {"upper": 5.0},
+    "soc": {"lower": 0.1, "upper": 0.9}
+  }
+}

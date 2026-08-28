@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "study_id": "w3_nonuniform_horizon_v1",
+  "status": "pre_registered",
+  "evidence": {
+    "w1_feature_report": "4_4/data/wind/manifests/w1_feature_report.json",
+    "w2_f1_interface": "research_execution/04_experiments/configs/w2_f1_forecast_interface_v1.json",
+    "w2_validation_summary": "research_execution/04_experiments/runs/w2_validation_v1/summary.json",
+    "w2_validation_metrics": "research_execution/04_experiments/runs/w2_validation_v1/metrics.csv"
+  },
+  "budget": {
+    "base_control_step_seconds": 0.5,
+    "prediction_span_seconds": 21600.0,
+    "decision_nodes": 30,
+    "control_inputs": 1,
+    "fairness_rule": "nonuniform and uniform-tail comparators use the same 6 h span, 30 valve decisions, QP outputs, weights, solver tolerances, and 0.5 s receding control update"
+  },
+  "nonuniform_design": {
+    "segment_end_seconds": [15.0, 600.0, 1200.0, 1800.0, 3600.0, 7200.0, 21600.0],
+    "decision_nodes_per_segment": [6, 6, 4, 4, 4, 3, 3],
+    "selection_rule": "retain the validated 15 s plant-control anchor, force all W2 error horizons, allocate non-increasing node counts to later error segments, and place integer-base-step nodes evenly inside each segment",
+    "first_interval_steps": 1
+  },
+  "uniform_comparator": {
+    "kind": "uniform_tail",
+    "first_interval_steps": 1,
+    "rule": "retain the mandatory 0.5 s applied-control interval, then distribute the remaining span as evenly as integer base steps allow"
+  },
+  "forecast_contract": {
+    "actual_forecast_baseline": "persistence",
+    "negative_comparison": "ridge_direct_ar",
+    "information_upper_bound": "perfect_foresight",
+    "none_rule": "hold the issue-time reference"
+  },
+  "smoke": {
+    "operating_power_pu": 0.9,
+    "bess_soc": 0.5,
+    "target_delta_pu": 0.001,
+    "repeated_solves": 3,
+    "max_build_seconds_per_controller": 20.0,
+    "max_mean_solve_seconds": 5.0
+  },
+  "outputs": {
+    "preparation_directory": "research_execution/04_experiments/runs/w3_preparation_v1",
+    "smoke_directory": "research_execution/04_experiments/runs/w3_smoke_v1"
+  }
+}

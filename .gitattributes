@@ -1,0 +1,7 @@
+# 大型二进制轨迹和外部数据使用 Git LFS，避免把不可读的二进制内容直接写入普通 Git 对象。
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.parquet filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.rar filter=lfs diff=lfs merge=lfs -text

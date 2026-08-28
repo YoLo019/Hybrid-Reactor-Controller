@@ -1,0 +1,110 @@
+{
+  "study_id": "E2-D0-REFERENCE-PILOT-V1",
+  "scope": "formal E2 reference-feasibility radial search",
+  "input_definition": {
+    "domain_id": "D_ref",
+    "kind": "net_load_reference",
+    "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+    "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+  },
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e2_fast_grid_v2",
+    "mapping_file": "research_execution/02_data/w1b_fast_band/e2_fast_grid_v2.json",
+    "claim_limit": "portfolio scaling is a cross-source scenario assumption"
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_d0_reference_pilot_v1.json",
+  "config_sha256": "688A5BC3E9FD080A1F53D45944922C58F068536FCC891461E3009AFD3AD40C71",
+  "code_provenance": {
+    "formal_runner": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "frequency_runner": "68335009B76CFE494317665741EE969CF11ED042EE9A024DBDB5E2868759E300",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "CABD8EAEDAE6DA7FB7E7933532F0219AF3305568F0F73FBE8B83DD673A879D8C",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "079A0171C2FFD30375DC5D8EA1DFD3616889E23B343FB16BCD429BCEEE53662A",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "91DF7FA8C4DA58C363E0FFDCAC9FB7CA3EEB1549A8C41F9DDC017B8AE0EEFF68",
+  "ray_count_total": 12,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 10,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.15,
+          "cycles": 2,
+          "evidence_class": "MORE-EU direct active power; low-energy upper-band representative",
+          "data_relevance_peak_system_pu": 0.0005491420265600629
+        },
+        "phase_rad": 3.141592653589793,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": true
+          }
+        ],
+        "transitions": [],
+        "first_failure_bracket": null,
+        "non_star_shaped": false,
+        "all_safe": true,
+        "center_safe": true
+      },
+      "boundary_status": "right_censored_at_search_upper",
+      "safe_boundary_amplitude_pu": 0.3,
+      "first_failure_amplitude_pu": null,
+      "boundary_width_pu": null,
+      "active_constraint": null,
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": null,
+      "coarse_case_hashes": [
+        "EAC92E83899D568844F130BEE920BC59DF3B295453D96B58547CEBFE0B497141",
+        "3AD4C07C2DCF49F21AD81A05524D5CBF3CEBA5BC60F1CF27F06E1EA8EEC978B7",
+        "C91F004B5E46BF429728847C8AC33484AA93F18A7F59C85ED60D6A5BE5E8247D",
+        "3AE01DF1E877907E3753B52DFE6350B6CE8F5F9B375436E5709EEC58DF069424",
+        "1D81C4EC89EE44A27FADFF0B5E30231AB519CF798D1FDCC10A255D9F75ECE25D",
+        "BB3B3531F3D4E236B9DE9200CAA8AC5EA5CF17CB7046CFD925F67FFAE52F7D9E",
+        "7EB9317D5A851F529C7AE1794B7BF19C3B5BDCD0554C59C4033046B283218CE3"
+      ],
+      "bisection_case_hashes": []
+    }
+  ],
+  "deterministic_summary_sha256": "FDE54961A2F1E5FDE6E8212E3F07F4214E4FF0B6CA0828778CB876BBB26A7CEB"
+}

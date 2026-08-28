@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "freeze_id": "w2_f1_forecast_interface_v1",
+  "status": "frozen",
+  "freeze_date": "2026-08-23",
+  "source": {
+    "study_id": "w2_prediction_v1",
+    "config": "research_execution/04_experiments/configs/w2_prediction_v1.json",
+    "validation_summary": "research_execution/04_experiments/runs/w2_validation_v1/summary.json",
+    "validation_metrics": "research_execution/04_experiments/runs/w2_validation_v1/metrics.csv"
+  },
+  "validation_decision": {
+    "gate_pass": false,
+    "selected_forecast": "persistence",
+    "mean_rmse_improvement": 0.04845705874743833,
+    "mean_rmse_improvement_min": 0.05,
+    "improved_horizons": 6,
+    "worst_horizon_worsening": 0.0
+  },
+  "forecast_roles": {
+    "none": "no-future-information control comparator; hold the issue-time reference",
+    "persistence": "frozen deployable forecast baseline for W3 and E6",
+    "ridge_direct_ar": "unqualified lightweight negative comparison; not the actual forecast baseline",
+    "perfect_foresight": "non-deployable information upper bound only"
+  },
+  "forecast_interface": {
+    "horizon_steps": [1, 2, 3, 6, 12, 36],
+    "horizon_minutes": [10, 20, 30, 60, 120, 360],
+    "required_columns": [
+      "issue_time",
+      "target_time",
+      "split",
+      "horizon_steps",
+      "forecast_type",
+      "forecast_output_pu"
+    ],
+    "evidence_only_columns": ["sample_id", "target_output_pu"]
+  },
+  "w3_inputs": {
+    "actual_forecast_baseline": "persistence",
+    "negative_comparison": "ridge_direct_ar",
+    "information_upper_bound": "perfect_foresight",
+    "node_selection_evidence": [
+      "W1 correlation-time and spectrum evidence",
+      "W2 horizon-specific validation errors at 10, 20, 30, 60, 120, and 360 minutes"
+    ],
+    "node_locations_frozen": false
+  },
+  "data_isolation": {
+    "opened_splits": ["train", "validation"],
+    "locked_splits": ["boundary_construction", "final_extrapolation"],
+    "locked_splits_accessed": []
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "version": 3,
+  "audit_report_sha256": "5E4965AD115C0707D75359E6AE824163ECC34B693A6F5BBB2976F0ED4114A5A4",
+  "source_ids": [
+    "more_eu_engie_2s",
+    "bjorko_zenodo_v3_100hz"
+  ],
+  "source_data_sha256": {
+    "more_eu_engie_2s": "C3B62569C673D2D8BED6F327FA13326AEAE94FFB3F360E8A1FE96A32B383DEC7",
+    "bjorko_zenodo_v3_100hz": "CDD93047CB8686691724B08FB9B4187872957826BA7262FC8C2FF65348F6954A"
+  },
+  "source_psd_sha256": {
+    "more_eu_engie_2s": "28AD8480AB7ED6DF6B3DC40D5013ED205A21D47662548FD056EBF7EA677C8C00",
+    "bjorko_zenodo_v3_100hz": "BD4882BD26D35AB9FCBFB0F7132A6B4D8B018CFC47D07808F75064A6305267A5"
+  },
+  "normalization": {
+    "more_eu_engie_2s": {
+      "type": "empirical_observed_max_not_nameplate",
+      "scale_kw": 2030.6707763671875,
+      "warning": "This is a reproducible data scale, not a verified turbine nameplate rating."
+    },
+    "bjorko_zenodo_v3_100hz": {
+      "type": "official_rated_power",
+      "scale_w": 45000.0
+    }
+  },
+  "mapping": "sqrt(2 * integral(PSD df)) gives the peak amplitude of a sinusoid with equal band variance",
+  "system_mapping": {
+    "model_system_base_mw": 100.0,
+    "portfolio_capacity_mw": 17.56,
+    "portfolio_source": "Sotavento 2016 wind-farm rated capacity",
+    "direct_turbine_mapping": "source peak converted to MW / model system base MW",
+    "portfolio_scaled_mapping": "source-relative band amplitude * 17.56 MW / 100 MW",
+    "claim_limit": "portfolio scaling is an explicit cross-source scenario assumption, not a direct measurement of the 17.56 MW Sotavento wind farm at the source sampling rate"
+  },
+  "bands": [
+    {
+      "source_id": "more_eu_engie_2s",
+      "evidence_class": "direct measured active power",
+      "band_hz": [
+        0.005,
+        0.0125
+      ],
+      "representative_frequency_hz": 0.005,
+      "equivalent_sinusoid_peak_kw": 41.32611609347713,
+      "equivalent_sinusoid_peak_source_relative": 0.02035096805175302,
+      "direct_turbine_peak_system_pu": 0.0004132611609347713,
+      "portfolio_scaled_peak_system_pu": 0.0035736299898878297
+    },
+    {
+      "source_id": "more_eu_engie_2s",
+      "evidence_class": "direct measured active power",
+      "band_hz": [
+        0.0125,
+        0.035
+      ],
+      "representative_frequency_hz": 0.02,
+      "equivalent_sinusoid_peak_kw": 26.466629994200577,
+      "equivalent_sinusoid_peak_source_relative": 0.013033442103081145,
+      "direct_turbine_peak_system_pu": 0.0002646662999420058,
+      "portfolio_scaled_peak_system_pu": 0.002288672433301049
+    },
+    {
+      "source_id": "more_eu_engie_2s",
+      "evidence_class": "direct measured active power",
+      "band_hz": [
+        0.035,
+        0.1
+      ],
+      "representative_frequency_hz": 0.05,
+      "equivalent_sinusoid_peak_kw": 14.622664433137563,
+      "equivalent_sinusoid_peak_source_relative": 0.007200903565124967,
+      "direct_turbine_peak_system_pu": 0.00014622664433137564,
+      "portfolio_scaled_peak_system_pu": 0.0012644786660359441
+    },
+    {
+      "source_id": "more_eu_engie_2s",
+      "evidence_class": "direct measured active power",
+      "band_hz": [
+        0.1,
+        0.25
+      ],
+      "representative_frequency_hz": 0.15,
+      "equivalent_sinusoid_peak_kw": 6.350379643568187,
+      "equivalent_sinusoid_peak_source_relative": 0.0031272324974946637,
+      "direct_turbine_peak_system_pu": 6.350379643568187e-05,
+      "portfolio_scaled_peak_system_pu": 0.0005491420265600629
+    },
+    {
+      "source_id": "bjorko_zenodo_v3_100hz",
+      "evidence_class": "measured generator-side electrical power; not point-of-interconnection power",
+      "band_hz": [
+        0.25,
+        0.5
+      ],
+      "representative_frequency_hz": 0.35,
+      "equivalent_sinusoid_peak_w": 681.6181944684978,
+      "equivalent_sinusoid_peak_source_relative": 0.01514707098818884,
+      "direct_turbine_peak_system_pu": 6.8161819446849775e-06,
+      "portfolio_scaled_peak_system_pu": 0.00265982566552596
+    },
+    {
+      "source_id": "bjorko_zenodo_v3_100hz",
+      "evidence_class": "measured generator-side electrical power; not point-of-interconnection power",
+      "band_hz": [
+        0.5,
+        1.0
+      ],
+      "representative_frequency_hz": 0.75,
+      "equivalent_sinusoid_peak_w": 352.35573811852396,
+      "equivalent_sinusoid_peak_source_relative": 0.007830127513744976,
+      "direct_turbine_peak_system_pu": 3.5235573811852397e-06,
+      "portfolio_scaled_peak_system_pu": 0.0013749703914136178
+    }
+  ],
+  "formal_cross_operating_frequencies_hz": [
+    0.005,
+    0.02,
+    0.15,
+    0.35,
+    0.75
+  ],
+  "omitted_representative_frequency_hz": 0.05,
+  "omission_reason": "0.02 represents the interior of the direct-power low fast band; 0.15 retains its low-energy upper contrast; 0.35 and 0.75 separately represent the generator-side measured high band.",
+  "claim_limit": "0.25-1 Hz amplitudes are generator-side measured electrical-power exposure levels and must not be described as direct point-of-interconnection active power."
+}

@@ -1,0 +1,36 @@
+D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py:158: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  warnings.warn("Objective contains too many subexpressions. "
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 211, in run_case
+    result = run_mpc_scenario(
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 312, in run_mpc_scenario
+    valve_command = controller.solve(
+  File "D:\mpc_gpt\4_4\mpc_utils_out.py", line 230, in solve
+    self.problem.solve(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 503, in solve
+    return solve_func(self, *args, **kwargs)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 1073, in _solve
+    data, solving_chain, inverse_data = self.get_problem_data(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\problems\problem.py", line 696, in get_problem_data
+    data, inverse_data = solving_chain.apply(self, verbose)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\reductions\chain.py", line 76, in apply
+    problem, inv = r.apply(problem)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\reductions\qp2quad_form\qp_matrix_stuffing.py", line 279, in apply
+    params_to_Ab = extractor.affine(expr_list)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\utilities\coeff_extractor.py", line 72, in affine
+    return canonInterface.get_problem_matrix(op_list,
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\cvxcore\python\canonInterface.py", line 297, in get_problem_matrix
+    return build_matrix(id_to_col, param_to_size, param_to_col, var_length, constr_length, linOps)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\cvxcore\python\cppbackend.py", line 60, in build_matrix
+    problemData = cvxcore.build_matrix(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\cvxpy\cvxcore\python\cvxcore.py", line 993, in build_matrix
+    return _cvxcore.build_matrix(*args)
+KeyboardInterrupt

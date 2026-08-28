@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 296, in <module>
+    main()
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in main
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 185, in <listcomp>
+    coarse_cases = [evaluate(amplitude) for amplitude in coarse_amplitudes]
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_formal.py", line 170, in evaluate
+    case = run_case(
+  File "D:\mpc_gpt\4_4\flexibility\run_e2_frequency_diagnostic.py", line 227, in run_case
+    result = run_pid_scenario(**common)
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 417, in run_pid_scenario
+    solution = solve_ivp(
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\ivp.py", line 557, in solve_ivp
+    solver = method(fun, t0, y0, tf, vectorized=vectorized, **options)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 310, in __init__
+    self.jac, self.J = self._validate_jac(jac, jac_sparsity)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 356, in _validate_jac
+    J = jac_wrapped(t0, y0, self.f)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\radau.py", line 352, in jac_wrapped
+    J, self.jac_factor = num_jac(self.fun_vectorized, t, y, f,
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\common.py", line 318, in num_jac
+    return _dense_num_jac(fun, t, y, f, h, factor, y_scale)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\common.py", line 328, in _dense_num_jac
+    f_new = fun(t, y[:, None] + h_vecs)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 133, in fun_vectorized
+    f[:, i] = self._fun(t, yi)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\scipy\integrate\_ivp\base.py", line 20, in fun_wrapped
+    return np.asarray(fun(t, y), dtype=dtype)
+  File "D:\mpc_gpt\4_4\metrics_source.py", line 418, in <lambda>
+    lambda current_t, current_y: model_wind.pwf_model(
+  File "D:\mpc_gpt\4_4\model_wind.py", line 226, in pwf_model
+    P_bess_mw = compute_bess_power_mw(y, params, p_bess_ext_mw)
+  File "D:\mpc_gpt\4_4\model_wind.py", line 67, in compute_bess_power_mw
+    return float(np.clip(power_mw, -limit_mw, limit_mw))
+  File "<__array_function__ internals>", line 200, in clip
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\numpy\core\fromnumeric.py", line 2180, in clip
+    return _wrapfunc(a, 'clip', a_min, a_max, out=out, **kwargs)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\numpy\core\fromnumeric.py", line 54, in _wrapfunc
+    return _wrapit(obj, method, *args, **kwds)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\numpy\core\fromnumeric.py", line 43, in _wrapit
+    result = getattr(asarray(obj), method)(*args, **kwds)
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\numpy\core\_methods.py", line 136, in _clip
+    if _clip_dep_is_scalar_nan(min):
+  File "D:\Micorsoft Edge下载\py3.8\lib\site-packages\numpy\core\_methods.py", line 95, in _clip_dep_is_scalar_nan
+    from numpy.core.fromnumeric import ndim
+KeyboardInterrupt

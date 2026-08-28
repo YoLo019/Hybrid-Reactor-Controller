@@ -1,0 +1,143 @@
+{
+  "study_id": "E2-D0-REFERENCE-PILOT-V1",
+  "scope": "formal E2 reference-feasibility radial search",
+  "input_definition": {
+    "domain_id": "D_ref",
+    "kind": "net_load_reference",
+    "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+    "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+  },
+  "system_scaling": {
+    "model_system_base_mw": 100.0,
+    "wind_portfolio_capacity_mw": 17.56,
+    "mapping_version": "e2_fast_grid_v2",
+    "mapping_file": "research_execution/02_data/w1b_fast_band/e2_fast_grid_v2.json",
+    "claim_limit": "portfolio scaling is a cross-source scenario assumption"
+  },
+  "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_d0_reference_pilot_v1.json",
+  "config_sha256": "688A5BC3E9FD080A1F53D45944922C58F068536FCC891461E3009AFD3AD40C71",
+  "code_provenance": {
+    "formal_runner": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "frequency_runner": "68335009B76CFE494317665741EE969CF11ED042EE9A024DBDB5E2868759E300",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "CABD8EAEDAE6DA7FB7E7933532F0219AF3305568F0F73FBE8B83DD673A879D8C",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "079A0171C2FFD30375DC5D8EA1DFD3616889E23B343FB16BCD429BCEEE53662A",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "91DF7FA8C4DA58C363E0FFDCAC9FB7CA3EEB1549A8C41F9DDC017B8AE0EEFF68",
+  "ray_count_total": 12,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 11,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency": {
+          "frequency_hz": 0.15,
+          "cycles": 2,
+          "evidence_class": "MORE-EU direct active power; low-energy upper-band representative",
+          "data_relevance_peak_system_pu": 0.0005491420265600629
+        },
+        "phase_rad": 3.141592653589793,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.2168,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.2324,
+      "first_failure_amplitude_pu": 0.23759999999999998,
+      "boundary_width_pu": 0.005199999999999982,
+      "active_constraint": "recovery_incomplete",
+      "first_violation_time_s": null,
+      "first_violation_phase": null,
+      "failure_recovery": {
+        "complete": false,
+        "window_start_s": 203.33333333333334,
+        "window_end_s": 213.33333333333334,
+        "observed": {
+          "power_abs_error_pu": 0.005096824766084307,
+          "frequency_abs_hz": 6.2470162374585744e-09,
+          "coolant_average_abs_deviation_c": 0.25715053100947216,
+          "bess_power_abs_mw": 1.7101540850424242e-05
+        },
+        "limits": {
+          "power_abs_error_pu": 0.005,
+          "frequency_abs_hz": 0.02,
+          "coolant_average_abs_deviation_c": 0.5,
+          "bess_power_abs_mw": 0.25
+        }
+      },
+      "coarse_case_hashes": [
+        "94B941E140961DA41DF95EA27FBBF36757E3DA9E7283773E2B3C9596D50D1542",
+        "4B1C1E9E405D6ABAC30AF913427CCFE58E96CAD643F7D96D4141A780BD7F3321",
+        "644C6C2BA94A8B2D326C8EB131382B8B4F4F6AB8324262F49C1FD5FDF1684E6A",
+        "2331C42767D933799ED97D91681C9D49395FDB6BC61E622852950112AC375C89",
+        "A8DD879AEC531FC88F95C69438D80F2B6360C4D098AB5299A6BF09842CCC89A4",
+        "1526E94F9BA74345C3930D9EACD1894EA68D2D2CD609C62F9ECE7CACE22641D4",
+        "15D0B14CCF1E247BB83983411072633B89BF83676EAE0CD6E46203F1139039AE"
+      ],
+      "bisection_case_hashes": [
+        "F476BB2A9D7642018965CA6729455BF18501CDF3631603E9D851F5E5C7C0C0CD",
+        "7513F298BF853B6BF244F068162AC21D8ABBF1032B0FAAF0D20275E28A837A0C",
+        "FA4BA8AEB4DB03E168DC00697BF1D6EA9ACB4FCF9B6998AF70BFFE721C1E9509",
+        "E44336F96DDD00BD8E42E32A2D1297B19D443C92EB563A2B8EB4886B48DF5821"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "F821352326C755B4B7429A5AE0F39BF693C0A597D3FBE87B52B45583AC5AEABC"
+}

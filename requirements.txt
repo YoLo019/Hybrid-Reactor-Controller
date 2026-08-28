@@ -1,0 +1,9 @@
+numpy
+scipy
+cvxpy
+osqp
+pandas
+matplotlib
+tqdm
+psutil
+pytest

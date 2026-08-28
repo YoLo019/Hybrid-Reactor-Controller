@@ -1,0 +1,178 @@
+{
+  "study_id": "E2-F1-LAYERED-FORCING-REFINEMENT-V1",
+  "scope": "same-identity targeted refinement of the forcing-stage physical boundary for recovery-limited MPC rays",
+  "refinement_target": "forcing_stage_physical_boundary",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_f1_forcing_boundary_refinement_v1.json",
+  "config_sha256": "743C09B327D8DB5ECD837457FBEB9242A0FCE6A0E83E8B68F2A3C878CB0E468A",
+  "core_code_provenance": {
+    "formal_runner": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "frequency_runner": "2087115F7F39D26DEBA6DD628EFF53478594AA1B9402A8D68626182276C4FCC4",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "108631E395C0D67950ED64EDA0A8975D93500E8C4300911050F1282549366518",
+    "mpc_utils": "48343A220E2B990CEB783B1E50C45D2F14B20FDFD38C6E01699D3CF7BAA1CCD8",
+    "model": "E9B3BDAF2D0EDA000B72947373EAF76CBAC74D4D06ADC2F0DE3A7736CC0E8690",
+    "parameters": "C09BC1DB5C2AAC3D5E0B897B6CFD7C5068EAD12D527F60BEEC6BA5DE4E0D719A",
+    "schema": "ACC64A367AC70DE470B9FB69F9ECF9D2242BA5780F966862E415B95056E353F3"
+  },
+  "core_code_bundle_sha256": "C931CE2936BF1A3C2A3EF3060AC34CF48CEBF133953EB8A2B5CE438F65DAA3B1",
+  "refinement_runner_sha256": "737D27D15776A65C552A59C944FCF32B69558353067AA5B80B38B28F056EB3E8",
+  "preparation_gate": {
+    "pass": true,
+    "ray_count": 6,
+    "forcing_bracket_width_pu": 0.08459999999999998,
+    "bisection_tolerance_pu": 0.01
+  },
+  "ray_count_total": 6,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 4,
+      "ray": {
+        "controller": "MPC",
+        "power_pu": 0.9,
+        "soc": 0.5,
+        "frequency_hz": 3.4993489583333335e-05,
+        "cycles": 1.0,
+        "evidence_class": "Sotavento W1-A 90% cumulative spectral-energy frequency",
+        "phase_rad": 0.0
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886228,
+        "frequency_pu": 1.0
+      },
+      "initial_forcing_bracket": {
+        "lower_amplitude_pu": 0.1322,
+        "upper_amplitude_pu": 0.2168
+      },
+      "final_forcing_boundary": {
+        "conservative_safe_amplitude_pu": 0.206225,
+        "first_failure_amplitude_pu": 0.2115125,
+        "bracket_width_pu": 0.0052875000000000005,
+        "tolerance_pu": 0.01,
+        "precision_status": "within_frozen_tolerance"
+      },
+      "boundary_status": "bracketed_forcing_first_failure",
+      "bisection_iterations": 4,
+      "forcing_stage_non_star_shaped": false,
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "endpoint_cases": {
+        "lower": {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_center_slow_low_wave_v1\\cases\\mpc_f0.00003499_48592eefd1fb.json",
+          "case_hash": "48592EEFD1FB5ED2F80A81B3A97A9AD2E3553826872CB010FEAD45AC626C0DDA",
+          "source": "same_identity_wave_endpoint",
+          "amplitude_pu": 0.1322,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        "upper": {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_center_slow_low_wave_v1\\cases\\mpc_f0.00003499_7ac6ca0cfc64.json",
+          "case_hash": "7AC6CA0CFC6496130832797985E717CBB8F0B1D3C15756823FBF6CFC8AD39D43",
+          "source": "same_identity_wave_endpoint",
+          "amplitude_pu": 0.2168,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 20249.671829282535,
+          "first_violation_phase": "forcing"
+        }
+      },
+      "evaluations": [
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_center_slow_low_wave_v1\\cases\\mpc_f0.00003499_48592eefd1fb.json",
+          "case_hash": "48592EEFD1FB5ED2F80A81B3A97A9AD2E3553826872CB010FEAD45AC626C0DDA",
+          "source": "same_identity_wave_endpoint",
+          "amplitude_pu": 0.1322,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_forcing_boundary_refinement_v1\\cases\\mpc_f0.00003499_7b536575e71b.json",
+          "case_hash": "7B536575E71B49B3B106C48EDC20235BFD7F3FD6E86B14B73419DB7553996F44",
+          "source": "targeted_forcing_bisection",
+          "amplitude_pu": 0.1745,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_forcing_boundary_refinement_v1\\cases\\mpc_f0.00003499_c85aa72d92be.json",
+          "case_hash": "C85AA72D92BE957BF4985F3F6C04F5E713A653952EBEE7DB2B2A420C8890419B",
+          "source": "targeted_forcing_bisection",
+          "amplitude_pu": 0.19565,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_forcing_boundary_refinement_v1\\cases\\mpc_f0.00003499_07c998efdaa3.json",
+          "case_hash": "07C998EFDAA39E4C9E9E7B829BA0125A953B5253C57FC47E38CAE108B482700F",
+          "source": "targeted_forcing_bisection",
+          "amplitude_pu": 0.206225,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_forcing_boundary_refinement_v1\\cases\\mpc_f0.00003499_0e48ce9aeddc.json",
+          "case_hash": "0E48CE9AEDDC1EA5AD357584026356C73A90F86A69BFFFF6A248062B65041E5D",
+          "source": "targeted_forcing_bisection",
+          "amplitude_pu": 0.2115125,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 20785.67637756745,
+          "first_violation_phase": "forcing"
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_center_slow_low_wave_v1\\cases\\mpc_f0.00003499_7ac6ca0cfc64.json",
+          "case_hash": "7AC6CA0CFC6496130832797985E717CBB8F0B1D3C15756823FBF6CFC8AD39D43",
+          "source": "same_identity_wave_endpoint",
+          "amplitude_pu": 0.2168,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": false,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 20249.671829282535,
+          "first_violation_phase": "forcing"
+        }
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "E29EB4286166529F1491FE73468824A50A16B7850BF83744AC968F2B748C32CB"
+}

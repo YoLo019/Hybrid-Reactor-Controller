@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "study_id": "w2_prediction_v1",
+  "status": "preparation_frozen",
+  "dataset": {
+    "path": "4_4/data/wind/processed/sotavento_2016_clean.csv",
+    "feature_report": "4_4/data/wind/manifests/w1_feature_report.json",
+    "sample_seconds": 600,
+    "timestamp_column": "timestamp",
+    "target_column": "output_pu",
+    "target_semantics": "Sotavento Energy interpreted as 10-minute kWh and normalized by 17.56 MW; source unit remains a documented working interpretation"
+  },
+  "split_contract": {
+    "train": ["2016-01-01T00:10:00", "2016-06-30T23:50:00"],
+    "validation": ["2016-07-01T00:00:00", "2016-08-31T23:50:00"],
+    "boundary_construction": ["2016-09-01T00:00:00", "2016-10-31T23:50:00"],
+    "final_extrapolation": ["2016-11-01T00:00:00", "2017-01-01T00:00:00"],
+    "preparation_allowed_splits": ["train", "validation"],
+    "locked_splits": ["boundary_construction", "final_extrapolation"],
+    "rule": "issue time, full context, and target time must remain inside the same split"
+  },
+  "task": {
+    "context_steps": 144,
+    "context_hours": 24,
+    "horizon_steps": [1, 2, 3, 6, 12, 36],
+    "horizon_minutes": [10, 20, 30, 60, 120, 360],
+    "target_type": "direct multi-horizon point forecast",
+    "history_requirement": "all 144 target observations must be finite and contiguous",
+    "prediction_clipping": "disabled for primary metrics"
+  },
+  "systems": {
+    "persistence": {
+      "description": "forecast every horizon with the latest observed output"
+    },
+    "ridge_direct_ar": {
+      "feature_lags_steps": [0, 1, 2, 3, 5, 11, 17, 35, 71, 143],
+      "alpha_candidates": [0.0, 1e-06, 0.0001, 0.01, 1.0, 10.0],
+      "selection": "choose alpha independently per horizon using validation RMSE only"
+    }
+  },
+  "nwp_policy": {
+    "status": "excluded_from_v1_required_models",
+    "reason": "NWP.csv has target timestamps but no forecast issue time or lead-time metadata, so availability at each prediction issue cannot yet be audited without leakage ambiguity"
+  },
+  "metrics": {
+    "primary": ["mae_pu", "rmse_pu", "rmse_improvement_vs_persistence"],
+    "secondary": ["ramp_event_precision", "ramp_event_recall", "ramp_event_f1", "ramp_event_mae_pu", "out_of_range_fraction"],
+    "ramp_event_threshold": "train-only 90th percentile of abs(target - issue value), separately per horizon"
+  },
+  "success_gate": {
+    "aggregation": "equal-weight arithmetic mean of the six horizon-specific validation RMSE values",
+    "mean_rmse_improvement_min": 0.05,
+    "improved_horizons_min": 4,
+    "horizon_worsening_max": 0.05,
+    "qualified_forecaster": "mean validation RMSE improves at least 5% over persistence, at least 4 of 6 horizons improve, and no horizon is more than 5% worse",
+    "fallback": "if the gate fails, retain persistence as the W3/E6 forecast baseline and report ridge_direct_ar as a negative lightweight comparison"
+  },
+  "smoke": {
+    "max_train_samples_per_horizon": 4096,
+    "max_validation_samples_per_horizon": 1024,
+    "formal_claim": false
+  },
+  "outputs": {
+    "sample_index": "4_4/data/wind/processed/w2_prediction_index_v1.csv",
+    "preparation_report": "4_4/data/wind/manifests/w2_preparation_v1.json",
+    "smoke_run_directory": "research_execution/04_experiments/runs/w2_preparation_smoke_v1",
+    "validation_run_directory": "research_execution/04_experiments/runs/w2_validation_v1"
+  },
+  "forecast_interface": {
+    "forecast_types": ["none", "persistence", "ridge_direct_ar", "perfect_foresight"],
+    "columns": ["issue_time", "target_time", "split", "horizon_steps", "forecast_type", "forecast_output_pu"],
+    "control_rule": "none holds the issue-time reference; perfect_foresight is an information upper bound and never a deployable method"
+  }
+}

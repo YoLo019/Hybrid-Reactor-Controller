@@ -1,0 +1,282 @@
+{
+  "study_id": "E2-STEP-CONVERGENCE-DT50-V1",
+  "scope": "fixed-parameter controller diagnosis; fast-band cases are engineering stress tests until W1-B supplies field-data calibration",
+  "provenance": {
+    "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_step_convergence_dt50_v1.json",
+    "config_sha256": "67952796B34D2AE20A8074B3FF57EEA302C9332573C7E34FCF43EED6FE393007",
+    "runner_sha256": "CD961B31422588EB08334B49D0F3A4483DBA42430AF46E76CF3944F8EAB2A413",
+    "metrics_source_sha256": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2"
+  },
+  "operating_point": {
+    "requested_power_pu": 0.9,
+    "electrical_power_pu": 0.8999999999886228,
+    "soc": 0.5
+  },
+  "cases": [
+    {
+      "frequency_hz": 0.000308,
+      "cycles": 1.0,
+      "evidence_class": "W1-A slow-band numerical convergence gate",
+      "MPC": {
+        "case_hash": "209E0389096D5DCA57B98F47997DD5A46E8E6CE13B7900D27EDCCBD8C23709CA",
+        "case_config": {
+          "study_id": "E2-STEP-CONVERGENCE-DT50-V1",
+          "controller": "MPC",
+          "frequency_hz": 0.000308,
+          "cycles": 1.0,
+          "evidence_class": "W1-A slow-band numerical convergence gate",
+          "amplitude_pu": 0.1322,
+          "power_pu": 0.9,
+          "soc": 0.5,
+          "warmup_s": 20.0,
+          "duration_s": 3266.753246753247,
+          "dt_s": 5.0,
+          "mpc": {
+            "horizon_steps": 30,
+            "q_power": 1000,
+            "q_temperature": 0.5,
+            "move_weight": 2,
+            "magnitude_weight": 0.05,
+            "use_reference_preview": false,
+            "integral_weight": 0
+          },
+          "runner_sha256": "CD961B31422588EB08334B49D0F3A4483DBA42430AF46E76CF3944F8EAB2A413",
+          "metrics_source_sha256": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2"
+        },
+        "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_step_convergence_dt50_v1\\cases\\mpc_f0.00030800_209e0389096d.npz",
+        "constraints": {
+          "safe": true,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "constraints": {
+            "finite_outputs": {
+              "pass": true,
+              "minimum_margin": 1.0,
+              "normalized_minimum_margin": 1.0,
+              "minimum_margin_time_s": 0.0,
+              "first_violation_time_s": null
+            },
+            "frequency_abs_hz": {
+              "pass": true,
+              "minimum_margin": 0.49999655512508145,
+              "normalized_minimum_margin": 0.9999931102501629,
+              "minimum_margin_time_s": 1585.851116724011,
+              "first_violation_time_s": null
+            },
+            "coolant_average_abs_deviation_c": {
+              "pass": true,
+              "minimum_margin": 4.698849177507441,
+              "normalized_minimum_margin": 0.9397698355014882,
+              "minimum_margin_time_s": 1425.7651995783697,
+              "first_violation_time_s": null
+            },
+            "neutron_power_pu": {
+              "pass": true,
+              "minimum_margin": 0.07462849127284166,
+              "normalized_minimum_margin": 0.1243808187880694,
+              "minimum_margin_time_s": 2461.320976114238,
+              "first_violation_time_s": null
+            },
+            "rod_speed_abs_spm": {
+              "pass": true,
+              "minimum_margin": 59.20492594480524,
+              "normalized_minimum_margin": 0.822290638122295,
+              "minimum_margin_time_s": 790.4242159066049,
+              "first_violation_time_s": null
+            },
+            "valve_command_pu": {
+              "pass": true,
+              "minimum_margin": 0.15820695738927015,
+              "normalized_minimum_margin": 0.13183913115772514,
+              "minimum_margin_time_s": 2451.3156062926355,
+              "first_violation_time_s": null
+            },
+            "valve_command_rate_abs_pu_s": {
+              "pass": true,
+              "minimum_margin": 0.049607646168002374,
+              "normalized_minimum_margin": 0.9921529233600475,
+              "minimum_margin_time_s": 165.0886020564428,
+              "first_violation_time_s": null
+            },
+            "bess_power_abs_mw": {
+              "pass": true,
+              "minimum_margin": 4.984734222049836,
+              "normalized_minimum_margin": 0.9969468444099672,
+              "minimum_margin_time_s": 1655.8887054752292,
+              "first_violation_time_s": null
+            },
+            "soc": {
+              "pass": true,
+              "minimum_margin": 0.3995367506464439,
+              "normalized_minimum_margin": 0.49942093830805484,
+              "minimum_margin_time_s": 895.4805990334321,
+              "first_violation_time_s": null
+            }
+          },
+          "metrics": {
+            "tracking_rmse_pu": 0.004219886901853645,
+            "frequency_max_abs_hz": 3.444874918558176e-06,
+            "coolant_average_max_abs_deviation_c": 0.3011508224925592,
+            "neutron_power_min_pu": 0.7647698174760763,
+            "neutron_power_max_pu": 1.0253715087271584,
+            "rod_peak_abs_spm": 12.795074055194757,
+            "valve_command_min_pu": 0.6874602552491595,
+            "valve_command_max_pu": 1.0417930426107298,
+            "valve_command_max_rate_pu_s": 0.00039235383199762717,
+            "bess_peak_abs_mw": 0.01526577795016459,
+            "soc_min": 0.4995367506464439,
+            "soc_max": 0.5004361705435189,
+            "solver_failures": 0
+          },
+          "mathematical_result_sha256": "D202B448B9671200931D0A8C2280ED403D9EEC19504F4C1099EC6504AACB0379"
+        },
+        "analysis_metrics": {
+          "tracking_rmse_pu": 0.0042328512546765795,
+          "gain": 0.9922925597961257,
+          "phase_error_deg": -1.7537930720854435,
+          "frequency_max_abs_hz": 3.444874918558176e-06,
+          "coolant_average_max_abs_deviation_c": 0.557753223207385,
+          "rod_peak_abs_spm": 12.795074055194757,
+          "valve_command_max_rate_pu_s": 0.00039235383199762717,
+          "valve_command_total_variation_pu": 0.7080354841856593,
+          "bess_peak_abs_mw": 0.01526577795016459,
+          "soc_min": 0.4995367506464439,
+          "soc_max": 0.5004361705435189
+        }
+      },
+      "PID": {
+        "case_hash": "8E5C70AE13511BD9810965195E5FE0409B0CE9D4508931C83856CB4CF09A0170",
+        "case_config": {
+          "study_id": "E2-STEP-CONVERGENCE-DT50-V1",
+          "controller": "PID",
+          "frequency_hz": 0.000308,
+          "cycles": 1.0,
+          "evidence_class": "W1-A slow-band numerical convergence gate",
+          "amplitude_pu": 0.1322,
+          "power_pu": 0.9,
+          "soc": 0.5,
+          "warmup_s": 20.0,
+          "duration_s": 3266.753246753247,
+          "dt_s": 5.0,
+          "mpc": {
+            "horizon_steps": 30,
+            "q_power": 1000,
+            "q_temperature": 0.5,
+            "move_weight": 2,
+            "magnitude_weight": 0.05,
+            "use_reference_preview": false,
+            "integral_weight": 0
+          },
+          "runner_sha256": "CD961B31422588EB08334B49D0F3A4483DBA42430AF46E76CF3944F8EAB2A413",
+          "metrics_source_sha256": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2"
+        },
+        "npz": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_step_convergence_dt50_v1\\cases\\pid_f0.00030800_8e5c70ae1351.npz",
+        "constraints": {
+          "safe": true,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "constraints": {
+            "finite_outputs": {
+              "pass": true,
+              "minimum_margin": 1.0,
+              "normalized_minimum_margin": 1.0,
+              "minimum_margin_time_s": 0.0,
+              "first_violation_time_s": null
+            },
+            "frequency_abs_hz": {
+              "pass": true,
+              "minimum_margin": 0.49999644702248125,
+              "normalized_minimum_margin": 0.9999928940449625,
+              "minimum_margin_time_s": 170.0912869672441,
+              "first_violation_time_s": null
+            },
+            "coolant_average_abs_deviation_c": {
+              "pass": true,
+              "minimum_margin": 4.697492674590194,
+              "normalized_minimum_margin": 0.9394985349180388,
+              "minimum_margin_time_s": 1215.652433324715,
+              "first_violation_time_s": null
+            },
+            "neutron_power_pu": {
+              "pass": true,
+              "minimum_margin": 0.06759329171028683,
+              "normalized_minimum_margin": 0.11265548618381137,
+              "minimum_margin_time_s": 2466.323661025039,
+              "first_violation_time_s": null
+            },
+            "rod_speed_abs_spm": {
+              "pass": true,
+              "minimum_margin": 59.28076468868251,
+              "normalized_minimum_margin": 0.8233439540094794,
+              "minimum_margin_time_s": 725.389312066188,
+              "first_violation_time_s": null
+            },
+            "valve_command_pu": {
+              "pass": true,
+              "minimum_margin": 0.14760965064410336,
+              "normalized_minimum_margin": 0.12300804220341947,
+              "minimum_margin_time_s": 2456.3182912034367,
+              "first_violation_time_s": null
+            },
+            "valve_command_rate_abs_pu_s": {
+              "pass": true,
+              "minimum_margin": 0.049601895102368766,
+              "normalized_minimum_margin": 0.9920379020473753,
+              "minimum_margin_time_s": 65.03490384041686,
+              "first_violation_time_s": null
+            },
+            "bess_power_abs_mw": {
+              "pass": true,
+              "minimum_margin": 4.984826928230151,
+              "normalized_minimum_margin": 0.9969653856460303,
+              "minimum_margin_time_s": 1720.9236093156462,
+              "first_violation_time_s": null
+            },
+            "soc": {
+              "pass": true,
+              "minimum_margin": 0.3995393606394465,
+              "normalized_minimum_margin": 0.4994242007993081,
+              "minimum_margin_time_s": 2521.3531950438537,
+              "first_violation_time_s": null
+            }
+          },
+          "metrics": {
+            "tracking_rmse_pu": 0.0018122864715470516,
+            "frequency_max_abs_hz": 3.5529775187598602e-06,
+            "coolant_average_max_abs_deviation_c": 0.30250732540980607,
+            "neutron_power_min_pu": 0.7679054553318275,
+            "neutron_power_max_pu": 1.0324067082897133,
+            "rod_peak_abs_spm": 12.719235311317492,
+            "valve_command_min_pu": 0.6911444877990464,
+            "valve_command_max_pu": 1.0523903493558966,
+            "valve_command_max_rate_pu_s": 0.0003981048976312351,
+            "bess_peak_abs_mw": 0.015173071769848528,
+            "soc_min": 0.49954719584533686,
+            "soc_max": 0.5004606393605535,
+            "solver_failures": 0
+          },
+          "mathematical_result_sha256": "EFED88160EEB3504880DE324D114FF159593653CAC5A381C55FFD7CE94A00C2A"
+        },
+        "analysis_metrics": {
+          "tracking_rmse_pu": 0.0018178541850379145,
+          "gain": 0.9999830331285297,
+          "phase_error_deg": -1.110474619911047,
+          "frequency_max_abs_hz": 3.5529775187598602e-06,
+          "coolant_average_max_abs_deviation_c": 0.5583346978681902,
+          "rod_peak_abs_spm": 12.719235311317492,
+          "valve_command_max_rate_pu_s": 0.0003981048976312351,
+          "valve_command_total_variation_pu": 0.7268330694075679,
+          "bess_peak_abs_mw": 0.015173071769848528,
+          "soc_min": 0.49954719584533686,
+          "soc_max": 0.5004606393605535
+        }
+      },
+      "comparison": {
+        "tracking_rmse_mpc_over_pid": 2.3284877794465655,
+        "frequency_peak_mpc_over_pid": 0.9695740826867331,
+        "valve_rate_mpc_over_pid": 0.9855538937907387
+      }
+    }
+  ],
+  "deterministic_summary_sha256": "E305B98F084A282831C4038A970691CC859DD3F2F4EB84263A5CCCDCE9792030"
+}

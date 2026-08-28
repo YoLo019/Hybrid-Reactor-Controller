@@ -1,0 +1,177 @@
+{
+  "dataset_id": "mendeley:vtsgxnwswn:1",
+  "doi": "10.17632/vtsgxnwswn.1",
+  "license": "CC BY 4.0 (landing-page statement)",
+  "files": {
+    "download.zip": {
+      "exists": true,
+      "bytes": 778017,
+      "sha256": "2F51105D9566BCC728A3A981FB89D3EB15F73A631FF454EE3C40AC6AD2F8D4DA",
+      "expected_sha256": "2F51105D9566BCC728A3A981FB89D3EB15F73A631FF454EE3C40AC6AD2F8D4DA",
+      "hash_pass": true
+    },
+    "Raw_Data.rar": {
+      "exists": true,
+      "bytes": 777766,
+      "sha256": "B7DAC380F01FE2E4D55CEB4365130FCF4E7D7EAED2F9BD2F3A3DBBD0E7C0953B",
+      "expected_sha256": "B7DAC380F01FE2E4D55CEB4365130FCF4E7D7EAED2F9BD2F3A3DBBD0E7C0953B",
+      "hash_pass": true
+    },
+    "NWP.csv": {
+      "exists": true,
+      "bytes": 949364,
+      "sha256": "19C11D2A64924D2B48639780F5BCBE435FBAF9A7D4F886ACD9AA280C6707C722",
+      "expected_sha256": "19C11D2A64924D2B48639780F5BCBE435FBAF9A7D4F886ACD9AA280C6707C722",
+      "hash_pass": true
+    },
+    "wind farm historical data.csv": {
+      "exists": true,
+      "bytes": 1865553,
+      "sha256": "2AB798258A566F2F2C6A4BCAB0023E6485E34C08C432A49D2C0F2D4DE4E09E6F",
+      "expected_sha256": "2AB798258A566F2F2C6A4BCAB0023E6485E34C08C432A49D2C0F2D4DE4E09E6F",
+      "hash_pass": true
+    }
+  },
+  "historical": {
+    "rows": 52704,
+    "columns": [
+      "Date",
+      "Speed",
+      "Direction",
+      "Energy"
+    ],
+    "start": "2016-01-01 00:10:00",
+    "end": "2017-01-01 00:00:00",
+    "timezone": "not documented in the dataset files",
+    "duplicate_timestamps": 0,
+    "interval_seconds": {
+      "600": 52703
+    },
+    "missing": {
+      "Date": 0,
+      "Speed": 578,
+      "Direction": 577,
+      "Energy": 577
+    },
+    "speed": {
+      "count": 52126,
+      "min": 0.35,
+      "max": 31.88,
+      "mean": 7.019519625522771
+    },
+    "direction": {
+      "count": 52127,
+      "min": 0.0,
+      "max": 360.0,
+      "mean": 169.12289216720703
+    },
+    "energy": {
+      "count": 52127,
+      "min": 0.0,
+      "max": 2687.03,
+      "mean": 464.3428576361579
+    },
+    "equivalent_average_power_mw_if_energy_is_kwh_per_record": {
+      "min": 0.0,
+      "max": 16.12218,
+      "mean": 2.786057145816947,
+      "status": "derived under an unverified unit interpretation; not a raw field"
+    }
+  },
+  "nwp": {
+    "rows": 8784,
+    "columns": [
+      "time",
+      "mod",
+      "dir",
+      "temp",
+      "rh",
+      "mslp"
+    ],
+    "start": "2016-01-01 01:00:00",
+    "end": "2017-01-01 00:00:00",
+    "timezone": "not documented in the dataset files",
+    "duplicate_timestamps": 0,
+    "interval_seconds": {
+      "3600": 8783
+    },
+    "missing": {
+      "time": 0,
+      "mod": 0,
+      "dir": 0,
+      "temp": 0,
+      "rh": 0,
+      "mslp": 0
+    }
+  },
+  "legacy_assets": [
+    {
+      "path": "4_2/wind_disturbance_400s_pu.npy",
+      "bytes": 6536,
+      "sha256": "17853D3DAB2584B9CAA02FB64EDB24C7D2D73B23D8243801DB8ECCE90ECD0008",
+      "provenance_status": "unresolved: raw source and generation script not found",
+      "shape": [
+        801
+      ],
+      "dtype": "float64",
+      "min": -0.18138511376971958,
+      "max": 0.1775203429081415,
+      "mean": -4.989766402809692e-18,
+      "std": 0.07410752184549449
+    },
+    {
+      "path": "4_3/4_3_2/wind_disturbance_400s_pu.npy",
+      "bytes": 6536,
+      "sha256": "44F7F920B9F18E6D236AEDE6B8DBE8A626F60422AC5032610B1F76D8C67019DE",
+      "provenance_status": "unresolved: raw source and generation script not found",
+      "shape": [
+        801
+      ],
+      "dtype": "float64",
+      "min": -0.6049640177356693,
+      "max": 0.3117575867300364,
+      "mean": 3.5482783308868924e-17,
+      "std": 0.3489622341689952
+    },
+    {
+      "path": "4_3/wind_disturbance_400s_pu.npy",
+      "bytes": 6536,
+      "sha256": "17853D3DAB2584B9CAA02FB64EDB24C7D2D73B23D8243801DB8ECCE90ECD0008",
+      "provenance_status": "unresolved: raw source and generation script not found",
+      "shape": [
+        801
+      ],
+      "dtype": "float64",
+      "min": -0.18138511376971958,
+      "max": 0.1775203429081415,
+      "mean": -4.989766402809692e-18,
+      "std": 0.07410752184549449
+    },
+    {
+      "path": "old/wind_disturbance_400s_pu.npy",
+      "bytes": 6536,
+      "sha256": "17853D3DAB2584B9CAA02FB64EDB24C7D2D73B23D8243801DB8ECCE90ECD0008",
+      "provenance_status": "unresolved: raw source and generation script not found",
+      "shape": [
+        801
+      ],
+      "dtype": "float64",
+      "min": -0.18138511376971958,
+      "max": 0.1775203429081415,
+      "mean": -4.989766402809692e-18,
+      "std": 0.07410752184549449
+    }
+  ],
+  "w0_acquisition_pass": true,
+  "readiness": {
+    "wind_farm_10_minute_statistics": true,
+    "time_ordered_forecasting": true,
+    "direct_0_5_second_control_input": false
+  },
+  "open_issues": [
+    "Energy field unit is not explicit in the downloaded CSV or landing-page metadata.",
+    "Timestamp timezone is not documented in the downloaded files.",
+    "The 10-minute wind-farm series cannot substantiate 0.5-second high-frequency fluctuations.",
+    "Legacy 400-second NPY trajectories still lack their raw-source and generation chain."
+  ]
+}

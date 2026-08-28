@@ -1,0 +1,95 @@
+{
+  "study_id": "E2-F1-RECOVERY-DURATION-SENSITIVITY-V1",
+  "controller": "MPC",
+  "phase_rad": 0.0,
+  "recovery_duration_s": 720.0,
+  "trend_window_s": 60.0,
+  "power_error_limit_pu": 0.005,
+  "case_count": 4,
+  "solver_failure_total": 0,
+  "joint_validity_transitions": [
+    {
+      "lower_amplitude_pu": 0.0982,
+      "upper_amplitude_pu": 0.1322,
+      "from": false,
+      "to": true
+    }
+  ],
+  "forcing_constraint_transitions": [],
+  "recovery_failures_with_forcing_pass_pu": [
+    0.038061564333333284,
+    0.0544,
+    0.0982
+  ],
+  "threshold_driven_non_star_joint_validity": false,
+  "rows": [
+    {
+      "case_file": "mpc_f0.00030762_774e5323fd5b.json",
+      "npz_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_recovery_duration_sensitivity_v1\\cases\\mpc_f0.00030762_774e5323fd5b.npz",
+      "study_id": "E2-F1-RECOVERY-DURATION-SENSITIVITY-V1",
+      "controller": "MPC",
+      "phase_rad": 0.0,
+      "amplitude_pu": 0.038061564333333284,
+      "forcing_constraints_pass": true,
+      "recovery_complete": false,
+      "joint_valid_for_boundary": false,
+      "solver_failures": 0,
+      "power_error_limit_pu": 0.005,
+      "power_error_max_abs_final_sustain_pu": 0.005137096762575566,
+      "power_error_mean_signed_final_sustain_pu": 0.005137095936949364,
+      "power_error_endpoint_signed_pu": 0.005137095120989588,
+      "power_error_trend_slope_pu_per_s": -1.8313621467906622e-10
+    },
+    {
+      "case_file": "mpc_f0.00030762_2f0296a9d194.json",
+      "npz_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_recovery_duration_sensitivity_v1\\cases\\mpc_f0.00030762_2f0296a9d194.npz",
+      "study_id": "E2-F1-RECOVERY-DURATION-SENSITIVITY-V1",
+      "controller": "MPC",
+      "phase_rad": 0.0,
+      "amplitude_pu": 0.0544,
+      "forcing_constraints_pass": true,
+      "recovery_complete": false,
+      "joint_valid_for_boundary": false,
+      "solver_failures": 0,
+      "power_error_limit_pu": 0.005,
+      "power_error_max_abs_final_sustain_pu": 0.005221519610296932,
+      "power_error_mean_signed_final_sustain_pu": 0.005221518654462541,
+      "power_error_endpoint_signed_pu": 0.005221517713349999,
+      "power_error_trend_slope_pu_per_s": -2.1859824491479868e-10
+    },
+    {
+      "case_file": "mpc_f0.00030762_63c3aebd5a77.json",
+      "npz_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_recovery_duration_sensitivity_v1\\cases\\mpc_f0.00030762_63c3aebd5a77.npz",
+      "study_id": "E2-F1-RECOVERY-DURATION-SENSITIVITY-V1",
+      "controller": "MPC",
+      "phase_rad": 0.0,
+      "amplitude_pu": 0.0982,
+      "forcing_constraints_pass": true,
+      "recovery_complete": false,
+      "joint_valid_for_boundary": false,
+      "solver_failures": 0,
+      "power_error_limit_pu": 0.005,
+      "power_error_max_abs_final_sustain_pu": 0.0050314640963994295,
+      "power_error_mean_signed_final_sustain_pu": 0.005031462834068153,
+      "power_error_endpoint_signed_pu": 0.005031461597154618,
+      "power_error_trend_slope_pu_per_s": -3.0328292177231216e-10
+    },
+    {
+      "case_file": "mpc_f0.00030762_0defb6a2d4fb.json",
+      "npz_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f1_recovery_duration_sensitivity_v1\\cases\\mpc_f0.00030762_0defb6a2d4fb.npz",
+      "study_id": "E2-F1-RECOVERY-DURATION-SENSITIVITY-V1",
+      "controller": "MPC",
+      "phase_rad": 0.0,
+      "amplitude_pu": 0.1322,
+      "forcing_constraints_pass": true,
+      "recovery_complete": true,
+      "joint_valid_for_boundary": true,
+      "solver_failures": 0,
+      "power_error_limit_pu": 0.005,
+      "power_error_max_abs_final_sustain_pu": 0.004895865575541225,
+      "power_error_mean_signed_final_sustain_pu": 0.0048958640716555,
+      "power_error_endpoint_signed_pu": 0.004895862603498502,
+      "power_error_trend_slope_pu_per_s": -3.674585355396476e-10
+    }
+  ]
+}

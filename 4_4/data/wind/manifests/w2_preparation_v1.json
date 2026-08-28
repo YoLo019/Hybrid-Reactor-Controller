@@ -1,0 +1,309 @@
+{
+  "report_version": 1,
+  "study_id": "w2_prediction_v1",
+  "stage": "smoke",
+  "formal_claim": false,
+  "decision_scope": "pipeline smoke only; metrics are not formal W2 evidence",
+  "software": {
+    "python": "3.8.5",
+    "numpy": "1.24.4",
+    "pandas": "2.0.3"
+  },
+  "provenance": {
+    "dataset_path": "4_4/data/wind/processed/sotavento_2016_clean.csv",
+    "dataset_sha256": "961B9C984C1A5A25B46FC79802AEED1EC0A020C6CB4127B08002DCDC05874BD0",
+    "feature_report_path": "4_4/data/wind/manifests/w1_feature_report.json",
+    "feature_report_sha256": "24796888FEC3D0D9E75113B79CC30022C783BAF29A46FFBF03931545D8B97BCC",
+    "config_path": "research_execution/04_experiments/configs/w2_prediction_v1.json",
+    "config_sha256": "9EC47061B3D54EEA1DC2298C7921EC8033EEF0E024063EEBDC6ABCED4989F0E7",
+    "runner_sha256": "09A32CFD1FFEF3C8CAA010D2D75BC659A7A026C20BE68657E6B551BDB025C863",
+    "sample_index_path": "4_4/data/wind/processed/w2_prediction_index_v1.csv",
+    "sample_index_sha256": "F8141BCB40B7BCCA7921F3B503D3079A57E72FA59331BB5A9BD95ED7A27F6D5E"
+  },
+  "locked_splits_accessed": [],
+  "preparation_gate": {
+    "pass": true,
+    "checks": {
+      "w1_input_identity_matches": true,
+      "only_train_and_validation_indexed": true,
+      "locked_splits_not_accessed": true,
+      "all_horizons_have_train_and_validation_samples": true,
+      "both_forecasters_cover_all_horizons": true,
+      "forecast_interface_columns_complete": true
+    }
+  },
+  "sample_counts": [
+    {
+      "split": "train",
+      "horizon_steps": 1,
+      "samples": 25283
+    },
+    {
+      "split": "train",
+      "horizon_steps": 2,
+      "samples": 25280
+    },
+    {
+      "split": "train",
+      "horizon_steps": 3,
+      "samples": 25277
+    },
+    {
+      "split": "train",
+      "horizon_steps": 6,
+      "samples": 25268
+    },
+    {
+      "split": "train",
+      "horizon_steps": 12,
+      "samples": 25255
+    },
+    {
+      "split": "train",
+      "horizon_steps": 36,
+      "samples": 25207
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 1,
+      "samples": 8784
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 2,
+      "samples": 8783
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 3,
+      "samples": 8782
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 6,
+      "samples": 8779
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 12,
+      "samples": 8773
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 36,
+      "samples": 8749
+    }
+  ],
+  "smoke_metrics": [
+    {
+      "stage": "smoke",
+      "horizon_steps": 1,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.01925204432964574,
+      "rmse_pu": 0.03348103518919102,
+      "ramp_event_threshold_pu": 0.06960649205000002,
+      "ramp_event_count": 50,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.10628138952236,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 1,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 0.0,
+      "samples": 1024,
+      "mae_pu": 0.020146862427988303,
+      "rmse_pu": 0.03244746671514629,
+      "ramp_event_threshold_pu": 0.06960649205000002,
+      "ramp_event_count": 50,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.09860666431916654,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.03087026635240986
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 2,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.030318898820414674,
+      "rmse_pu": 0.0529831000906098,
+      "ramp_event_threshold_pu": 0.10798974944999998,
+      "ramp_event_count": 49,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.17203732973241834,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 2,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 0.0,
+      "samples": 1024,
+      "mae_pu": 0.03276897627714323,
+      "rmse_pu": 0.05224332699973287,
+      "ramp_event_threshold_pu": 0.10798974944999998,
+      "ramp_event_count": 49,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.16330956867552154,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.013962434995532513
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 3,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.03748636260644117,
+      "rmse_pu": 0.06522079753481476,
+      "ramp_event_threshold_pu": 0.12588553524999999,
+      "ramp_event_count": 60,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.19890034168350143,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 3,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 0.0,
+      "samples": 1024,
+      "mae_pu": 0.040497328421423284,
+      "rmse_pu": 0.06394927142286602,
+      "ramp_event_threshold_pu": 0.12588553524999999,
+      "ramp_event_count": 60,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.18654622170463678,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.019495715477413467
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 6,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.051970891098353525,
+      "rmse_pu": 0.08711460572224171,
+      "ramp_event_threshold_pu": 0.16027619585,
+      "ramp_event_count": 65,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.2570383388884126,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 6,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 0.0,
+      "samples": 1024,
+      "mae_pu": 0.056169968545723675,
+      "rmse_pu": 0.08360943131410317,
+      "ramp_event_threshold_pu": 0.16027619585,
+      "ramp_event_count": 65,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.23346303267542895,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.04023635737174225
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 12,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.06670910783655687,
+      "rmse_pu": 0.10567319167983069,
+      "ramp_event_threshold_pu": 0.2040051252435,
+      "ramp_event_count": 69,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.2967104090311171,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 12,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 10.0,
+      "samples": 1024,
+      "mae_pu": 0.07297038364351588,
+      "rmse_pu": 0.1016559202782747,
+      "ramp_event_threshold_pu": 0.2040051252435,
+      "ramp_event_count": 69,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.2718552123023178,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.038015993817311244
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 36,
+      "forecast_type": "persistence",
+      "alpha": null,
+      "samples": 1024,
+      "mae_pu": 0.07921296403448641,
+      "rmse_pu": 0.11972551379605254,
+      "ramp_event_threshold_pu": 0.3343018223,
+      "ramp_event_count": 25,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.38936473803602034,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": null
+    },
+    {
+      "stage": "smoke",
+      "horizon_steps": 36,
+      "forecast_type": "ridge_direct_ar",
+      "alpha": 10.0,
+      "samples": 1024,
+      "mae_pu": 0.09481145555197952,
+      "rmse_pu": 0.11744822726978994,
+      "ramp_event_threshold_pu": 0.3343018223,
+      "ramp_event_count": 25,
+      "ramp_event_precision": 0.0,
+      "ramp_event_recall": 0.0,
+      "ramp_event_f1": 0.0,
+      "ramp_event_mae_pu": 0.32113055112744754,
+      "out_of_range_fraction": 0.0,
+      "rmse_improvement_vs_persistence": 0.01902089583129174
+    }
+  ],
+  "metrics_path": "research_execution/04_experiments/runs/w2_preparation_smoke_v1/metrics.csv",
+  "metrics_sha256": "2AFA7656DCAEDD34C2131DC8E57EC27D678B0488FA52C8C7416F9323D599745B",
+  "forecasts_path": "research_execution/04_experiments/runs/w2_preparation_smoke_v1/forecasts.csv",
+  "forecasts_sha256": "A4EA37C71FEB3A661EC442D33781BA982249DFF09C07D0C56A1B105C32FA7014",
+  "models_path": "research_execution/04_experiments/runs/w2_preparation_smoke_v1/selected_models.json",
+  "models_sha256": "876805A27897FAA6F800809342F29118ADB02B6BD3515BE451E46E837EF2F050"
+}

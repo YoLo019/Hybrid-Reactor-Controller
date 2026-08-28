@@ -1,0 +1,126 @@
+{
+  "report_version": 1,
+  "study_id": "w2_prediction_v1",
+  "stage": "validation",
+  "formal_claim": true,
+  "decision_scope": "validation-only model selection; locked splits remain unopened",
+  "software": {
+    "python": "3.8.5",
+    "numpy": "1.24.4",
+    "pandas": "2.0.3"
+  },
+  "provenance": {
+    "dataset_path": "D:\\mpc_gpt\\4_4\\data\\wind\\processed\\sotavento_2016_clean.csv",
+    "dataset_sha256": "961B9C984C1A5A25B46FC79802AEED1EC0A020C6CB4127B08002DCDC05874BD0",
+    "feature_report_path": "D:\\mpc_gpt\\4_4\\data\\wind\\manifests\\w1_feature_report.json",
+    "feature_report_sha256": "D59CFAE0A6DE549D616841588E25211978361DCE003877A8BE9FECDE513CAC35",
+    "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\w2_prediction_v1.json",
+    "config_sha256": "7DE9C739BB291523C20F477DAD1DBC84330580FD246B447012883EA5139CB14F",
+    "runner_sha256": "8D8B3D88448E36512979BE3F9BE7BA8A020AE7C5C66C45EA4D257180376EDB64",
+    "sample_index_path": "D:\\mpc_gpt\\4_4\\data\\wind\\processed\\w2_prediction_index_v1.csv",
+    "sample_index_sha256": "F8141BCB40B7BCCA7921F3B503D3079A57E72FA59331BB5A9BD95ED7A27F6D5E"
+  },
+  "locked_splits_accessed": [],
+  "preparation_gate": {
+    "pass": true,
+    "checks": {
+      "w1_input_identity_matches": true,
+      "only_train_and_validation_indexed": true,
+      "locked_splits_not_accessed": true,
+      "all_horizons_have_train_and_validation_samples": true,
+      "both_forecasters_cover_all_horizons": true,
+      "forecast_interface_columns_complete": true
+    }
+  },
+  "validation_gate": {
+    "pass": false,
+    "decision": "persistence",
+    "checks": {
+      "mean_rmse_improvement_at_least_minimum": false,
+      "improved_horizons_at_least_minimum": true,
+      "no_horizon_worsening_above_maximum": true
+    },
+    "thresholds": {
+      "aggregation": "equal-weight arithmetic mean of the six horizon-specific validation RMSE values",
+      "mean_rmse_improvement_min": 0.05,
+      "improved_horizons_min": 4,
+      "horizon_worsening_max": 0.05
+    },
+    "observed": {
+      "mean_persistence_rmse_pu": 0.06309327409907944,
+      "mean_ridge_rmse_pu": 0.06003595960949212,
+      "mean_rmse_improvement": 0.04845705874743833,
+      "improved_horizons": 6,
+      "worst_horizon_worsening": 0.0
+    }
+  },
+  "sample_counts": [
+    {
+      "split": "train",
+      "horizon_steps": 1,
+      "samples": 25283
+    },
+    {
+      "split": "train",
+      "horizon_steps": 2,
+      "samples": 25280
+    },
+    {
+      "split": "train",
+      "horizon_steps": 3,
+      "samples": 25277
+    },
+    {
+      "split": "train",
+      "horizon_steps": 6,
+      "samples": 25268
+    },
+    {
+      "split": "train",
+      "horizon_steps": 12,
+      "samples": 25255
+    },
+    {
+      "split": "train",
+      "horizon_steps": 36,
+      "samples": 25207
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 1,
+      "samples": 8784
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 2,
+      "samples": 8783
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 3,
+      "samples": 8782
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 6,
+      "samples": 8779
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 12,
+      "samples": 8773
+    },
+    {
+      "split": "validation",
+      "horizon_steps": 36,
+      "samples": 8749
+    }
+  ],
+  "smoke_metrics": null,
+  "metrics_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w2_validation_v1\\metrics.csv",
+  "metrics_sha256": "624E381A70C2E77235168F8F718C77C453BDBAE8418DCD6C31B2E3CAA1A4D8A5",
+  "forecasts_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w2_validation_v1\\forecasts.csv",
+  "forecasts_sha256": "027AE3F857FDDC90F426B65E5762FCBD408CDBECECCF08E67063151F8164C3B6",
+  "models_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\w2_validation_v1\\selected_models.json",
+  "models_sha256": "CCE5A90140AF58277C9F1F371A6A141D54B146333BEB5A049C50C967E51F91D4"
+}

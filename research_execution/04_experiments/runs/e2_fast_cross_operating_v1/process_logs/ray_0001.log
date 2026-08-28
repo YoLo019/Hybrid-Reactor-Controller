@@ -1,0 +1,112 @@
+D:\Micorsoft Edgeœ¬‘ÿ\py3.8\lib\site-packages\cvxpy\problems\problem.py:158: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  warnings.warn("Objective contains too many subexpressions. "
+{
+  "study_id": "E2-FAST-CROSS-OPERATING-V1",
+  "scope": "formal E2 first-failure radial search under frozen baseline controllers",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_fast_cross_operating_v1.json",
+  "config_sha256": "4B408AF8910BD20AE4E8DE62683E9CB804DAA235636F8564E4D47C532BEE2B72",
+  "code_provenance": {
+    "formal_runner": "3A665850870D2E742763824D503FFCE1D9F3DDBE366EF0D7DFAC71F3A8ED4870",
+    "frequency_runner": "9387493BD3DC548A2EC339B33C74CA97065834276FB5948385C2982B357E2269",
+    "smoke_runner": "0BB79495218339AF5E2B2B9BFD7CF8D93E9307D80F57AA1D6EEF8697927D3518",
+    "metrics_source": "2BEF3F82FDBE8AEF1E316A3CD6547261952FBAECFA6CAFD108C0F1B091200BC2",
+    "mpc_utils": "0920CD6462F510CDC208BD0E4F35A7A9CB2BF4DEECA1A44A8EC2D21A998CF372",
+    "model": "5E3EEBC405B561CFC6C783E24F0E7C92EB7081A4BE62599D282E84F4BEDEA973",
+    "parameters": "6CF7F261220636F835380F1C56C59C65AD1A6F9CA3E47B797D8CB83AD88587A2",
+    "schema": "11EF83265B74F7996080F9B57EDA9270438D1ABBA62EED1C14C0A04E353EA951"
+  },
+  "code_bundle_sha256": "21740F2EDFD740217BE5FC42E84A9A5D247B4E0C45FB641F56175C9FB5C03242",
+  "ray_count_total": 108,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "ray_index": 1,
+      "ray": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "frequency": {
+          "frequency_hz": 0.005,
+          "cycles": 1,
+          "evidence_class": "MORE-EU direct active power; lower fast-band representative"
+        },
+        "phase_rad": 0.0,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.7999999999913899,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "pairs": [
+          {
+            "amplitude_pu": 0.0,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.024548310554290048,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0544,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.0982,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.1322,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.2168,
+            "safe": true
+          },
+          {
+            "amplitude_pu": 0.3,
+            "safe": false
+          }
+        ],
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.2168,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "non_star_shaped": false,
+        "all_safe": false,
+        "center_safe": true
+      },
+      "boundary_status": "bracketed_first_failure",
+      "safe_boundary_amplitude_pu": 0.274,
+      "first_failure_amplitude_pu": 0.2792,
+      "boundary_width_pu": 0.005199999999999982,
+      "active_constraint": "neutron_power_pu",
+      "first_violation_time_s": 170.5,
+      "coarse_case_hashes": [
+        "59215151D8D476A366F9824D837BF56A6D0C9001352C3DB32178E6A8FC68BDDC",
+        "2D49BF9962771A3461DC3DA37152A930CDA76C6228F6C0CF260F38A9B018284B",
+        "227DBA9FFA099129A5C24BF5997D85F910D69DEF3596D05ABA76EDC3E330E557",
+        "995F8E18EA42C04D8B7778A375613EDC726523C2635FE9691AC2F389287166F8",
+        "C3BF3173EC8E6E84E15480218A837CB08305B8A70AA233943AE945DDD41CDBB5",
+        "1312F7B6BE4FABB42586980ED226F77DB4F638B2D5DED99617D46353A05A10EB",
+        "12E4745DFDD6B751412CE7ADFBC7D332DA1358D4E3D992155C2D52C65421979F"
+      ],
+      "bisection_case_hashes": [
+        "C7699294A074356CDC5C8EFDC1254DC2D9DBC774882EC15AB17D388D333235EB",
+        "11F73D1F0BD621C788C925F4BC6D7C1ABA3F78B29224C80FFF36331C5E9B6F2E",
+        "F0EBB4513504C9A0CF3CD3A2D084F054B226FA86C6CE9C4CC0562856B7B118F5",
+        "BE18A08C5110283AC9BA7510C30098128875A2A429BC0E8104F1A94BD995DA0E"
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "800C2A1246C69F8B6CFA82D79CF128F25BD8BFFA00EBBED4632C54DF00D7D33C"
+}

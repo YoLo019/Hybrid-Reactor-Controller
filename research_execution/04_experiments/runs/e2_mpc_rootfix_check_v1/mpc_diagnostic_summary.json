@@ -1,0 +1,68 @@
+{
+  "scope": "single-case diagnosis; not controller selection or paper evidence",
+  "scenario": {
+    "power_pu": 0.9,
+    "soc": 0.5,
+    "amplitude_pu": 0.024548310554290048,
+    "frequency_hz": 0.005,
+    "duration_s": 220.0
+  },
+  "results": {
+    "baseline_mpc": {
+      "tracking_rmse_pu": 0.012591172374453122,
+      "frequency_max_abs_hz": 0.0009908898342497643,
+      "coolant_average_max_abs_deviation_c": 0.5082171574151744,
+      "rod_peak_abs_spm": 9.034561833660103,
+      "valve_command_max_rate_pu_s": 0.03576019313525092,
+      "valve_command_total_variation_pu": 0.15962251290546392,
+      "bess_peak_abs_mw": 0.04270220705525073,
+      "soc_min": 0.49999130349291654,
+      "soc_max": 0.5000776061561332,
+      "gain": 0.894398280735908,
+      "phase_error_deg": -2.615314060022675,
+      "target_amplitude_pu": 0.024548310553979723,
+      "output_amplitude_pu": 0.02195596675445061,
+      "rmse_better_than_baseline_pid": false
+    },
+    "baseline_pid": {
+      "tracking_rmse_pu": 0.0021862623648724266,
+      "frequency_max_abs_hz": 0.00031135753645104494,
+      "coolant_average_max_abs_deviation_c": 0.4802260738202335,
+      "rod_peak_abs_spm": 8.75688629916508,
+      "valve_command_max_rate_pu_s": 0.020051353328522925,
+      "valve_command_total_variation_pu": 0.15658412023505774,
+      "bess_peak_abs_mw": 0.023207827869091976,
+      "soc_min": 0.49995225802757254,
+      "soc_max": 0.5000372323413115,
+      "gain": 0.9708509532630368,
+      "phase_error_deg": -7.328586994764718,
+      "target_amplitude_pu": 0.024548310553979723,
+      "output_amplitude_pu": 0.023832750702328282,
+      "rmse_better_than_baseline_pid": false
+    },
+    "corrected_equilibrium_h30": {
+      "configuration": {
+        "id": "corrected_equilibrium_h30",
+        "horizon_steps": 30,
+        "q_power": 1000.0,
+        "q_temperature": 0.5,
+        "move_weight": 2.0,
+        "magnitude_weight": 0.05
+      },
+      "tracking_rmse_pu": 0.0021655241026199245,
+      "frequency_max_abs_hz": 4.8820357795013205e-05,
+      "coolant_average_max_abs_deviation_c": 0.4158200186305976,
+      "rod_peak_abs_spm": 8.430924094203291,
+      "valve_command_max_rate_pu_s": 0.002526233390995447,
+      "valve_command_total_variation_pu": 0.1343290720762137,
+      "bess_peak_abs_mw": 0.022648086201259767,
+      "soc_min": 0.49995883251623807,
+      "soc_max": 0.5000404474552032,
+      "gain": 0.9207186820202219,
+      "phase_error_deg": -2.967090681500442,
+      "target_amplitude_pu": 0.024548310553979723,
+      "output_amplitude_pu": 0.022602088139083314,
+      "rmse_better_than_baseline_pid": true
+    }
+  }
+}
