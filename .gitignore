@@ -13,3 +13,6 @@ __pycache__/
 
 # 该来源文件明确标注作者保留版权，只保留机器可读来源记录，不公开再分发论文副本
 research_execution/02_data/w1b_fast_band/provenance/chalmers_islanded_operation_thesis_2024.pdf
+
+# q0.95 波次运行数据不进入 git（2026-08-30 用户指示，含预检/上界扩展/细化运行目录）
+research_execution/04_experiments/runs/*q095*/
