@@ -1,0 +1,20 @@
+{
+  "refinement_id": "E2-F2-Q099-REFINEMENT-V1",
+  "base_config": "research_execution/04_experiments/configs/e2_f2_cross_operating_slow_v1.json",
+  "precheck_aggregate": "research_execution/04_experiments/runs/e2_f2_q099_mpc_upper_extension_v1/e2_f2_q0.99_precheck_extended_aggregate.json",
+  "frequency_label": "q0.99",
+  "reuse_policy": {
+    "reuse_merged_f2_precheck_cases": true,
+    "reuse_f1_center_cases": false,
+    "refine_forcing_and_joint_labels_separately": true
+  },
+  "acceptance": {
+    "expected_ray_count": 72,
+    "require_complete_precheck": true,
+    "require_forcing_precision": true,
+    "require_joint_precision": true,
+    "require_no_solver_failures": true,
+    "require_no_recovery_phase_physical_violations": true,
+    "preserve_non_star_shaped_labels": true
+  }
+}

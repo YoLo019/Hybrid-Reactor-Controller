@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "frequency_label": "q0.99",
+  "mode": "refine",
+  "expected_ray_count": 72,
+  "pending_at_start": [
+    66,
+    67,
+    68,
+    69,
+    70,
+    71
+  ],
+  "failed_ray_indices": [],
+  "observed_summary_count": 72
+}

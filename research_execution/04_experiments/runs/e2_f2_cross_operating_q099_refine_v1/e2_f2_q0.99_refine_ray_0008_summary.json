@@ -1,0 +1,341 @@
+{
+  "study_id": "E2-F2-CROSS-OPERATING-SLOW-V1",
+  "scope": "cross-operating-point layered D_ref boundary search with per-ray brackets",
+  "mode": "refine",
+  "frequency_label": "q0.99",
+  "config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_f2_cross_operating_slow_v1.json",
+  "config_sha256": "98B3C08719A647559C3979B5BE867706017CFE9C65CFCAA5A8911D8FB3013053",
+  "precheck_aggregate_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_q099_mpc_upper_extension_v1\\e2_f2_q0.99_precheck_extended_aggregate.json",
+  "precheck_aggregate_sha256": "55E2045FA359C7952A005B86D56D04C74042488D9C77637593B0825B961DA0B7",
+  "refinement_config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_f2_q099_refinement_v1.json",
+  "refinement_config_sha256": "C63709FFD73650CCDC4C321A9384F675471E5472A79BE4CA074A8CFB3CBD64B1",
+  "core_code_provenance": {
+    "formal_runner": "282FC1148A8B6225FCCD679BC1924E9FAA0907B82A4F4F79FE82D6568E719E65",
+    "frequency_runner": "2087115F7F39D26DEBA6DD628EFF53478594AA1B9402A8D68626182276C4FCC4",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "108631E395C0D67950ED64EDA0A8975D93500E8C4300911050F1282549366518",
+    "mpc_utils": "48343A220E2B990CEB783B1E50C45D2F14B20FDFD38C6E01699D3CF7BAA1CCD8",
+    "model": "E9B3BDAF2D0EDA000B72947373EAF76CBAC74D4D06ADC2F0DE3A7736CC0E8690",
+    "parameters": "C09BC1DB5C2AAC3D5E0B897B6CFD7C5068EAD12D527F60BEEC6BA5DE4E0D719A",
+    "schema": "ACC64A367AC70DE470B9FB69F9ECF9D2242BA5780F966862E415B95056E353F3"
+  },
+  "core_code_bundle_sha256": "C931CE2936BF1A3C2A3EF3060AC34CF48CEBF133953EB8A2B5CE438F65DAA3B1",
+  "f2_runner_sha256": "949CBCC8F6A5D062467F2D37C7C1E2B12893A84A19C0BD36F24A1B2C0562D43D",
+  "refinement_runner_sha256": "F41E9806D17782601AB02C9E927D2A437D60AFF10DF749E6A007C73ED8F173C6",
+  "preparation_gate": {
+    "pass": true,
+    "base_validation": {
+      "pass": true,
+      "operating_point_count": 9,
+      "total_ray_count": 216,
+      "wave_ray_count": 72,
+      "frequency_labels": [
+        "q0.99",
+        "q0.95",
+        "q0.90"
+      ],
+      "amplitude_grid_count": 7,
+      "bisection_tolerance_pu": 0.01
+    },
+    "refinement_id": "E2-F2-Q099-REFINEMENT-V1",
+    "expected_ray_count": 72,
+    "config_sha256": "98B3C08719A647559C3979B5BE867706017CFE9C65CFCAA5A8911D8FB3013053",
+    "precheck_aggregate_sha256": "55E2045FA359C7952A005B86D56D04C74042488D9C77637593B0825B961DA0B7",
+    "f2_runner_sha256": "949CBCC8F6A5D062467F2D37C7C1E2B12893A84A19C0BD36F24A1B2C0562D43D"
+  },
+  "ray_count_total": 72,
+  "ray_count_in_report": 1,
+  "refinement_id": "E2-F2-Q099-REFINEMENT-V1",
+  "ray_results": [
+    {
+      "wave_ray_index": 8,
+      "ray": {
+        "power_pu": 0.8,
+        "soc": 0.5,
+        "frequency_label": "q0.99",
+        "frequency_hz": 0.0003076171875,
+        "cycles": 1.0,
+        "evidence_class": "Sotavento W1-A 99% cumulative spectral-energy frequency",
+        "phase_rad": 0.0,
+        "controller": "PID"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.7999999999913878,
+        "frequency_pu": 1.0
+      },
+      "precheck_source_report_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\e2_f2_q0.99_precheck_ray_0008_summary.json",
+      "precheck_evaluation_count": 7,
+      "coarse_scan": {
+        "amplitude_grid_pu": [
+          0.0,
+          0.024548310554290048,
+          0.0544,
+          0.0982,
+          0.1322,
+          0.2168,
+          0.3
+        ],
+        "evaluation_count": 7,
+        "forcing_stage": {
+          "label": "forcing_stage_safe",
+          "status": "bracketed_first_failure",
+          "center_safe": true,
+          "all_safe": false,
+          "first_failure_bracket": {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          },
+          "transitions": [
+            {
+              "lower_amplitude_pu": 0.2168,
+              "upper_amplitude_pu": 0.3,
+              "from_safe": true,
+              "to_safe": false
+            }
+          ],
+          "non_star_shaped": false,
+          "search_upper_amplitude_pu": 0.3
+        },
+        "joint_recovery": {
+          "label": "joint_valid_for_boundary",
+          "status": "bracketed_first_failure",
+          "center_safe": true,
+          "all_safe": false,
+          "first_failure_bracket": {
+            "lower_amplitude_pu": 0.2168,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          },
+          "transitions": [
+            {
+              "lower_amplitude_pu": 0.2168,
+              "upper_amplitude_pu": 0.3,
+              "from_safe": true,
+              "to_safe": false
+            }
+          ],
+          "non_star_shaped": false,
+          "search_upper_amplitude_pu": 0.3
+        }
+      },
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.29479999999999995,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.29479999999999995,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.3,
+        "conservative_safe_amplitude_pu": 0.29479999999999995,
+        "first_failure_amplitude_pu": 0.3,
+        "bracket_width_pu": 0.005200000000000038,
+        "tolerance_pu": 0.01,
+        "precision_status": "within_frozen_tolerance",
+        "bisection_iterations": 4
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.29479999999999995,
+          "upper_amplitude_pu": 0.3,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.29479999999999995,
+            "upper_amplitude_pu": 0.3,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.3,
+        "conservative_safe_amplitude_pu": 0.29479999999999995,
+        "first_failure_amplitude_pu": 0.3,
+        "bracket_width_pu": 0.005200000000000038,
+        "tolerance_pu": 0.01,
+        "precision_status": "within_frozen_tolerance",
+        "bisection_iterations": 0
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluations": [
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_d8d778f806b0.json",
+          "case_hash": "D8D778F806B0D71E882A528FB6C6F2DBD37CB87224978D77248D77C1F6D08D7A",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_a3194a89b135.json",
+          "case_hash": "A3194A89B135D924408A7FEBDFC7D5E9A2EC2C6A71EE97EF9D8FA84A3898ED5D",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.024548310554290048,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_496277b1d806.json",
+          "case_hash": "496277B1D806A03D79303779D59E7C48BE19329FAFFBE373D2E651AC058C747E",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0544,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_58e6c1c3bbd4.json",
+          "case_hash": "58E6C1C3BBD4308D981AC5008E9D24885D54E8AAFF6D8739D2BF190D9B0BA022",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0982,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_39d4027aa24c.json",
+          "case_hash": "39D4027AA24C95F9D170EA9851D250E5F86C947A7C51D472402A8F22C9601615",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.1322,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_ca0087ea2230.json",
+          "case_hash": "CA0087EA22308AF89BAAB33DDFD8548271497A91FD687B93E4FA3E0EAA27B457",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.2168,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_refine_v1\\cases\\pid_f0.00030762_cfa6b6e49904.json",
+          "case_hash": "CFA6B6E49904DB833A05C6CE510EBE972DB091B40FD966452AB8B7C52D319FE6",
+          "source": "q099_refinement",
+          "amplitude_pu": 0.25839999999999996,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_refine_v1\\cases\\pid_f0.00030762_462631ff52e0.json",
+          "case_hash": "462631FF52E0B9A8944C993DC1E410EB7D26BAB0D86F89461AC334023C3BEEBD",
+          "source": "q099_refinement",
+          "amplitude_pu": 0.2792,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_refine_v1\\cases\\pid_f0.00030762_cb833f58c8fe.json",
+          "case_hash": "CB833F58C8FEB19EB396E98D7A7AC4B8061580B3EEAC20E1A63C9E7C16A8B9BF",
+          "source": "q099_refinement",
+          "amplitude_pu": 0.28959999999999997,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_refine_v1\\cases\\pid_f0.00030762_ae50072e123d.json",
+          "case_hash": "AE50072E123D517B188070F6DE181E79340E3E69DB3015355F3394FF11F9E009",
+          "source": "q099_refinement",
+          "amplitude_pu": 0.29479999999999995,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\cases\\pid_f0.00030762_2af68d6ae319.json",
+          "case_hash": "2AF68D6AE3191222A2DA5686CA2528748C9E775FA302EE5E45C209AE0DE01B96",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.3,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 2433.354491221776,
+          "first_violation_phase": "forcing"
+        }
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "AEED7204027A293AFF85C2130C68C77CE5787CFC8B1572B4FCAEBB161519D13F"
+}

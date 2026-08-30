@@ -1,0 +1,608 @@
+{
+  "analysis_id": "E2-F2-Q099-MPC-UPPER-EXTENSION-V1",
+  "status": "complete",
+  "mode": "precheck",
+  "frequency_label": "q0.99",
+  "expected_target_ray_count": 9,
+  "observed_target_ray_count": 9,
+  "target_ray_indices": [
+    1,
+    3,
+    5,
+    9,
+    11,
+    13,
+    17,
+    19,
+    21
+  ],
+  "missing_target_ray_indices": [],
+  "duplicate_target_ray_indices": [],
+  "extra_ray_indices": [],
+  "shared_identity": {
+    "study_id": "E2-F2-CROSS-OPERATING-SLOW-V1",
+    "mode": "precheck",
+    "frequency_label": "q0.99",
+    "config_sha256": "98B3C08719A647559C3979B5BE867706017CFE9C65CFCAA5A8911D8FB3013053",
+    "core_code_bundle_sha256": "C931CE2936BF1A3C2A3EF3060AC34CF48CEBF133953EB8A2B5CE438F65DAA3B1",
+    "f2_runner_sha256": "949CBCC8F6A5D062467F2D37C7C1E2B12893A84A19C0BD36F24A1B2C0562D43D"
+  },
+  "base_aggregate_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q099_precheck_v1\\e2_f2_q0.99_precheck_aggregate.json",
+  "base_aggregate_sha256": "8E2AE062728B160DC81BFBADA176797B8668C959ED1C5D9FFAC5252C839D3B68",
+  "extension_config_path": "D:\\mpc_gpt\\research_execution\\04_experiments\\configs\\e2_f2_q099_mpc_upper_extension_v1.json",
+  "extension_config_sha256": "FE7F5EE25B5F682DAAA3C8F67F58D9D2C72DAEF38484C130FC5665EA3A1FF69B",
+  "gating_issues": {
+    "center_unsafe_ray_indices": [],
+    "forcing_bracket_missing_ray_indices": [],
+    "forcing_non_star_ray_indices": [],
+    "solver_failure_ray_indices": [],
+    "recovery_phase_physical_violation_ray_indices": []
+  },
+  "extension_gate_pass": true,
+  "policy": {
+    "base_f2_precheck_cases_reused_below_or_at_0_3": true,
+    "f1_center_cases_reused": false,
+    "joint_bracket_is_diagnostic_only": true,
+    "stop_policy": "stop_each_ray_after_first_forcing_safe_to_unsafe_bracket"
+  },
+  "rays": [
+    {
+      "wave_ray_index": 1,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "phase_rad": 0.0,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 3,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "phase_rad": 1.5707963267948966,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 5,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.2,
+        "phase_rad": 3.141592653589793,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 9,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.5,
+        "phase_rad": 0.0,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 11,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.5,
+        "phase_rad": 1.5707963267948966,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 13,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.5,
+        "phase_rad": 3.141592653589793,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 17,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.8,
+        "phase_rad": 0.0,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 19,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.8,
+        "phase_rad": 1.5707963267948966,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    },
+    {
+      "wave_ray_index": 21,
+      "global_ray_key": {
+        "power_pu": 0.8,
+        "soc": 0.8,
+        "phase_rad": 3.141592653589793,
+        "controller": "MPC",
+        "frequency_label": "q0.99"
+      },
+      "base_search_upper_amplitude_pu": 0.3,
+      "extension_evaluated_amplitudes_pu": [
+        0.35
+      ],
+      "extension_stop_reason": "first_forcing_failure_bracket_found",
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.3,
+          "upper_amplitude_pu": 0.35,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.3,
+            "upper_amplitude_pu": 0.35,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.35
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluation_count": 8
+    }
+  ]
+}
