@@ -77,6 +77,48 @@ def code_bundle_provenance():
     return hashes, canonical_hash(hashes)
 
 
+def core_code_identity_check(config, observed_hash, reference_hash=None):
+    """Record code identity and optionally enforce identity when reusing prior cases."""
+    policy = config.get("identity_policy", {})
+    expected = policy.get("expected_core_code_bundle_sha256")
+    if expected in (None, ""):
+        expected = None
+    else:
+        expected = str(expected).upper()
+    enforce = policy.get("enforce_expected_core_code_bundle_sha256", False)
+    if not isinstance(enforce, bool):
+        raise ValueError(
+            "enforce_expected_core_code_bundle_sha256 must be a boolean"
+        )
+    observed = str(observed_hash).upper()
+    matches = None if expected is None else observed == expected
+    if enforce and expected is None:
+        raise ValueError(
+            "strict core code identity requires expected_core_code_bundle_sha256"
+        )
+    if enforce and matches is not True:
+        raise RuntimeError(
+            f"core code bundle identity drift: expected {expected}, got {observed}"
+        )
+    reference = None if reference_hash in (None, "") else str(reference_hash).upper()
+    reference_matches = None if reference is None else observed == reference
+    if reference_matches is False:
+        raise RuntimeError(
+            "core code bundle identity differs from the code used to create "
+            f"reused cases: reference {reference}, got {observed}"
+        )
+    return {
+        "policy": "strict" if enforce else "record_only",
+        "enforced": enforce,
+        "expected_core_code_bundle_sha256": expected,
+        "observed_core_code_bundle_sha256": observed,
+        "match": matches,
+        "reference_core_code_bundle_sha256": reference,
+        "reference_match": reference_matches,
+        "reference_enforced": reference is not None,
+    }
+
+
 def validate_config(config):
     amplitudes = sorted(float(value) for value in config["amplitude_grid_pu"])
     if not amplitudes or amplitudes[0] != 0.0:

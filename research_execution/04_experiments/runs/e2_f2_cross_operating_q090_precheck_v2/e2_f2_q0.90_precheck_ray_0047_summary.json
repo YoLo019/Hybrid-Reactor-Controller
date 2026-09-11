@@ -1,0 +1,267 @@
+{
+  "study_id": "E2-F2-CROSS-OPERATING-SLOW-V1",
+  "scope": "cross-operating-point layered D_ref boundary search with per-ray brackets",
+  "mode": "precheck",
+  "frequency_label": "q0.90",
+  "config_path": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\configs\\e2_f2_cross_operating_slow_v1.json",
+  "config_sha256": "98B3C08719A647559C3979B5BE867706017CFE9C65CFCAA5A8911D8FB3013053",
+  "core_code_provenance": {
+    "formal_runner": "2ED6BCD1054420BF9F969564A0674CCBCA588C4F9BDF1ABA2802031CC2169A66",
+    "frequency_runner": "2087115F7F39D26DEBA6DD628EFF53478594AA1B9402A8D68626182276C4FCC4",
+    "smoke_runner": "CCC6CAFD8BC698B75CF9D9C53B21E7D9E78330CBC36A68B8CBFE30A10BE64016",
+    "metrics_source": "108631E395C0D67950ED64EDA0A8975D93500E8C4300911050F1282549366518",
+    "mpc_utils": "48343A220E2B990CEB783B1E50C45D2F14B20FDFD38C6E01699D3CF7BAA1CCD8",
+    "model": "4FED0BEB46E6210A5337C1B73F3F2E5A467D0A79194480978FADB2813EC11BBF",
+    "parameters": "3E907D98559809A8CCBD05EDFCA0E90A4D947496AF7701B7CCDF0CB0A906C2F1",
+    "schema": "ACC64A367AC70DE470B9FB69F9ECF9D2242BA5780F966862E415B95056E353F3"
+  },
+  "core_code_bundle_sha256": "90A3328A50D6BE9FBFB0EC9A8303A020666CC4EB39521EDF6816D0D89259B024",
+  "core_code_identity_check": {
+    "policy": "record_only",
+    "enforced": false,
+    "expected_core_code_bundle_sha256": "C931CE2936BF1A3C2A3EF3060AC34CF48CEBF133953EB8A2B5CE438F65DAA3B1",
+    "observed_core_code_bundle_sha256": "90A3328A50D6BE9FBFB0EC9A8303A020666CC4EB39521EDF6816D0D89259B024",
+    "match": false,
+    "reference_core_code_bundle_sha256": null,
+    "reference_match": null,
+    "reference_enforced": false
+  },
+  "f2_runner_sha256": "ECFAA44C584C7CB561112DD73D20D7940B9C336967D201D99C777ABCD5DF14B1",
+  "preparation_gate": {
+    "pass": true,
+    "operating_point_count": 9,
+    "total_ray_count": 216,
+    "wave_ray_count": 72,
+    "frequency_labels": [
+      "q0.99",
+      "q0.95",
+      "q0.90"
+    ],
+    "amplitude_grid_count": 7,
+    "bisection_tolerance_pu": 0.01
+  },
+  "ray_count_total": 72,
+  "ray_count_in_report": 1,
+  "ray_results": [
+    {
+      "wave_ray_index": 47,
+      "ray": {
+        "power_pu": 0.9,
+        "soc": 0.8,
+        "frequency_label": "q0.90",
+        "frequency_hz": 3.4993489583333335e-05,
+        "cycles": 1.0,
+        "evidence_class": "Sotavento W1-A 90% cumulative spectral-energy frequency",
+        "phase_rad": 4.71238898038469,
+        "controller": "MPC"
+      },
+      "operating_observation": {
+        "electrical_power_pu": 0.8999999999886452,
+        "frequency_pu": 1.0
+      },
+      "coarse_scan": {
+        "amplitude_grid_pu": [
+          0.0,
+          0.024548310554290048,
+          0.0544,
+          0.0982,
+          0.1322,
+          0.2168,
+          0.3
+        ],
+        "evaluation_count": 7,
+        "forcing_stage": {
+          "label": "forcing_stage_safe",
+          "status": "bracketed_first_failure",
+          "center_safe": true,
+          "all_safe": false,
+          "first_failure_bracket": {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          },
+          "transitions": [
+            {
+              "lower_amplitude_pu": 0.1322,
+              "upper_amplitude_pu": 0.2168,
+              "from_safe": true,
+              "to_safe": false
+            }
+          ],
+          "non_star_shaped": false,
+          "search_upper_amplitude_pu": 0.3
+        },
+        "joint_recovery": {
+          "label": "joint_valid_for_boundary",
+          "status": "bracketed_first_failure",
+          "center_safe": true,
+          "all_safe": false,
+          "first_failure_bracket": {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          },
+          "transitions": [
+            {
+              "lower_amplitude_pu": 0.1322,
+              "upper_amplitude_pu": 0.2168,
+              "from_safe": true,
+              "to_safe": false
+            }
+          ],
+          "non_star_shaped": false,
+          "search_upper_amplitude_pu": 0.3
+        }
+      },
+      "forcing_stage_boundary": {
+        "label": "forcing_stage_safe",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.1322,
+          "upper_amplitude_pu": 0.2168,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.3
+      },
+      "joint_recovery_complete_boundary": {
+        "label": "joint_valid_for_boundary",
+        "status": "bracketed_first_failure",
+        "center_safe": true,
+        "all_safe": false,
+        "first_failure_bracket": {
+          "lower_amplitude_pu": 0.1322,
+          "upper_amplitude_pu": 0.2168,
+          "from_safe": true,
+          "to_safe": false
+        },
+        "transitions": [
+          {
+            "lower_amplitude_pu": 0.1322,
+            "upper_amplitude_pu": 0.2168,
+            "from_safe": true,
+            "to_safe": false
+          }
+        ],
+        "non_star_shaped": false,
+        "search_upper_amplitude_pu": 0.3
+      },
+      "solver_failure_total": 0,
+      "recovery_phase_physical_violation_case_files": [],
+      "evaluations": [
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_06c686bee405.json",
+          "case_hash": "06C686BEE4051A144A6A74095458E2F8EAD8B3014FBB387D4AF11B0D0358E5E0",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "soc",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_feff03bf6f89.json",
+          "case_hash": "FEFF03BF6F89CB7A605C13DD236D46EFFFF28343C10FD6C76A4C3BF17D23099B",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.024548310554290048,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_rate_abs_pu_s",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_a73625c6012d.json",
+          "case_hash": "A73625C6012DEBE285EF3FB537D6116E9A73B8082A3363E21DC4B87EBE482AD9",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0544,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_rate_abs_pu_s",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_56e6109dc985.json",
+          "case_hash": "56E6109DC985CB0F0C7654C0988B91765FE78E28E5F942E0333F935F4C408021",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.0982,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_rate_abs_pu_s",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_4d8a9db392b6.json",
+          "case_hash": "4D8A9DB392B618C5BC3928981B3E5430F6BF2D48AB1B8D21E2E48BDC9BC7B74B",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.1322,
+          "forcing_stage_safe": true,
+          "full_horizon_physical_safe": true,
+          "joint_valid_for_boundary": true,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "valve_command_rate_abs_pu_s",
+          "first_violation_time_s": null,
+          "first_violation_phase": null
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_8fa2a8794601.json",
+          "case_hash": "8FA2A87946018C0C683C07E5A19D9D2625836077F6473FA96E4599ED2E6C7400",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.2168,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 34.000288510610446,
+          "first_violation_phase": "forcing"
+        },
+        {
+          "case_file": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_e62cf5c6e021.json",
+          "case_hash": "E62CF5C6E021075FF5CAC6908ADF7D08DFC6E9692716A04A99045ED5415549CE",
+          "source": "f2_per_ray",
+          "amplitude_pu": 0.3,
+          "forcing_stage_safe": false,
+          "full_horizon_physical_safe": false,
+          "joint_valid_for_boundary": false,
+          "recovery_complete": true,
+          "solver_failures": 0,
+          "active_constraint": "neutron_power_pu",
+          "first_violation_time_s": 34.000288510610446,
+          "first_violation_phase": "forcing"
+        }
+      ]
+    }
+  ],
+  "deterministic_summary_sha256": "113C5D56F7A25A2ECCBD259F3F73D9450C1731A809AA91BF2596B14BB35B3D37"
+}

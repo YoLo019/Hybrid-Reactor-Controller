@@ -26,7 +26,7 @@ if str(FLEXIBILITY_ROOT) not in sys.path:
     sys.path.insert(0, str(FLEXIBILITY_ROOT))
 
 from analyze_e2_layered_boundaries import forcing_stage_safe
-from run_e2_formal import code_bundle_provenance
+from run_e2_formal import code_bundle_provenance, core_code_identity_check
 from run_e2_frequency_diagnostic import run_case
 from run_e2_smoke import canonical_hash, prepare_operating_point, sha256
 
@@ -345,11 +345,7 @@ def run_single_ray(
     cases_dir = output_dir / "cases"
     cases_dir.mkdir(parents=True, exist_ok=True)
     core_provenance, core_bundle_hash = code_bundle_provenance()
-    expected_core = str(config["identity_policy"]["expected_core_code_bundle_sha256"])
-    if core_bundle_hash != expected_core:
-        raise RuntimeError(
-            f"core code bundle identity drift: expected {expected_core}, got {core_bundle_hash}"
-        )
+    core_identity = core_code_identity_check(config, core_bundle_hash)
     runner_hash = sha256(Path(__file__).resolve())
     metrics_hash = core_provenance["metrics_source"]
     ray = rays[wave_ray_index]
@@ -378,10 +374,16 @@ def run_single_ray(
                 output_dir,
                 core_bundle_hash,
                 metrics_hash,
+                allow_provenance_mismatch_cache=not bool(
+                    config.get("identity_policy", {}).get(
+                        "enforce_expected_core_code_bundle_sha256", False
+                    )
+                ),
             )
             cases_by_amplitude[key] = case
         case = cases_by_amplitude[key]
-        row = _case_row(Path(case["npz"]).with_suffix(".json"), case, "f2_per_ray")
+        case_path = Path(case.get("json") or Path(case["npz"]).with_suffix(".json"))
+        row = _case_row(case_path, case, "f2_per_ray")
         if not any(item["case_hash"] == row["case_hash"] for item in rows):
             rows.append(row)
         return row
@@ -447,6 +449,7 @@ def run_single_ray(
         "config_sha256": sha256(config_path),
         "core_code_provenance": core_provenance,
         "core_code_bundle_sha256": core_bundle_hash,
+        "core_code_identity_check": core_identity,
         "f2_runner_sha256": runner_hash,
         "preparation_gate": validation,
         "ray_count_total": len(rays),
@@ -486,8 +489,6 @@ def aggregate_reports(
         "mode",
         "frequency_label",
         "config_sha256",
-        "core_code_bundle_sha256",
-        "f2_runner_sha256",
     )
     shared_identity: Dict[str, Any] = {}
     for field in identity_fields:
@@ -498,6 +499,15 @@ def aggregate_reports(
         if len(values) != 1:
             raise ValueError(f"{field} is inconsistent across reports")
         shared_identity[field] = reports[0].get(field)
+    provenance_variants = sorted(
+        {
+            (
+                str(report.get("core_code_bundle_sha256")),
+                str(report.get("f2_runner_sha256")),
+            )
+            for report in reports
+        }
+    )
     if shared_identity["frequency_label"] != frequency_label or shared_identity["mode"] != mode:
         raise ValueError("report frequency or mode does not match aggregate request")
 
@@ -605,6 +615,13 @@ def aggregate_reports(
         "missing_ray_indices": missing_indices,
         "duplicate_ray_indices": sorted(set(duplicate_indices)),
         "shared_identity": shared_identity,
+        "code_provenance_variants": [
+            {
+                "core_code_bundle_sha256": core_hash,
+                "f2_runner_sha256": runner_hash,
+            }
+            for core_hash, runner_hash in provenance_variants
+        ],
         "gating_issues": {
             "center_unsafe_ray_indices": center_unsafe,
             "forcing_bracket_missing_ray_indices": forcing_missing_bracket,

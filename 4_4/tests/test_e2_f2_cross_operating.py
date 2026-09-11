@@ -2,8 +2,12 @@
 import copy
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+import numpy as np
 
 
 MODEL_ROOT = Path(__file__).resolve().parents[1]
@@ -12,11 +16,16 @@ if str(FLEXIBILITY_ROOT) not in sys.path:
     sys.path.insert(0, str(FLEXIBILITY_ROOT))
 
 from run_e2_f2_cross_operating import (
+    _build_case_config,
+    _case_row,
     _first_failure_bracket,
     aggregate_reports,
     expand_rays,
     validate_config,
 )
+import run_e2_frequency_diagnostic as frequency_runner
+from metrics_source import IntegrationGuardError, _solve_ivp_guarded
+from run_e2_formal import core_code_identity_check
 
 
 CONFIG_PATH = (
@@ -139,6 +148,154 @@ class E2F2CrossOperatingTests(unittest.TestCase):
         invalid["identity_policy"]["reuse_f1_center_cases"] = True
         with self.assertRaises(ValueError):
             validate_config(invalid)
+
+    def test_reference_code_hash_is_advisory_by_default(self):
+        check = core_code_identity_check(self.config, "different-code-bundle")
+        self.assertEqual(check["policy"], "record_only")
+        self.assertFalse(check["enforced"])
+        self.assertFalse(check["match"])
+
+    def test_reference_code_hash_can_be_enforced_explicitly(self):
+        strict = copy.deepcopy(self.config)
+        strict["identity_policy"][
+            "enforce_expected_core_code_bundle_sha256"
+        ] = True
+        with self.assertRaises(RuntimeError):
+            core_code_identity_check(strict, "different-code-bundle")
+
+    def test_reused_case_identity_is_checked_against_observed_reference(self):
+        with self.assertRaises(RuntimeError):
+            core_code_identity_check(
+                self.config,
+                "different-code-bundle",
+                reference_hash="source-code-bundle",
+            )
+
+    def test_integration_guard_rejects_non_finite_derivative(self):
+        with self.assertRaises(IntegrationGuardError) as caught:
+            _solve_ivp_guarded(
+                lambda _time, state: np.full_like(state, np.nan),
+                (0.0, 0.5),
+                np.ones(44),
+                7,
+                {"step_wall_timeout_s": 1.0},
+            )
+        self.assertEqual(caught.exception.reason, "non_finite_derivative")
+        self.assertEqual(caught.exception.control_step, 7)
+
+    def test_integration_guard_caps_rhs_work(self):
+        with self.assertRaises(IntegrationGuardError) as caught:
+            _solve_ivp_guarded(
+                lambda _time, state: -state,
+                (0.0, 0.5),
+                np.ones(44),
+                3,
+                {"max_rhs_evaluations": 1},
+            )
+        self.assertEqual(caught.exception.reason, "rhs_evaluation_limit")
+
+    def test_guard_failure_is_cached_and_maps_to_unsafe_case_row(self):
+        ray = expand_rays(self.config, "q0.90")[61]
+        case_config = _build_case_config(
+            self.config, ray, self.config["amplitude_grid_pu"][1]
+        )
+        frequency_spec = {
+            "frequency_hz": ray["frequency_hz"],
+            "cycles": ray["cycles"],
+            "evidence_class": ray["evidence_class"],
+        }
+        failure = IntegrationGuardError(
+            "rhs_evaluation_limit", 123.5, 247, 2001, 2.0
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            output_dir = Path(directory)
+            (output_dir / "cases").mkdir()
+            with mock.patch.object(
+                frequency_runner, "run_mpc_scenario", side_effect=failure
+            ) as simulation:
+                record = frequency_runner.run_case(
+                    "MPC",
+                    frequency_spec,
+                    case_config,
+                    {},
+                    {},
+                    np.zeros(44),
+                    output_dir,
+                    "runner-hash",
+                    "metrics-hash",
+                )
+                cached = frequency_runner.run_case(
+                    "MPC",
+                    frequency_spec,
+                    case_config,
+                    {},
+                    {},
+                    np.zeros(44),
+                    output_dir,
+                    "runner-hash",
+                    "metrics-hash",
+                )
+
+            self.assertEqual(simulation.call_count, 1)
+            self.assertEqual(cached, record)
+            self.assertEqual(record["status"], "failed")
+            self.assertTrue(Path(record["json"]).is_file())
+            row = _case_row(Path(record["json"]), record, "test")
+            self.assertFalse(row["forcing_stage_safe"])
+            self.assertFalse(row["joint_valid_for_boundary"])
+            self.assertEqual(row["solver_failures"], 1)
+
+    def test_success_cache_can_ignore_provenance_hashes_when_enabled(self):
+        ray = expand_rays(self.config, "q0.90")[61]
+        case_config = _build_case_config(self.config, ray, 0.0)
+        frequency_spec = {
+            "frequency_hz": ray["frequency_hz"],
+            "cycles": ray["cycles"],
+            "evidence_class": ray["evidence_class"],
+        }
+        old_config = frequency_runner.build_case_config(
+            "MPC", frequency_spec, case_config, "old-runner", "old-metrics"
+        )
+        old_record = {
+            "case_hash": frequency_runner.canonical_hash(old_config),
+            "case_config": old_config,
+            "npz": "placeholder",
+            "constraints": {},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            output_dir = Path(directory)
+            cases_dir = output_dir / "cases"
+            cases_dir.mkdir()
+            npz_path = cases_dir / "mpc_f0.00003499_old.npz"
+            npz_path.touch()
+            old_record["npz"] = r"Z:\different-computer\cached.npz"
+            (cases_dir / "mpc_f0.00003499_old.json").write_text(
+                json.dumps(old_record), encoding="utf-8"
+            )
+            with mock.patch.object(frequency_runner, "run_mpc_scenario") as simulation:
+                reused = frequency_runner.run_case(
+                    "MPC",
+                    frequency_spec,
+                    case_config,
+                    {},
+                    {},
+                    np.zeros(44),
+                    output_dir,
+                    "new-runner",
+                    "new-metrics",
+                    allow_provenance_mismatch_cache=True,
+                )
+            simulation.assert_not_called()
+            self.assertEqual(reused["case_hash"], old_record["case_hash"])
+            self.assertEqual(Path(reused["npz"]), npz_path)
+
+    def test_aggregate_records_mixed_code_provenance_without_rejecting_reports(self):
+        reports = [make_report(index, self.config) for index in range(72)]
+        reports[-1]["core_code_bundle_sha256"] = "new-core"
+        reports[-1]["f2_runner_sha256"] = "new-runner"
+        aggregate = aggregate_reports(reports, self.config, "q0.99", "precheck")
+        self.assertEqual(len(aggregate["code_provenance_variants"]), 2)
+        self.assertTrue(aggregate["precheck_gate_pass"])
 
 
 if __name__ == "__main__":

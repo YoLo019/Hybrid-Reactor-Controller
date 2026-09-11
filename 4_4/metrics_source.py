@@ -25,6 +25,96 @@ from mpc_utils_out import MPCController, get_linear_model
 from parameters import get_params
 
 
+class IntegrationGuardError(RuntimeError):
+    """Raised when one integration step exceeds its configured safety budget."""
+
+    def __init__(self, reason, simulation_time_s, control_step, rhs_evaluations, elapsed_wall_s):
+        self.reason = str(reason)
+        self.simulation_time_s = float(simulation_time_s)
+        self.control_step = int(control_step)
+        self.rhs_evaluations = int(rhs_evaluations)
+        self.elapsed_wall_s = float(elapsed_wall_s)
+        super().__init__(
+            f"Integration guard triggered at t={self.simulation_time_s:.6f}s "
+            f"(step={self.control_step}, reason={self.reason}, "
+            f"rhs_evaluations={self.rhs_evaluations}, "
+            f"wall_s={self.elapsed_wall_s:.3f})"
+        )
+
+    def as_dict(self):
+        return {
+            "type": type(self).__name__,
+            "reason": self.reason,
+            "simulation_time_s": self.simulation_time_s,
+            "control_step": self.control_step,
+            "rhs_evaluations": self.rhs_evaluations,
+            "elapsed_wall_s": self.elapsed_wall_s,
+            "message": str(self),
+        }
+
+
+def _solve_ivp_guarded(rhs, t_span, state, control_step, integration_guard=None):
+    """Run one Radau step with optional finite-state and work-budget guards."""
+    guard = integration_guard or {}
+    wall_limit = guard.get("step_wall_timeout_s")
+    evaluation_limit = guard.get("max_rhs_evaluations")
+    state_limit = guard.get("max_abs_state")
+    wall_limit = None if wall_limit is None else float(wall_limit)
+    evaluation_limit = None if evaluation_limit is None else int(evaluation_limit)
+    state_limit = None if state_limit is None else float(state_limit)
+    started = time.monotonic()
+    evaluations = 0
+
+    def fail(reason, simulation_time):
+        raise IntegrationGuardError(
+            reason,
+            simulation_time,
+            control_step,
+            evaluations,
+            time.monotonic() - started,
+        )
+
+    def guarded_rhs(current_t, current_y):
+        nonlocal evaluations
+        evaluations += 1
+        elapsed = time.monotonic() - started
+        if wall_limit is not None and elapsed > wall_limit:
+            fail("step_wall_timeout", current_t)
+        if evaluation_limit is not None and evaluations > evaluation_limit:
+            fail("rhs_evaluation_limit", current_t)
+        values = np.asarray(current_y, dtype=float)
+        if not np.all(np.isfinite(values)):
+            fail("non_finite_state", current_t)
+        if state_limit is not None and np.max(np.abs(values)) > state_limit:
+            fail("state_magnitude_limit", current_t)
+        derivative = np.asarray(rhs(current_t, current_y), dtype=float)
+        if not np.all(np.isfinite(derivative)):
+            fail("non_finite_derivative", current_t)
+        return derivative
+
+    initial_state = np.asarray(state, dtype=float)
+    if not np.all(np.isfinite(initial_state)):
+        fail("non_finite_initial_state", t_span[0])
+    if state_limit is not None and np.max(np.abs(initial_state)) > state_limit:
+        fail("initial_state_magnitude_limit", t_span[0])
+    solution = solve_ivp(
+        guarded_rhs,
+        t_span,
+        state,
+        method="Radau",
+        rtol=1e-6,
+        atol=solver_absolute_tolerances(1e-8),
+    )
+    if not solution.success:
+        fail(f"solver_failure: {solution.message}", solution.t[-1])
+    final_state = np.asarray(solution.y[:, -1], dtype=float)
+    if not np.all(np.isfinite(final_state)):
+        fail("non_finite_final_state", solution.t[-1])
+    if state_limit is not None and np.max(np.abs(final_state)) > state_limit:
+        fail("final_state_magnitude_limit", solution.t[-1])
+    return solution
+
+
 def set_plot_style():
     plt.rcParams["font.family"] = "serif"
     plt.rcParams["mathtext.fontset"] = "stix"
@@ -291,7 +381,7 @@ def run_mpc_scenario(scenario_name, params, ic, y0, dt, t_end, n=30,
                      integral_weight=0.0, integral_error_limit=None,
                      grid_disturbance_function=None,
                      prediction_interval_steps=None, forecast_type=None,
-                     forecast_provider=None):
+                     forecast_provider=None, integration_guard=None):
     """阀门由MPC控制；控制棒PID和BESS PI均在对象内闭环。"""
     rng = np.random.default_rng(seed)
     noise_std = make_noise_std(len(y0))
@@ -391,7 +481,7 @@ def run_mpc_scenario(scenario_name, params, ic, y0, dt, t_end, n=30,
             grid_disturbance_pu,
         )
 
-        solution = solve_ivp(
+        solution = _solve_ivp_guarded(
             lambda current_t, current_y: model_wind.pwf_model(
                 current_t,
                 current_y,
@@ -404,12 +494,9 @@ def run_mpc_scenario(scenario_name, params, ic, y0, dt, t_end, n=30,
             ),
             (current_time, current_time + dt),
             state,
-            method="Radau",
-            rtol=1e-6,
-            atol=solver_absolute_tolerances(1e-8),
+            k,
+            integration_guard,
         )
-        if not solution.success:
-            raise RuntimeError(f"Integration failed at t={current_time}: {solution.message}")
         state = solution.y[:, -1]
         if use_noise:
             state = apply_state_noise(state, rng, noise_std)
@@ -433,7 +520,7 @@ def run_mpc_scenario(scenario_name, params, ic, y0, dt, t_end, n=30,
 def run_pid_scenario(scenario_name, params, ic, y0, dt, t_end, use_noise=False, seed=1,
                      enforce_valve_rate_limit=True, target_function=None,
                      scenario_title=None, scenario_tag=None, show_progress=True,
-                     grid_disturbance_function=None):
+                     grid_disturbance_function=None, integration_guard=None):
     rng = np.random.default_rng(seed)
     noise_std = make_noise_std(len(y0))
     steps = int(round(t_end / dt))
@@ -482,7 +569,7 @@ def run_pid_scenario(scenario_name, params, ic, y0, dt, t_end, use_noise=False, 
             signals, k, current_time, state, params, ic, "pid", valve_command,
             grid_disturbance_pu,
         )
-        solution = solve_ivp(
+        solution = _solve_ivp_guarded(
             lambda current_t, current_y: model_wind.pwf_model(
                 current_t,
                 current_y,
@@ -495,12 +582,9 @@ def run_pid_scenario(scenario_name, params, ic, y0, dt, t_end, use_noise=False, 
             ),
             (current_time, current_time + dt),
             state,
-            method="Radau",
-            rtol=1e-6,
-            atol=solver_absolute_tolerances(1e-8),
+            k,
+            integration_guard,
         )
-        if not solution.success:
-            raise RuntimeError(f"Integration failed at t={current_time}: {solution.message}")
         state = solution.y[:, -1]
         if use_noise:
             state = apply_state_noise(state, rng, noise_std)

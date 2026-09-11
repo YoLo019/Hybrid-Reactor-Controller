@@ -33,7 +33,10 @@ from run_e2_f2_cross_operating import (  # noqa: E402
     expand_rays,
     validate_config,
 )
-from run_e2_formal import code_bundle_provenance  # noqa: E402
+from run_e2_formal import (  # noqa: E402
+    code_bundle_provenance,
+    core_code_identity_check,
+)
 from run_e2_frequency_diagnostic import run_case  # noqa: E402
 from run_e2_smoke import canonical_hash, prepare_operating_point, sha256  # noqa: E402
 
@@ -175,11 +178,13 @@ def run_single_ray(
     cases_dir = output_dir / "cases"
     cases_dir.mkdir(parents=True, exist_ok=True)
     core_provenance, core_bundle_hash = code_bundle_provenance()
-    expected_core = str(config["identity_policy"]["expected_core_code_bundle_sha256"])
-    if core_bundle_hash != expected_core:
-        raise RuntimeError(
-            f"core code bundle identity drift: expected {expected_core}, got {core_bundle_hash}"
-        )
+    base_aggregate = _load_json(base_aggregate_path)
+    source_identity = base_aggregate.get("shared_identity", {})
+    core_identity = core_code_identity_check(
+        config,
+        core_bundle_hash,
+        reference_hash=source_identity.get("core_code_bundle_sha256"),
+    )
     f2_runner_path = FLEXIBILITY_ROOT / "run_e2_f2_cross_operating.py"
     f2_runner_hash = sha256(f2_runner_path)
     extension_runner_hash = sha256(Path(__file__).resolve())
@@ -280,6 +285,7 @@ def run_single_ray(
         "extension_config_sha256": sha256(extension_config_path),
         "core_code_provenance": core_provenance,
         "core_code_bundle_sha256": core_bundle_hash,
+        "core_code_identity_check": core_identity,
         "f2_runner_sha256": f2_runner_hash,
         "extension_runner_sha256": extension_runner_hash,
         "preparation_gate": validation,

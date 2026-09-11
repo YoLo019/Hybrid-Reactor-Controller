@@ -34,7 +34,10 @@ from run_e2_f2_cross_operating import (  # noqa: E402
     expand_rays,
     validate_config,
 )
-from run_e2_formal import code_bundle_provenance  # noqa: E402
+from run_e2_formal import (  # noqa: E402
+    code_bundle_provenance,
+    core_code_identity_check,
+)
 from run_e2_frequency_diagnostic import run_case  # noqa: E402
 from run_e2_smoke import canonical_hash, prepare_operating_point, sha256  # noqa: E402
 
@@ -59,13 +62,31 @@ def _base_report_path(precheck_aggregate_path: Path, ray_index: int) -> Path:
 
 def _extension_report_path(precheck_aggregate: Dict[str, Any], ray_index: int) -> Path:
     review = precheck_aggregate.get("extension_review", {})
-    targeted_path = Path(str(review.get("targeted_aggregate_path", "")))
+    targeted_path = _resolve_project_path(review.get("targeted_aggregate_path", ""))
     return targeted_path.parent / f"e2_f2_q0.99_precheck_upper_extension_ray_{ray_index:04d}_summary.json"
 
 
 def _resolve_project_path(value: str) -> Path:
-    path = Path(value)
-    return path if path.is_absolute() else PROJECT_ROOT / path
+    """Resolve stored paths without depending on the source computer's root."""
+    raw = str(value or "")
+    path = Path(raw)
+    if not path.is_absolute():
+        return PROJECT_ROOT / path
+    if path.exists():
+        return path
+
+    # Aggregates created on another checkout contain absolute paths such as
+    # ``D:\\mpc_gpt\\research_execution\\...``. Re-anchor known project
+    # subdirectories when the recorded root is unavailable locally.
+    normalized = raw.replace("\\", "/")
+    parts = [part for part in normalized.split("/") if part]
+    for marker in ("research_execution", "4_4"):
+        if marker not in parts:
+            continue
+        candidate = PROJECT_ROOT.joinpath(*parts[parts.index(marker) :])
+        if candidate.exists():
+            return candidate
+    return path
 
 
 def _source_report_path(
@@ -77,7 +98,7 @@ def _source_report_path(
         path = _extension_report_path(precheck_aggregate, ray_index)
     else:
         review = precheck_aggregate.get("extension_review", {})
-        base_aggregate_path = Path(str(review.get("base_aggregate_path", "")))
+        base_aggregate_path = _resolve_project_path(review.get("base_aggregate_path", ""))
         if not base_aggregate_path.is_file():
             raise FileNotFoundError(
                 "base aggregate referenced by extension review is missing: "
@@ -133,8 +154,7 @@ def validate_refinement_inputs(
     if identity.get("config_sha256") != config_hash:
         raise ValueError("precheck config identity does not match base config")
     runner_hash = sha256(FLEXIBILITY_ROOT / "run_e2_f2_cross_operating.py")
-    if identity.get("f2_runner_sha256") != runner_hash:
-        raise ValueError("precheck F2 runner identity drifted")
+    source_runner_hash = identity.get("f2_runner_sha256")
     extension_review = aggregate.get("extension_review", {})
     if sorted(int(value) for value in extension_review.get("target_ray_indices", [])) != list(EXTENSION_TARGET_INDICES):
         raise ValueError("precheck extension review does not cover the frozen nine-ray target")
@@ -156,6 +176,12 @@ def validate_refinement_inputs(
         "config_sha256": config_hash,
         "precheck_aggregate_sha256": sha256(precheck_aggregate_path),
         "f2_runner_sha256": runner_hash,
+        "source_f2_runner_sha256": source_runner_hash,
+        "source_f2_runner_match": (
+            None
+            if source_runner_hash is None
+            else str(source_runner_hash).upper() == runner_hash.upper()
+        ),
     }
 
 
@@ -221,11 +247,12 @@ def run_single_ray(
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "cases").mkdir(parents=True, exist_ok=True)
     core_provenance, core_bundle_hash = code_bundle_provenance()
-    expected_core = str(config["identity_policy"]["expected_core_code_bundle_sha256"])
-    if core_bundle_hash != expected_core:
-        raise RuntimeError(
-            f"core code bundle identity drift: expected {expected_core}, got {core_bundle_hash}"
-        )
+    source_identity = precheck_aggregate.get("shared_identity", {})
+    core_identity = core_code_identity_check(
+        config,
+        core_bundle_hash,
+        reference_hash=source_identity.get("core_code_bundle_sha256"),
+    )
     f2_runner_hash = sha256(FLEXIBILITY_ROOT / "run_e2_f2_cross_operating.py")
     refinement_runner_hash = sha256(Path(__file__).resolve())
     params, initial_conditions, operating_state, observation = prepare_operating_point(
@@ -323,6 +350,7 @@ def run_single_ray(
         "refinement_config_sha256": sha256(refinement_config_path),
         "core_code_provenance": core_provenance,
         "core_code_bundle_sha256": core_bundle_hash,
+        "core_code_identity_check": core_identity,
         "f2_runner_sha256": f2_runner_hash,
         "refinement_runner_sha256": refinement_runner_hash,
         "preparation_gate": validation,

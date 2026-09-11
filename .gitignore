@@ -16,3 +16,7 @@ research_execution/02_data/w1b_fast_band/provenance/chalmers_islanded_operation_
 
 # q0.95 波次运行数据不进入 git（2026-08-30 用户指示，含预检/上界扩展/细化运行目录）
 research_execution/04_experiments/runs/*q095*/
+
+# q0.90 跨电脑迁移只同步 JSON 证据；完整时序 NPZ 保留在执行机器本地
+research_execution/04_experiments/runs/e2_f2_cross_operating_q090_precheck_v1/
+research_execution/04_experiments/runs/e2_f2_cross_operating_q090_precheck_v2/cases/*.npz

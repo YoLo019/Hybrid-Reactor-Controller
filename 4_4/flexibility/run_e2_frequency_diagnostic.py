@@ -17,7 +17,7 @@ FLEXIBILITY_ROOT = Path(__file__).resolve().parent
 if str(FLEXIBILITY_ROOT) not in sys.path:
     sys.path.insert(0, str(FLEXIBILITY_ROOT))
 
-from metrics_source import run_mpc_scenario, run_pid_scenario
+from metrics_source import IntegrationGuardError, run_mpc_scenario, run_pid_scenario
 from run_e2_smoke import (
     canonical_hash,
     make_e2_input_functions,
@@ -26,6 +26,23 @@ from run_e2_smoke import (
     sha256,
     summarize_case,
 )
+
+
+DEFAULT_INTEGRATION_GUARD = {
+    "step_wall_timeout_s": 30.0,
+    "max_rhs_evaluations": 2000,
+    "max_abs_state": 1.0e10,
+}
+
+
+def scientific_case_hash(case_config):
+    """Identify equal experiments while leaving code hashes as provenance."""
+    scientific_config = {
+        key: value
+        for key, value in case_config.items()
+        if key not in {"runner_sha256", "metrics_source_sha256"}
+    }
+    return canonical_hash(scientific_config)
 
 
 def validate_config(config):
@@ -174,6 +191,7 @@ def run_case(
     output_dir,
     runner_hash,
     metrics_hash,
+    allow_provenance_mismatch_cache=False,
 ):
     base_power = float(config["operating_point"]["nuclear_power_pu"])
     amplitude = float(config["amplitude_pu"])
@@ -191,10 +209,30 @@ def run_case(
     stem = f"{controller.lower()}_f{frequency_hz:.8f}_{case_hash[:12].lower()}"
     npz_path = output_dir / "cases" / f"{stem}.npz"
     json_path = output_dir / "cases" / f"{stem}.json"
-    if json_path.is_file() and npz_path.is_file():
+    if json_path.is_file():
         cached = json.loads(json_path.read_text(encoding="utf-8"))
-        if cached.get("case_hash") == case_hash:
+        cache_complete = cached.get("status", "completed") == "completed" and npz_path.is_file()
+        cache_failed = cached.get("status") == "failed"
+        if cached.get("case_hash") == case_hash and (cache_complete or cache_failed):
+            cached["json"] = str(json_path)
+            if cache_complete:
+                cached["npz"] = str(npz_path)
             return cached
+    if allow_provenance_mismatch_cache:
+        expected_scientific_hash = scientific_case_hash(case_config)
+        pattern = f"{controller.lower()}_f{frequency_hz:.8f}_*.json"
+        for candidate_path in sorted((output_dir / "cases").glob(pattern)):
+            candidate = json.loads(candidate_path.read_text(encoding="utf-8"))
+            candidate_npz = candidate_path.with_suffix(".npz")
+            if (
+                candidate.get("status", "completed") == "completed"
+                and candidate_npz.is_file()
+                and scientific_case_hash(candidate.get("case_config", {}))
+                == expected_scientific_hash
+            ):
+                candidate["json"] = str(candidate_path)
+                candidate["npz"] = str(candidate_npz)
+                return candidate
 
     target_function, grid_disturbance_function, input_function, forcing_end_s = (
         make_e2_input_functions(
@@ -219,42 +257,89 @@ def run_case(
         "scenario_title": "E2 fixed-parameter frequency diagnostic",
         "scenario_tag": stem,
         "show_progress": False,
+        "integration_guard": config["simulation"].get(
+            "integration_guard", DEFAULT_INTEGRATION_GUARD
+        ),
     }
-    if controller == "MPC":
-        mpc = config["mpc"]
-        result = run_mpc_scenario(
-            **common,
-            n=int(mpc["horizon_steps"]),
-            q_weights={
-                "power": float(mpc["q_power"]),
-                "Tavg": float(mpc["q_temperature"]),
+    try:
+        if controller == "MPC":
+            mpc = config["mpc"]
+            result = run_mpc_scenario(
+                **common,
+                n=int(mpc["horizon_steps"]),
+                q_weights={
+                    "power": float(mpc["q_power"]),
+                    "Tavg": float(mpc["q_temperature"]),
+                },
+                r_weights={
+                    "move": float(mpc["move_weight"]),
+                    "magnitude": float(mpc["magnitude_weight"]),
+                },
+                use_reference_preview=bool(mpc.get("use_reference_preview", False)),
+                forecast_type=(
+                    str(mpc.get("forecast_type", "perfect_foresight"))
+                    if bool(mpc.get("use_reference_preview", False))
+                    else None
+                ),
+                integral_weight=float(mpc.get("integral_weight", 0.0)),
+                integral_error_limit=mpc.get("integral_error_limit"),
+            )
+        elif controller == "PID":
+            result = run_pid_scenario(**common)
+        else:
+            raise ValueError(f"unsupported controller: {controller}")
+    except IntegrationGuardError as error:
+        failure_time = float(error.simulation_time_s)
+        constraint_failure = {
+            "pass": False,
+            "minimum_margin": -1.0,
+            "normalized_minimum_margin": -1.0,
+            "minimum_margin_time_s": failure_time,
+            "first_violation_time_s": failure_time,
+        }
+        record = {
+            "status": "failed",
+            "case_hash": case_hash,
+            "case_config": case_config,
+            "npz": None,
+            "json": str(json_path),
+            "failure": error.as_dict(),
+            "constraints": {
+                "safe": False,
+                "active_constraint": "solver_failure",
+                "first_violation_time_s": failure_time,
+                "constraints": {"solver_failure": constraint_failure},
+                "metrics": {"solver_failures": 1},
+                "recovery": {
+                    "complete": False,
+                    "window_start_s": None,
+                    "window_end_s": failure_time,
+                    "observed": {},
+                    "limits": config["simulation"]["recovery"]["completion_limits"],
+                },
+                "mathematical_result_sha256": None,
+                "valid_for_boundary": False,
+                "first_violation_phase": (
+                    "forcing" if failure_time < forcing_end_s else "recovery"
+                ),
             },
-            r_weights={
-                "move": float(mpc["move_weight"]),
-                "magnitude": float(mpc["magnitude_weight"]),
-            },
-            use_reference_preview=bool(mpc.get("use_reference_preview", False)),
-            forecast_type=(
-                str(mpc.get("forecast_type", "perfect_foresight"))
-                if bool(mpc.get("use_reference_preview", False))
-                else None
-            ),
-            integral_weight=float(mpc.get("integral_weight", 0.0)),
-            integral_error_limit=mpc.get("integral_error_limit"),
+            "analysis_metrics": None,
+        }
+        json_path.write_text(
+            json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
-    elif controller == "PID":
-        result = run_pid_scenario(**common)
-    else:
-        raise ValueError(f"unsupported controller: {controller}")
+        return record
 
     input_signal = np.asarray(
         [input_function(value) for value in result["t"]], dtype=float
     )
     save_case_npz(npz_path, result, input_signal)
     record = {
+        "status": "completed",
         "case_hash": case_hash,
         "case_config": case_config,
         "npz": str(npz_path),
+        "json": str(json_path),
         "constraints": summarize_case(
             result,
             config["constraints"],

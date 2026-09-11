@@ -1,0 +1,127 @@
+{
+  "status": "failed",
+  "case_hash": "AAF9F74CB5B7E5A52A09D5F323EEE9068A3081992FC5554F3CA1547C728A7D31",
+  "case_config": {
+    "study_id": "E2-F2-CROSS-OPERATING-SLOW-V1",
+    "controller": "MPC",
+    "frequency_hz": 3.4993489583333335e-05,
+    "cycles": 1.0,
+    "evidence_class": "Sotavento W1-A 90% cumulative spectral-energy frequency",
+    "amplitude_pu": 0.024548310554290048,
+    "phase_rad": 3.141592653589793,
+    "input_definition": {
+      "domain_id": "D_ref",
+      "kind": "net_load_reference",
+      "sign_convention": "positive input denotes wind surplus and reduces the nuclear power reference",
+      "claim_limit": "reference-feasibility domain, not a physical grid-disturbance rejection domain"
+    },
+    "system_scaling": {
+      "model_system_base_mw": 100.0,
+      "wind_portfolio_capacity_mw": 17.56,
+      "mapping_version": "e2_slow_grid_v2",
+      "mapping_file": "research_execution/02_data/w1a_slow_band/e2_slow_grid_v2.json",
+      "claim_limit": "Sotavento Energy-unit interpretation remains provisional as documented by W1-A"
+    },
+    "constraint_registry_id": "E2-FORMAL-CONSTRAINTS-V1",
+    "power_pu": 1.0,
+    "soc": 0.5,
+    "warmup_s": 20.0,
+    "forcing_end_s": 28596.74418604651,
+    "duration_s": 28776.74418604651,
+    "recovery": {
+      "duration_s": 180.0,
+      "sustain_s": 10.0,
+      "completion_limits": {
+        "power_abs_error_pu": 0.005,
+        "frequency_abs_hz": 0.02,
+        "coolant_average_abs_deviation_c": 0.5,
+        "bess_power_abs_mw": 0.25
+      }
+    },
+    "dt_s": 0.5,
+    "mpc": {
+      "horizon_steps": 30,
+      "q_power": 1000.0,
+      "q_temperature": 0.5,
+      "move_weight": 2.0,
+      "magnitude_weight": 0.05,
+      "use_reference_preview": false,
+      "integral_weight": 0.0
+    },
+    "constraints": {
+      "frequency_abs_hz": {
+        "upper": 0.5
+      },
+      "coolant_average_abs_deviation_c": {
+        "upper": 5.0
+      },
+      "neutron_power_pu": {
+        "lower": 0.5,
+        "upper": 1.1
+      },
+      "rod_speed_abs_spm": {
+        "upper": 72.0
+      },
+      "valve_command_pu": {
+        "lower": 0.0,
+        "upper": 1.2
+      },
+      "valve_command_rate_abs_pu_s": {
+        "upper": 0.05
+      },
+      "bess_power_abs_mw": {
+        "upper": 5.0
+      },
+      "soc": {
+        "lower": 0.1,
+        "upper": 0.9
+      }
+    },
+    "runner_sha256": "A3B3FA59D2B34E04DFE229DF5C30FCD61ECE18301613CE44B0C20E1F9DBF853F",
+    "metrics_source_sha256": "DB5782565D8C204E62BFCBCFDBCA7B1B682C0077940ED076BB6A5541614303DD"
+  },
+  "npz": null,
+  "json": "D:\\essay\\Hybrid-Reactor-Controller\\research_execution\\04_experiments\\runs\\e2_f2_cross_operating_q090_precheck_v2\\cases\\mpc_f0.00003499_aaf9f74cb5b7.json",
+  "failure": {
+    "type": "IntegrationGuardError",
+    "reason": "rhs_evaluation_limit",
+    "simulation_time_s": 4372.129437776936,
+    "control_step": 8744,
+    "rhs_evaluations": 2001,
+    "elapsed_wall_s": 0.9529999999795109,
+    "message": "Integration guard triggered at t=4372.129438s (step=8744, reason=rhs_evaluation_limit, rhs_evaluations=2001, wall_s=0.953)"
+  },
+  "constraints": {
+    "safe": false,
+    "active_constraint": "solver_failure",
+    "first_violation_time_s": 4372.129437776936,
+    "constraints": {
+      "solver_failure": {
+        "pass": false,
+        "minimum_margin": -1.0,
+        "normalized_minimum_margin": -1.0,
+        "minimum_margin_time_s": 4372.129437776936,
+        "first_violation_time_s": 4372.129437776936
+      }
+    },
+    "metrics": {
+      "solver_failures": 1
+    },
+    "recovery": {
+      "complete": false,
+      "window_start_s": null,
+      "window_end_s": 4372.129437776936,
+      "observed": {},
+      "limits": {
+        "power_abs_error_pu": 0.005,
+        "frequency_abs_hz": 0.02,
+        "coolant_average_abs_deviation_c": 0.5,
+        "bess_power_abs_mw": 0.25
+      }
+    },
+    "mathematical_result_sha256": null,
+    "valid_for_boundary": false,
+    "first_violation_phase": "forcing"
+  },
+  "analysis_metrics": null
+}
